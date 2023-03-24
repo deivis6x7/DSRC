@@ -1,26 +1,31 @@
 #
-# OMNeT++/OMNEST Makefile for $(LIB_PREFIX)vanet
+# OMNeT++/OMNEST Makefile for vanet
 #
 # This file was generated with the command:
-#  opp_makemake --make-so -f --deep
+#  opp_makemake -f --deep -KINET4_4_PROJ=../../inet4.4 -KVEINS_VEINS_5_2_PROJ=../../veins-veins-5.2 -DINET_IMPORT -DVEINS_IMPORT -I$$\(INET4_4_PROJ\)/src -I$$\(VEINS_VEINS_5_2_PROJ\)/src -I. -L$$\(INET4_4_PROJ\)/src -L$$\(VEINS_VEINS_5_2_PROJ\)/src -lINET$$\(D\) -lveins$$\(D\)
 #
 
 # Name of target to be created (-o option)
 TARGET_DIR = .
-TARGET_NAME = $(LIB_PREFIX)vanet$(D)
-TARGET = $(TARGET_NAME)$(SHARED_LIB_SUFFIX)
+TARGET_NAME = vanet$(D)
+TARGET = $(TARGET_NAME)$(EXE_SUFFIX)
 TARGET_IMPLIB = $(TARGET_NAME)$(IMPLIB_SUFFIX)
 TARGET_IMPDEF = $(TARGET_NAME)$(IMPDEF_SUFFIX)
 TARGET_FILES = $(TARGET_DIR)/$(TARGET)
 
+# User interface (uncomment one) (-u option)
+USERIF_LIBS = $(ALL_ENV_LIBS) # that is, $(QTENV_LIBS) $(CMDENV_LIBS)
+#USERIF_LIBS = $(CMDENV_LIBS)
+#USERIF_LIBS = $(QTENV_LIBS)
+
 # C++ include paths (with -I)
-INCLUDE_PATH =
+INCLUDE_PATH = -I$(INET4_4_PROJ)/src -I$(VEINS_VEINS_5_2_PROJ)/src -I.
 
 # Additional object and library files to link with
 EXTRA_OBJS =
 
 # Additional libraries (-L, -l options)
-LIBS =
+LIBS = $(LDFLAG_LIBPATH)$(INET4_4_PROJ)/src $(LDFLAG_LIBPATH)$(VEINS_VEINS_5_2_PROJ)/src  -lINET$(D) -lveins$(D)
 
 # Output directory
 PROJECT_OUTPUT_DIR = ../out
@@ -44,6 +49,10 @@ MSGFILES = \
 # SM files
 SMFILES =
 
+# Other makefile variables (-K)
+INET4_4_PROJ=../../inet4.4
+VEINS_VEINS_5_2_PROJ=../../veins-veins-5.2
+
 #------------------------------------------------------------------------------
 
 # Pull in OMNeT++ configuration (Makefile.inc)
@@ -61,9 +70,12 @@ endif
 include $(CONFIGFILE)
 
 # Simulation kernel and user interface libraries
-OMNETPP_LIBS = -loppenvir$D $(KERNEL_LIBS) $(SYS_LIBS)
+OMNETPP_LIBS = $(OPPMAIN_LIB) $(USERIF_LIBS) $(KERNEL_LIBS) $(SYS_LIBS)
+ifneq ($(PLATFORM),win32)
+LIBS += -Wl,-rpath,$(abspath $(INET4_4_PROJ)/src) -Wl,-rpath,$(abspath $(VEINS_VEINS_5_2_PROJ)/src)
+endif
 
-COPTS = $(CFLAGS) $(IMPORT_DEFINES)  $(INCLUDE_PATH) -I$(OMNETPP_INCL_DIR)
+COPTS = $(CFLAGS) $(IMPORT_DEFINES) -DINET_IMPORT -DVEINS_IMPORT $(INCLUDE_PATH) -I$(OMNETPP_INCL_DIR)
 MSGCOPTS = $(INCLUDE_PATH)
 SMCOPTS =
 
@@ -74,20 +86,6 @@ COPTS_FILE = $O/.last-copts
 ifneq ("$(COPTS)","$(shell cat $(COPTS_FILE) 2>/dev/null || echo '')")
   $(shell $(MKPATH) "$O")
   $(file >$(COPTS_FILE),$(COPTS))
-endif
-
-# On Windows, the target has additional file(s). An import lib and an optional debug symbol file is created too.
-ifeq ($(PLATFORM),win32)
-  TARGET_FILES+= $(TARGET_DIR)/$(TARGET_IMPLIB)
-  LDFLAGS+= $(LDFLAG_IMPLIB)$O/$(TARGET_IMPLIB)
-  ifeq ($(TOOLCHAIN_NAME),clang-msabi)
-    ifeq ($(MODE),debug)
-      TARGET_FILES+=$(TARGET_DIR)/$(TARGET_NAME).pdb
-    endif
-  else
-    TARGET_FILES+= $(TARGET_DIR)/$(TARGET_IMPDEF)
-    LDFLAGS+= $(LDFLAG_IMPDEF)$O/$(TARGET_IMPDEF)
-  endif
 endif
 
 #------------------------------------------------------------------------------
@@ -108,14 +106,10 @@ ifeq ($(TOOLCHAIN_NAME),clang-msabi)
 $O/$(TARGET_NAME).pdb: $O/$(TARGET)
 endif
 
-$O/$(TARGET) $O/$(TARGET_IMPDEF) $O/$(TARGET_IMPLIB) &: $(OBJS)  $(wildcard $(EXTRA_OBJS)) Makefile $(CONFIGFILE)
+$O/$(TARGET): $(OBJS)  $(wildcard $(EXTRA_OBJS)) Makefile $(CONFIGFILE)
 	@$(MKPATH) $O
-	@echo Creating shared library: $@
-	$(Q)$(SHLIB_LD) -o $O/$(TARGET) $(OBJS) $(EXTRA_OBJS) $(AS_NEEDED_OFF) $(WHOLE_ARCHIVE_ON) $(LIBS) $(WHOLE_ARCHIVE_OFF) $(OMNETPP_LIBS) $(LDFLAGS)
-	$(Q)$(SHLIB_POSTPROCESS) $O/$(TARGET)
-ifeq ($(PLATFORM),win32)
-	$(Q)llvm-ar d $O/$(TARGET_IMPLIB) $(TARGET) # WORKAROUND: throw away the first file from the archive to make the LLD generated import lib valid
-endif
+	@echo Creating executable: $@
+	$(Q)$(CXX) $(LDFLAGS) -o $O/$(TARGET) $(OBJS) $(EXTRA_OBJS) $(AS_NEEDED_OFF) $(WHOLE_ARCHIVE_ON) $(LIBS) $(WHOLE_ARCHIVE_OFF) $(OMNETPP_LIBS)
 
 .PHONY: all clean cleanall depend msgheaders smheaders
 

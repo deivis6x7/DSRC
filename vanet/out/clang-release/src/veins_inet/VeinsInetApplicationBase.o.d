@@ -1,6 +1,6 @@
-../out/clang-release/src/veins_inet/VeinsInetSampleApplication.o: \
-  veins_inet/VeinsInetSampleApplication.cc \
-  veins_inet/VeinsInetSampleApplication.h veins_inet/veins_inet.h \
+../out/clang-release/src/veins_inet/VeinsInetApplicationBase.o: \
+  veins_inet/VeinsInetApplicationBase.cc \
+  veins_inet/VeinsInetApplicationBase.h veins_inet/veins_inet.h \
   ../../veins-veins-5.2/src/veins/veins.h \
   /home/simu5g/omnetpp-6.0/include/omnetpp.h \
   ../../inet4.4/src/inet/common/INETDefs.h \
@@ -10,7 +10,6 @@
   ../../inet4.4/src/inet/common/Compat.h \
   ../../inet4.4/src/inet/common/InitStages.h \
   ../../inet4.4/src/inet/common/InitStageRegistry.h \
-  veins_inet/VeinsInetApplicationBase.h \
   ../../inet4.4/src/inet/applications/base/ApplicationBase.h \
   ../../inet4.4/src/inet/common/lifecycle/ModuleOperations.h \
   ../../inet4.4/src/inet/common/lifecycle/LifecycleOperation.h \
@@ -106,17 +105,9 @@
   ../../inet4.4/src/inet/queueing/base/PacketProcessorBase.h \
   ../../inet4.4/src/inet/queueing/contract/IPacketProcessor.h \
   ../../inet4.4/src/inet/queueing/contract/IPassivePacketSink.h \
-  ../../inet4.4/src/inet/networklayer/common/L3AddressTag_m.h \
-  veins_inet/VeinsInetSampleMessage_m.h \
-  ../../inet4.4/src/inet/common/packet/chunk/Chunk_m.h \
-  ../../inet4.4/src/inet/common/Units_m.h \
-  ../../inet4.4/src/inet/common/packet/chunk/BitCountChunk.h \
-  ../../inet4.4/src/inet/common/packet/chunk/ByteCountChunk.h \
-  ../../inet4.4/src/inet/common/packet/chunk/cPacketChunk.h \
-  ../../inet4.4/src/inet/common/packet/chunk/EncryptedChunk.h \
-  ../../inet4.4/src/inet/common/packet/chunk/FieldsChunk.h
+  ../../inet4.4/src/inet/networklayer/common/L3AddressTag_m.h
 
-veins_inet/VeinsInetSampleApplication.h:
+veins_inet/VeinsInetApplicationBase.h:
 
 veins_inet/veins_inet.h:
 
@@ -139,8 +130,6 @@ veins_inet/veins_inet.h:
 ../../inet4.4/src/inet/common/InitStages.h:
 
 ../../inet4.4/src/inet/common/InitStageRegistry.h:
-
-veins_inet/VeinsInetApplicationBase.h:
 
 ../../inet4.4/src/inet/applications/base/ApplicationBase.h:
 
@@ -333,19 +322,3 @@ veins_inet/VeinsInetMobility.h:
 ../../inet4.4/src/inet/queueing/contract/IPassivePacketSink.h:
 
 ../../inet4.4/src/inet/networklayer/common/L3AddressTag_m.h:
-
-veins_inet/VeinsInetSampleMessage_m.h:
-
-../../inet4.4/src/inet/common/packet/chunk/Chunk_m.h:
-
-../../inet4.4/src/inet/common/Units_m.h:
-
-../../inet4.4/src/inet/common/packet/chunk/BitCountChunk.h:
-
-../../inet4.4/src/inet/common/packet/chunk/ByteCountChunk.h:
-
-../../inet4.4/src/inet/common/packet/chunk/cPacketChunk.h:
-
-../../inet4.4/src/inet/common/packet/chunk/EncryptedChunk.h:
-
-../../inet4.4/src/inet/common/packet/chunk/FieldsChunk.h:

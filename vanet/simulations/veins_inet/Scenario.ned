@@ -54,7 +54,7 @@ network Scenario
             @display("p=64,320");
         }
         physicalEnvironment: PhysicalEnvironment {
-            @display("p=192,224");
+            @display("p=247,192");
         }
         roadsCanvasVisualizer: RoadsCanvasVisualizer {
             @display("p=64,416");
