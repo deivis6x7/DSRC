@@ -1,8 +1,8 @@
 version 3
-run Static-0-20230317-19:43:10-4229
+run Static-0-20230324-20:17:29-25627
 attr configname Static
-attr datetime 20230317-19:43:10
-attr datetimef 20230317-194310
+attr datetime 20230324-20:17:29
+attr datetimef 20230324-201729
 attr experiment Static
 attr inifile omnetpp.ini
 attr iterationvars ""
@@ -10,13 +10,13 @@ attr iterationvarsd ""
 attr iterationvarsf ""
 attr measurement ""
 attr network AODVNetwork
-attr processid 4229
+attr processid 25627
 attr repetition 0
 attr replication #0
 attr resultdir results
 attr runnumber 0
 attr seedset 0
-config image-path ../../../simu5g-workspace/inet4.4/images:../../../simu5g-workspace/veins-veins-5.2/images
+config image-path ../../../inet4.4/images:../../../veins-veins-5.2/images
 config description "routing without mobility"
 config *.host[*].wlan[*].radio.transmitter.communicationRange 250m
 config *.host[0].app[0].destAddr "\"host[1](ipv4)\""
