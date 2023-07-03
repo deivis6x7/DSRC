@@ -1,4 +1,0 @@
-#!/bin/sh
-cd `dirname $0`
-../src/b5gcybertextv2x -n .:../src $*
-# for shared lib, use: opp_run -l ../src/b5gcybertextv2x -n .:../src $*
