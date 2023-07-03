@@ -1,0 +1,8 @@
+<?xml version="1.0"?>
+
+<launch>
+    <copy file="unb.net.xml" />
+    <copy file="unb.rou.xml" />
+    <copy file="unb.poly.xml" />
+    <copy file="unb.sumo.cfg" type="config" />
+</launch>

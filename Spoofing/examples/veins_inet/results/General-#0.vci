@@ -1,0 +1,3380 @@
+file 1661366 1688355943                                         
+version 3
+run General-0-20230703-05:44:24-14863
+attr configname General
+attr datetime 20230703-05:44:24
+attr datetimef 20230703-054424
+attr experiment General
+attr inifile omnetpp.ini
+attr iterationvars ""
+attr iterationvarsd ""
+attr iterationvarsf ""
+attr measurement ""
+attr network Spoofing
+attr processid 14863
+attr repetition 0
+attr replication #0
+attr resultdir results
+attr runnumber 0
+attr seedset 0
+config image-path ../../images:../../../inet4.4/images:../../../veins-veins-5.2/images
+config network Spoofing
+config sim-time-limit 600s
+config debug-on-errors true
+config cmdenv-express-mode true
+config image-path ../../../../images
+config *.playgroundSizeX 2500m
+config *.playgroundSizeY 2500m
+config *.playgroundSizeZ 50m
+config *.annotations.draw true
+config *.manager.updateInterval 1s
+config *.manager.host "\"localhost\""
+config *.manager.port 9999
+config *.manager.autoShutdown true
+config *.manager.launchConfig "xmldoc(\"unb.launchd.xml\")"
+config *.manager.moduleType "\"spoofing.veins_inet.VeinsInetCar\""
+config *.node[*].numApps 1
+config *.node[0].app[0].typename spoofing.veins_inet.Attack
+config *.node[1..12].app[0].typename spoofing.veins_inet.VeinsInetSampleApplication
+config *.node[*].app[0].interface "\"wlan0\""
+config *.node[*].wlan[0].opMode "\"p\""
+config *.node[*].wlan[0].radio.typename Ieee80211DimensionalRadio
+config *.node[*].wlan[0].radio.bandName "\"5.9 GHz\""
+config *.node[*].wlan[0].radio.channelNumber 3
+config *.node[*].wlan[0].radio.transmitter.power 20mW
+config *.node[*].wlan[0].radio.bandwidth "10 MHz"
+config *.node[*].wlan[*].radio.antenna.mobility.typename AttachedMobility
+config *.node[*].wlan[*].radio.antenna.mobility.mobilityModule "\"^.^.^.^.mobility\""
+config *.node[*].wlan[*].radio.antenna.mobility.offsetX -2.5m
+config *.node[*].wlan[*].radio.antenna.mobility.offsetZ 1.5m
+config *.node[*].wlan[*].radio.antenna.mobility.constraintAreaMinX 0m
+config *.node[*].wlan[*].radio.antenna.mobility.constraintAreaMaxX 0m
+config *.node[*].wlan[*].radio.antenna.mobility.constraintAreaMinY 0m
+config *.node[*].wlan[*].radio.antenna.mobility.constraintAreaMaxY 0m
+config *.node[*].wlan[*].radio.antenna.mobility.constraintAreaMinZ 0m
+config *.node[*].wlan[*].radio.antenna.mobility.constraintAreaMaxZ 0m
+config *.node[*].ipv4.configurator.typename HostAutoConfigurator
+config *.node[*].ipv4.configurator.interfaces "\"wlan0\""
+config *.node[*].ipv4.configurator.mcastGroups "\"224.0.0.1\""
+config *.node[*].mobility.typename VeinsInetMobility
+config *.radioMedium.obstacleLoss.typename IdealObstacleLoss
+config **.vector-recording true
+
+vector 0 Spoofing.node[0].wlan[0].mac.dcf frameSequenceActive:vector ETV
+attr autoWarmupFilter false
+attr interpolationmode sample-hold
+attr recordingmode vector
+attr source warmup(count(frameSequenceStarted)-count(frameSequenceFinished))
+attr title "frame sequence active"
+vector 1 Spoofing.node[0].wlan[0].mac.dcf.channelAccess.inProgressFrames queueLength:vector ETV
+attr autoWarmupFilter false
+attr interpolationmode sample-hold
+attr recordingmode vector
+attr source "warmup(count(packetEnqueued) - count(packetDequeued))"
+attr title "queue length"
+vector 2 Spoofing.node[0].wlan[0].mac.dcf.channelAccess.contention backoffActive:vector ETV
+attr autoWarmupFilter false
+attr interpolationmode sample-hold
+attr recordingmode vector
+attr source warmup(count(backoffStarted)-count(backoffStopped))
+attr title "backoff active"
+vector 3 Spoofing.node[0].udp passedUpPk:vector(count) ETV
+attr interpolationmode none
+attr recordingmode vector(count)
+attr source packetSentToUpper
+attr title "packets passed up, count"
+vector 4 Spoofing.node[0].udp droppedPkWrongPort:vector(count) ETV
+attr interpolationmode none
+attr recordingmode vector(count)
+attr source packetDropReasonIsNoPortFound(packetDropped)
+attr title "packets dropped (wrong port), count"
+vector 5 Spoofing.node[0].udp droppedPkBadChecksum:vector(count) ETV
+attr interpolationmode none
+attr recordingmode vector(count)
+attr source packetDropReasonIsIncorrectlyReceived(packetDropped)
+attr title "packets dropped (checksum error), count"
+vector 6 Spoofing.node[0].wlan[0].radio radioMode:vector ETV
+attr interpolationmode sample-hold
+attr recordingmode vector
+attr source radioModeChanged
+attr title "Radio mode"
+vector 7 Spoofing.node[0].wlan[0].radio radioChannel:vector ETV
+attr interpolationmode sample-hold
+attr recordingmode vector
+attr source radioChannelChanged
+attr title "Radio channel"
+vector 8 Spoofing.node[0].wlan[0].radio receptionState:vector ETV
+attr interpolationmode sample-hold
+attr recordingmode vector
+attr source receptionStateChanged
+attr title "Radio reception state"
+vector 9 Spoofing.node[0].wlan[0].mac.dcf.channelAccess.contention stateChanged:vector ETV
+attr enum IDLE,DEFER,IFS_AND_BACKOFF
+attr interpolationmode none
+attr recordingmode vector
+attr title "contention state changed"
+attr type enum
+vector 10 Spoofing.node[0].wlan[0].mac.dcf.recoveryProcedure contentionWindowChanged:vector ETV
+attr interpolationmode sample-hold
+attr recordingmode vector
+attr title "contention window"
+vector 11 Spoofing.node[1].wlan[0].mac.dcf frameSequenceActive:vector ETV
+attr autoWarmupFilter false
+attr interpolationmode sample-hold
+attr recordingmode vector
+attr source warmup(count(frameSequenceStarted)-count(frameSequenceFinished))
+attr title "frame sequence active"
+vector 12 Spoofing.node[1].wlan[0].mac.dcf.channelAccess.inProgressFrames queueLength:vector ETV
+attr autoWarmupFilter false
+attr interpolationmode sample-hold
+attr recordingmode vector
+attr source "warmup(count(packetEnqueued) - count(packetDequeued))"
+attr title "queue length"
+vector 13 Spoofing.node[1].wlan[0].mac.dcf.channelAccess.contention backoffActive:vector ETV
+attr autoWarmupFilter false
+attr interpolationmode sample-hold
+attr recordingmode vector
+attr source warmup(count(backoffStarted)-count(backoffStopped))
+attr title "backoff active"
+vector 14 Spoofing.node[1].udp passedUpPk:vector(count) ETV
+attr interpolationmode none
+attr recordingmode vector(count)
+attr source packetSentToUpper
+attr title "packets passed up, count"
+vector 15 Spoofing.node[1].udp droppedPkWrongPort:vector(count) ETV
+attr interpolationmode none
+attr recordingmode vector(count)
+attr source packetDropReasonIsNoPortFound(packetDropped)
+attr title "packets dropped (wrong port), count"
+vector 16 Spoofing.node[1].udp droppedPkBadChecksum:vector(count) ETV
+attr interpolationmode none
+attr recordingmode vector(count)
+attr source packetDropReasonIsIncorrectlyReceived(packetDropped)
+attr title "packets dropped (checksum error), count"
+vector 17 Spoofing.node[1].wlan[0].radio radioMode:vector ETV
+attr interpolationmode sample-hold
+attr recordingmode vector
+attr source radioModeChanged
+attr title "Radio mode"
+vector 18 Spoofing.node[1].wlan[0].radio radioChannel:vector ETV
+attr interpolationmode sample-hold
+attr recordingmode vector
+attr source radioChannelChanged
+attr title "Radio channel"
+vector 19 Spoofing.node[1].wlan[0].radio receptionState:vector ETV
+attr interpolationmode sample-hold
+attr recordingmode vector
+attr source receptionStateChanged
+attr title "Radio reception state"
+vector 20 Spoofing.node[1].wlan[0].mac.dcf.channelAccess.contention stateChanged:vector ETV
+attr enum IDLE,DEFER,IFS_AND_BACKOFF
+attr interpolationmode none
+attr recordingmode vector
+attr title "contention state changed"
+attr type enum
+vector 21 Spoofing.node[1].wlan[0].mac.dcf.recoveryProcedure contentionWindowChanged:vector ETV
+attr interpolationmode sample-hold
+attr recordingmode vector
+attr title "contention window"
+vector 22 Spoofing.node[2].wlan[0].mac.dcf frameSequenceActive:vector ETV
+attr autoWarmupFilter false
+attr interpolationmode sample-hold
+attr recordingmode vector
+attr source warmup(count(frameSequenceStarted)-count(frameSequenceFinished))
+attr title "frame sequence active"
+vector 23 Spoofing.node[2].wlan[0].mac.dcf.channelAccess.inProgressFrames queueLength:vector ETV
+attr autoWarmupFilter false
+attr interpolationmode sample-hold
+attr recordingmode vector
+attr source "warmup(count(packetEnqueued) - count(packetDequeued))"
+attr title "queue length"
+vector 24 Spoofing.node[2].wlan[0].mac.dcf.channelAccess.contention backoffActive:vector ETV
+attr autoWarmupFilter false
+attr interpolationmode sample-hold
+attr recordingmode vector
+attr source warmup(count(backoffStarted)-count(backoffStopped))
+attr title "backoff active"
+vector 25 Spoofing.node[2].udp passedUpPk:vector(count) ETV
+attr interpolationmode none
+attr recordingmode vector(count)
+attr source packetSentToUpper
+attr title "packets passed up, count"
+vector 26 Spoofing.node[2].udp droppedPkWrongPort:vector(count) ETV
+attr interpolationmode none
+attr recordingmode vector(count)
+attr source packetDropReasonIsNoPortFound(packetDropped)
+attr title "packets dropped (wrong port), count"
+vector 27 Spoofing.node[2].udp droppedPkBadChecksum:vector(count) ETV
+attr interpolationmode none
+attr recordingmode vector(count)
+attr source packetDropReasonIsIncorrectlyReceived(packetDropped)
+attr title "packets dropped (checksum error), count"
+vector 28 Spoofing.node[2].wlan[0].radio radioMode:vector ETV
+attr interpolationmode sample-hold
+attr recordingmode vector
+attr source radioModeChanged
+attr title "Radio mode"
+vector 29 Spoofing.node[2].wlan[0].radio radioChannel:vector ETV
+attr interpolationmode sample-hold
+attr recordingmode vector
+attr source radioChannelChanged
+attr title "Radio channel"
+vector 30 Spoofing.node[2].wlan[0].radio receptionState:vector ETV
+attr interpolationmode sample-hold
+attr recordingmode vector
+attr source receptionStateChanged
+attr title "Radio reception state"
+vector 31 Spoofing.node[2].wlan[0].mac.dcf.channelAccess.contention stateChanged:vector ETV
+attr enum IDLE,DEFER,IFS_AND_BACKOFF
+attr interpolationmode none
+attr recordingmode vector
+attr title "contention state changed"
+attr type enum
+vector 32 Spoofing.node[2].wlan[0].mac.dcf.recoveryProcedure contentionWindowChanged:vector ETV
+attr interpolationmode sample-hold
+attr recordingmode vector
+attr title "contention window"
+vector 33 Spoofing.node[3].wlan[0].mac.dcf frameSequenceActive:vector ETV
+attr autoWarmupFilter false
+attr interpolationmode sample-hold
+attr recordingmode vector
+attr source warmup(count(frameSequenceStarted)-count(frameSequenceFinished))
+attr title "frame sequence active"
+vector 34 Spoofing.node[3].wlan[0].mac.dcf.channelAccess.inProgressFrames queueLength:vector ETV
+attr autoWarmupFilter false
+attr interpolationmode sample-hold
+attr recordingmode vector
+attr source "warmup(count(packetEnqueued) - count(packetDequeued))"
+attr title "queue length"
+vector 35 Spoofing.node[3].wlan[0].mac.dcf.channelAccess.contention backoffActive:vector ETV
+attr autoWarmupFilter false
+attr interpolationmode sample-hold
+attr recordingmode vector
+attr source warmup(count(backoffStarted)-count(backoffStopped))
+attr title "backoff active"
+vector 36 Spoofing.node[3].udp passedUpPk:vector(count) ETV
+attr interpolationmode none
+attr recordingmode vector(count)
+attr source packetSentToUpper
+attr title "packets passed up, count"
+vector 37 Spoofing.node[3].udp droppedPkWrongPort:vector(count) ETV
+attr interpolationmode none
+attr recordingmode vector(count)
+attr source packetDropReasonIsNoPortFound(packetDropped)
+attr title "packets dropped (wrong port), count"
+vector 38 Spoofing.node[3].udp droppedPkBadChecksum:vector(count) ETV
+attr interpolationmode none
+attr recordingmode vector(count)
+attr source packetDropReasonIsIncorrectlyReceived(packetDropped)
+attr title "packets dropped (checksum error), count"
+vector 39 Spoofing.node[3].wlan[0].radio radioMode:vector ETV
+attr interpolationmode sample-hold
+attr recordingmode vector
+attr source radioModeChanged
+attr title "Radio mode"
+vector 40 Spoofing.node[3].wlan[0].radio radioChannel:vector ETV
+attr interpolationmode sample-hold
+attr recordingmode vector
+attr source radioChannelChanged
+attr title "Radio channel"
+vector 41 Spoofing.node[3].wlan[0].radio receptionState:vector ETV
+attr interpolationmode sample-hold
+attr recordingmode vector
+attr source receptionStateChanged
+attr title "Radio reception state"
+vector 42 Spoofing.node[3].wlan[0].mac.dcf.channelAccess.contention stateChanged:vector ETV
+attr enum IDLE,DEFER,IFS_AND_BACKOFF
+attr interpolationmode none
+attr recordingmode vector
+attr title "contention state changed"
+attr type enum
+vector 43 Spoofing.node[3].wlan[0].mac.dcf.recoveryProcedure contentionWindowChanged:vector ETV
+attr interpolationmode sample-hold
+attr recordingmode vector
+attr title "contention window"
+vector 44 Spoofing.node[4].wlan[0].mac.dcf frameSequenceActive:vector ETV
+attr autoWarmupFilter false
+attr interpolationmode sample-hold
+attr recordingmode vector
+attr source warmup(count(frameSequenceStarted)-count(frameSequenceFinished))
+attr title "frame sequence active"
+vector 45 Spoofing.node[4].wlan[0].mac.dcf.channelAccess.inProgressFrames queueLength:vector ETV
+attr autoWarmupFilter false
+attr interpolationmode sample-hold
+attr recordingmode vector
+attr source "warmup(count(packetEnqueued) - count(packetDequeued))"
+attr title "queue length"
+vector 46 Spoofing.node[4].wlan[0].mac.dcf.channelAccess.contention backoffActive:vector ETV
+attr autoWarmupFilter false
+attr interpolationmode sample-hold
+attr recordingmode vector
+attr source warmup(count(backoffStarted)-count(backoffStopped))
+attr title "backoff active"
+vector 47 Spoofing.node[4].udp passedUpPk:vector(count) ETV
+attr interpolationmode none
+attr recordingmode vector(count)
+attr source packetSentToUpper
+attr title "packets passed up, count"
+vector 48 Spoofing.node[4].udp droppedPkWrongPort:vector(count) ETV
+attr interpolationmode none
+attr recordingmode vector(count)
+attr source packetDropReasonIsNoPortFound(packetDropped)
+attr title "packets dropped (wrong port), count"
+vector 49 Spoofing.node[4].udp droppedPkBadChecksum:vector(count) ETV
+attr interpolationmode none
+attr recordingmode vector(count)
+attr source packetDropReasonIsIncorrectlyReceived(packetDropped)
+attr title "packets dropped (checksum error), count"
+vector 50 Spoofing.node[4].wlan[0].radio radioMode:vector ETV
+attr interpolationmode sample-hold
+attr recordingmode vector
+attr source radioModeChanged
+attr title "Radio mode"
+vector 51 Spoofing.node[4].wlan[0].radio radioChannel:vector ETV
+attr interpolationmode sample-hold
+attr recordingmode vector
+attr source radioChannelChanged
+attr title "Radio channel"
+vector 52 Spoofing.node[4].wlan[0].radio receptionState:vector ETV
+attr interpolationmode sample-hold
+attr recordingmode vector
+attr source receptionStateChanged
+attr title "Radio reception state"
+vector 53 Spoofing.node[4].wlan[0].mac.dcf.channelAccess.contention stateChanged:vector ETV
+attr enum IDLE,DEFER,IFS_AND_BACKOFF
+attr interpolationmode none
+attr recordingmode vector
+attr title "contention state changed"
+attr type enum
+vector 54 Spoofing.node[4].wlan[0].mac.dcf.recoveryProcedure contentionWindowChanged:vector ETV
+attr interpolationmode sample-hold
+attr recordingmode vector
+attr title "contention window"
+vector 55 Spoofing.node[0].app[0] packetSent:vector(packetBytes) ETV
+attr interpolationmode none
+attr recordingmode vector(packetBytes)
+attr source packetSent
+attr title "packets sent, packetBytes"
+vector 56 Spoofing.node[0].udp packetSent:vector(packetBytes) ETV
+attr interpolationmode none
+attr recordingmode vector(packetBytes)
+attr source packetSent
+attr title "packets sent, packetBytes"
+vector 57 Spoofing.node[0].lo[0].lo rcvdPkFromHl:vector(packetBytes) ETV
+attr interpolationmode none
+attr recordingmode vector(packetBytes)
+attr source packetReceivedFromUpper
+attr title "packets received from higher layer, packetBytes"
+vector 58 Spoofing.node[0].lo[0].lo passedUpPk:vector(packetBytes) ETV
+attr interpolationmode none
+attr recordingmode vector(packetBytes)
+attr source packetSentToUpper
+attr title "packets passed to higher layer, packetBytes"
+vector 59 Spoofing.node[0].wlan[0].mac packetReceivedFromUpper:vector(packetBytes) ETV
+attr interpolationmode none
+attr recordingmode vector(packetBytes)
+attr title "packets received from upper layer, packetBytes"
+vector 60 Spoofing.node[0].wlan[0].mac.dcf.channelAccess.pendingQueue incomingPacketLengths:vector ETV
+attr interpolationmode none
+attr recordingmode vector
+attr source packetLength(packetPushStarted)
+attr title "incoming packet lengths"
+attr unit b
+vector 61 Spoofing.node[0].wlan[0].mac.dcf.channelAccess.pendingQueue incomingDataRate:vector ETV
+attr interpolationmode linear
+attr recordingmode vector
+attr source throughput(packetPushStarted)
+attr title "incoming datarate"
+attr unit bps
+vector 62 Spoofing.node[0].wlan[0].mac.dcf.channelAccess.pendingQueue queueLength:vector ETV
+attr autoWarmupFilter false
+attr interpolationmode sample-hold
+attr recordingmode vector
+attr source "warmup(atomic(constant0(packetPushEnded) + count(packetPushStarted) - count(packetPulled) - count(packetRemoved) - count(packetDropped)))"
+attr title "queue length"
+attr unit pk
+vector 63 Spoofing.node[0].wlan[0].mac.dcf.channelAccess.pendingQueue queueBitLength:vector ETV
+attr autoWarmupFilter false
+attr interpolationmode sample-hold
+attr recordingmode vector
+attr source "warmup(atomic(constant0(packetPushEnded) + sum(packetLength(packetPushStarted)) - sum(packetLength(packetPulled)) - sum(packetLength(packetRemoved)) - sum(packetLength(packetDropped))))"
+attr title "queue bit length"
+attr unit b
+vector 64 Spoofing.node[0].wlan[0].mac.dcf.channelAccess.contention backoffPeriodGenerated:vector ETV
+attr interpolationmode none
+attr recordingmode vector
+attr title "backoff periods"
+vector 65 Spoofing.node[0].udp packetReceived:vector(packetBytes) ETV
+attr interpolationmode none
+attr recordingmode vector(packetBytes)
+attr source packetReceived
+attr title "packets received, packetBytes"
+vector 66 Spoofing.node[0].app[0] packetReceived:vector(packetBytes) ETV
+attr interpolationmode none
+attr recordingmode vector(packetBytes)
+attr source packetReceived
+attr title "packets received, packetBytes"
+vector 67 Spoofing.node[0].app[0] throughput:vector ETV
+attr recordingmode vector
+attr source throughput(packetReceived)
+attr title throughput
+attr unit bps
+vector 68 Spoofing.node[0].app[0] rcvdPkLifetime:vector ETV
+attr interpolationmode none
+attr recordingmode vector
+attr source dataAge(packetReceived)
+attr title "received packet lifetime"
+attr unit s
+vector 69 Spoofing.node[0].wlan[0].mac.dcf.channelAccess.pendingQueue queueingTime:vector ETV
+attr interpolationmode none
+attr recordingmode vector
+attr source queueingTime(packetPulled)
+attr title "queueing times"
+attr unit s
+vector 70 Spoofing.node[0].wlan[0].mac.dcf.channelAccess.pendingQueue outgoingPacketLengths:vector ETV
+attr interpolationmode none
+attr recordingmode vector
+attr source packetLength(packetPulled)
+attr title "outgoing packet lengths"
+attr unit b
+vector 71 Spoofing.node[0].wlan[0].mac.dcf.channelAccess.pendingQueue outgoingDataRate:vector ETV
+attr interpolationmode linear
+attr recordingmode vector
+attr source throughput(packetPulled)
+attr title "outgoing datarate"
+attr unit bps
+vector 72 Spoofing.node[0].wlan[0].mac.dcf datarateSelected:vector ETV
+attr interpolationmode none
+attr recordingmode vector
+attr title "datarates selected"
+vector 73 Spoofing.node[0].wlan[0].mac packetSentToLower:vector(packetBytes) ETV
+attr interpolationmode none
+attr recordingmode vector(packetBytes)
+attr title "packets sent to lower layer, packetBytes"
+vector 74 Spoofing.node[0].wlan[0].radio transmissionState:vector ETV
+attr interpolationmode sample-hold
+attr recordingmode vector
+attr source transmissionStateChanged
+attr title "Radio transmission state"
+vector 75 Spoofing.node[0].wlan[0].mac.dcf packetSentToPeer:vector(packetBytes) ETV
+attr interpolationmode none
+attr recordingmode vector(packetBytes)
+attr title "packets sent, packetBytes"
+vector 76 Spoofing.node[0].wlan[0].mac.dcf packetSentToPeerMulticast:vector(packetBytes) ETV
+attr interpolationmode none
+attr recordingmode vector(packetBytes)
+attr source ieee80211Multicast(packetSentToPeer)
+attr title "packets sent: multicast, packetBytes"
+vector 77 Spoofing.node[0].wlan[0].mac.dcf packetSentToPeerWithoutRetry:vector(packetBytes) ETV
+attr interpolationmode none
+attr recordingmode vector(packetBytes)
+attr source ieee80211NotRetry(packetSentToPeer)
+attr title "packets sent: without retry, packetBytes"
+vector 78 Spoofing.node[0].wlan[0].mac.dcf.channelAccess.inProgressFrames queueingTime:vector ETV
+attr interpolationmode none
+attr recordingmode vector
+attr source queueingTime(packetDequeued)
+attr title "queueing times"
+vector 79 Spoofing.node[5].wlan[0].mac.dcf frameSequenceActive:vector ETV
+attr autoWarmupFilter false
+attr interpolationmode sample-hold
+attr recordingmode vector
+attr source warmup(count(frameSequenceStarted)-count(frameSequenceFinished))
+attr title "frame sequence active"
+vector 80 Spoofing.node[5].wlan[0].mac.dcf.channelAccess.inProgressFrames queueLength:vector ETV
+attr autoWarmupFilter false
+attr interpolationmode sample-hold
+attr recordingmode vector
+attr source "warmup(count(packetEnqueued) - count(packetDequeued))"
+attr title "queue length"
+vector 81 Spoofing.node[5].wlan[0].mac.dcf.channelAccess.contention backoffActive:vector ETV
+attr autoWarmupFilter false
+attr interpolationmode sample-hold
+attr recordingmode vector
+attr source warmup(count(backoffStarted)-count(backoffStopped))
+attr title "backoff active"
+vector 82 Spoofing.node[5].udp passedUpPk:vector(count) ETV
+attr interpolationmode none
+attr recordingmode vector(count)
+attr source packetSentToUpper
+attr title "packets passed up, count"
+vector 83 Spoofing.node[5].udp droppedPkWrongPort:vector(count) ETV
+attr interpolationmode none
+attr recordingmode vector(count)
+attr source packetDropReasonIsNoPortFound(packetDropped)
+attr title "packets dropped (wrong port), count"
+vector 84 Spoofing.node[5].udp droppedPkBadChecksum:vector(count) ETV
+attr interpolationmode none
+attr recordingmode vector(count)
+attr source packetDropReasonIsIncorrectlyReceived(packetDropped)
+attr title "packets dropped (checksum error), count"
+vector 85 Spoofing.node[5].wlan[0].radio radioMode:vector ETV
+attr interpolationmode sample-hold
+attr recordingmode vector
+attr source radioModeChanged
+attr title "Radio mode"
+vector 86 Spoofing.node[5].wlan[0].radio radioChannel:vector ETV
+attr interpolationmode sample-hold
+attr recordingmode vector
+attr source radioChannelChanged
+attr title "Radio channel"
+vector 87 Spoofing.node[5].wlan[0].radio receptionState:vector ETV
+attr interpolationmode sample-hold
+attr recordingmode vector
+attr source receptionStateChanged
+attr title "Radio reception state"
+vector 88 Spoofing.node[5].wlan[0].mac.dcf.channelAccess.contention stateChanged:vector ETV
+attr enum IDLE,DEFER,IFS_AND_BACKOFF
+attr interpolationmode none
+attr recordingmode vector
+attr title "contention state changed"
+attr type enum
+vector 89 Spoofing.node[5].wlan[0].mac.dcf.recoveryProcedure contentionWindowChanged:vector ETV
+attr interpolationmode sample-hold
+attr recordingmode vector
+attr title "contention window"
+vector 90 Spoofing.node[6].wlan[0].mac.dcf frameSequenceActive:vector ETV
+attr autoWarmupFilter false
+attr interpolationmode sample-hold
+attr recordingmode vector
+attr source warmup(count(frameSequenceStarted)-count(frameSequenceFinished))
+attr title "frame sequence active"
+vector 91 Spoofing.node[6].wlan[0].mac.dcf.channelAccess.inProgressFrames queueLength:vector ETV
+attr autoWarmupFilter false
+attr interpolationmode sample-hold
+attr recordingmode vector
+attr source "warmup(count(packetEnqueued) - count(packetDequeued))"
+attr title "queue length"
+vector 92 Spoofing.node[6].wlan[0].mac.dcf.channelAccess.contention backoffActive:vector ETV
+attr autoWarmupFilter false
+attr interpolationmode sample-hold
+attr recordingmode vector
+attr source warmup(count(backoffStarted)-count(backoffStopped))
+attr title "backoff active"
+vector 93 Spoofing.node[6].udp passedUpPk:vector(count) ETV
+attr interpolationmode none
+attr recordingmode vector(count)
+attr source packetSentToUpper
+attr title "packets passed up, count"
+vector 94 Spoofing.node[6].udp droppedPkWrongPort:vector(count) ETV
+attr interpolationmode none
+attr recordingmode vector(count)
+attr source packetDropReasonIsNoPortFound(packetDropped)
+attr title "packets dropped (wrong port), count"
+vector 95 Spoofing.node[6].udp droppedPkBadChecksum:vector(count) ETV
+attr interpolationmode none
+attr recordingmode vector(count)
+attr source packetDropReasonIsIncorrectlyReceived(packetDropped)
+attr title "packets dropped (checksum error), count"
+vector 96 Spoofing.node[6].wlan[0].radio radioMode:vector ETV
+attr interpolationmode sample-hold
+attr recordingmode vector
+attr source radioModeChanged
+attr title "Radio mode"
+vector 97 Spoofing.node[6].wlan[0].radio radioChannel:vector ETV
+attr interpolationmode sample-hold
+attr recordingmode vector
+attr source radioChannelChanged
+attr title "Radio channel"
+vector 98 Spoofing.node[6].wlan[0].radio receptionState:vector ETV
+attr interpolationmode sample-hold
+attr recordingmode vector
+attr source receptionStateChanged
+attr title "Radio reception state"
+vector 99 Spoofing.node[6].wlan[0].mac.dcf.channelAccess.contention stateChanged:vector ETV
+attr enum IDLE,DEFER,IFS_AND_BACKOFF
+attr interpolationmode none
+attr recordingmode vector
+attr title "contention state changed"
+attr type enum
+vector 100 Spoofing.node[6].wlan[0].mac.dcf.recoveryProcedure contentionWindowChanged:vector ETV
+attr interpolationmode sample-hold
+attr recordingmode vector
+attr title "contention window"
+vector 101 Spoofing.node[7].wlan[0].mac.dcf frameSequenceActive:vector ETV
+attr autoWarmupFilter false
+attr interpolationmode sample-hold
+attr recordingmode vector
+attr source warmup(count(frameSequenceStarted)-count(frameSequenceFinished))
+attr title "frame sequence active"
+vector 102 Spoofing.node[7].wlan[0].mac.dcf.channelAccess.inProgressFrames queueLength:vector ETV
+attr autoWarmupFilter false
+attr interpolationmode sample-hold
+attr recordingmode vector
+attr source "warmup(count(packetEnqueued) - count(packetDequeued))"
+attr title "queue length"
+vector 103 Spoofing.node[7].wlan[0].mac.dcf.channelAccess.contention backoffActive:vector ETV
+attr autoWarmupFilter false
+attr interpolationmode sample-hold
+attr recordingmode vector
+attr source warmup(count(backoffStarted)-count(backoffStopped))
+attr title "backoff active"
+vector 104 Spoofing.node[7].udp passedUpPk:vector(count) ETV
+attr interpolationmode none
+attr recordingmode vector(count)
+attr source packetSentToUpper
+attr title "packets passed up, count"
+vector 105 Spoofing.node[7].udp droppedPkWrongPort:vector(count) ETV
+attr interpolationmode none
+attr recordingmode vector(count)
+attr source packetDropReasonIsNoPortFound(packetDropped)
+attr title "packets dropped (wrong port), count"
+vector 106 Spoofing.node[7].udp droppedPkBadChecksum:vector(count) ETV
+attr interpolationmode none
+attr recordingmode vector(count)
+attr source packetDropReasonIsIncorrectlyReceived(packetDropped)
+attr title "packets dropped (checksum error), count"
+vector 107 Spoofing.node[7].wlan[0].radio radioMode:vector ETV
+attr interpolationmode sample-hold
+attr recordingmode vector
+attr source radioModeChanged
+attr title "Radio mode"
+vector 108 Spoofing.node[7].wlan[0].radio radioChannel:vector ETV
+attr interpolationmode sample-hold
+attr recordingmode vector
+attr source radioChannelChanged
+attr title "Radio channel"
+vector 109 Spoofing.node[7].wlan[0].radio receptionState:vector ETV
+attr interpolationmode sample-hold
+attr recordingmode vector
+attr source receptionStateChanged
+attr title "Radio reception state"
+vector 110 Spoofing.node[7].wlan[0].mac.dcf.channelAccess.contention stateChanged:vector ETV
+attr enum IDLE,DEFER,IFS_AND_BACKOFF
+attr interpolationmode none
+attr recordingmode vector
+attr title "contention state changed"
+attr type enum
+vector 111 Spoofing.node[7].wlan[0].mac.dcf.recoveryProcedure contentionWindowChanged:vector ETV
+attr interpolationmode sample-hold
+attr recordingmode vector
+attr title "contention window"
+vector 112 Spoofing.node[8].wlan[0].mac.dcf frameSequenceActive:vector ETV
+attr autoWarmupFilter false
+attr interpolationmode sample-hold
+attr recordingmode vector
+attr source warmup(count(frameSequenceStarted)-count(frameSequenceFinished))
+attr title "frame sequence active"
+vector 113 Spoofing.node[8].wlan[0].mac.dcf.channelAccess.inProgressFrames queueLength:vector ETV
+attr autoWarmupFilter false
+attr interpolationmode sample-hold
+attr recordingmode vector
+attr source "warmup(count(packetEnqueued) - count(packetDequeued))"
+attr title "queue length"
+vector 114 Spoofing.node[8].wlan[0].mac.dcf.channelAccess.contention backoffActive:vector ETV
+attr autoWarmupFilter false
+attr interpolationmode sample-hold
+attr recordingmode vector
+attr source warmup(count(backoffStarted)-count(backoffStopped))
+attr title "backoff active"
+vector 115 Spoofing.node[8].udp passedUpPk:vector(count) ETV
+attr interpolationmode none
+attr recordingmode vector(count)
+attr source packetSentToUpper
+attr title "packets passed up, count"
+vector 116 Spoofing.node[8].udp droppedPkWrongPort:vector(count) ETV
+attr interpolationmode none
+attr recordingmode vector(count)
+attr source packetDropReasonIsNoPortFound(packetDropped)
+attr title "packets dropped (wrong port), count"
+vector 117 Spoofing.node[8].udp droppedPkBadChecksum:vector(count) ETV
+attr interpolationmode none
+attr recordingmode vector(count)
+attr source packetDropReasonIsIncorrectlyReceived(packetDropped)
+attr title "packets dropped (checksum error), count"
+vector 118 Spoofing.node[8].wlan[0].radio radioMode:vector ETV
+attr interpolationmode sample-hold
+attr recordingmode vector
+attr source radioModeChanged
+attr title "Radio mode"
+vector 119 Spoofing.node[8].wlan[0].radio radioChannel:vector ETV
+attr interpolationmode sample-hold
+attr recordingmode vector
+attr source radioChannelChanged
+attr title "Radio channel"
+vector 120 Spoofing.node[8].wlan[0].radio receptionState:vector ETV
+attr interpolationmode sample-hold
+attr recordingmode vector
+attr source receptionStateChanged
+attr title "Radio reception state"
+vector 121 Spoofing.node[8].wlan[0].mac.dcf.channelAccess.contention stateChanged:vector ETV
+attr enum IDLE,DEFER,IFS_AND_BACKOFF
+attr interpolationmode none
+attr recordingmode vector
+attr title "contention state changed"
+attr type enum
+vector 122 Spoofing.node[8].wlan[0].mac.dcf.recoveryProcedure contentionWindowChanged:vector ETV
+attr interpolationmode sample-hold
+attr recordingmode vector
+attr title "contention window"
+vector 123 Spoofing.node[9].wlan[0].mac.dcf frameSequenceActive:vector ETV
+attr autoWarmupFilter false
+attr interpolationmode sample-hold
+attr recordingmode vector
+attr source warmup(count(frameSequenceStarted)-count(frameSequenceFinished))
+attr title "frame sequence active"
+vector 124 Spoofing.node[9].wlan[0].mac.dcf.channelAccess.inProgressFrames queueLength:vector ETV
+attr autoWarmupFilter false
+attr interpolationmode sample-hold
+attr recordingmode vector
+attr source "warmup(count(packetEnqueued) - count(packetDequeued))"
+attr title "queue length"
+vector 125 Spoofing.node[9].wlan[0].mac.dcf.channelAccess.contention backoffActive:vector ETV
+attr autoWarmupFilter false
+attr interpolationmode sample-hold
+attr recordingmode vector
+attr source warmup(count(backoffStarted)-count(backoffStopped))
+attr title "backoff active"
+vector 126 Spoofing.node[9].udp passedUpPk:vector(count) ETV
+attr interpolationmode none
+attr recordingmode vector(count)
+attr source packetSentToUpper
+attr title "packets passed up, count"
+vector 127 Spoofing.node[9].udp droppedPkWrongPort:vector(count) ETV
+attr interpolationmode none
+attr recordingmode vector(count)
+attr source packetDropReasonIsNoPortFound(packetDropped)
+attr title "packets dropped (wrong port), count"
+vector 128 Spoofing.node[9].udp droppedPkBadChecksum:vector(count) ETV
+attr interpolationmode none
+attr recordingmode vector(count)
+attr source packetDropReasonIsIncorrectlyReceived(packetDropped)
+attr title "packets dropped (checksum error), count"
+vector 129 Spoofing.node[9].wlan[0].radio radioMode:vector ETV
+attr interpolationmode sample-hold
+attr recordingmode vector
+attr source radioModeChanged
+attr title "Radio mode"
+vector 130 Spoofing.node[9].wlan[0].radio radioChannel:vector ETV
+attr interpolationmode sample-hold
+attr recordingmode vector
+attr source radioChannelChanged
+attr title "Radio channel"
+vector 131 Spoofing.node[9].wlan[0].radio receptionState:vector ETV
+attr interpolationmode sample-hold
+attr recordingmode vector
+attr source receptionStateChanged
+attr title "Radio reception state"
+vector 132 Spoofing.node[9].wlan[0].mac.dcf.channelAccess.contention stateChanged:vector ETV
+attr enum IDLE,DEFER,IFS_AND_BACKOFF
+attr interpolationmode none
+attr recordingmode vector
+attr title "contention state changed"
+attr type enum
+vector 133 Spoofing.node[9].wlan[0].mac.dcf.recoveryProcedure contentionWindowChanged:vector ETV
+attr interpolationmode sample-hold
+attr recordingmode vector
+attr title "contention window"
+vector 134 Spoofing.node[10].wlan[0].mac.dcf frameSequenceActive:vector ETV
+attr autoWarmupFilter false
+attr interpolationmode sample-hold
+attr recordingmode vector
+attr source warmup(count(frameSequenceStarted)-count(frameSequenceFinished))
+attr title "frame sequence active"
+vector 135 Spoofing.node[10].wlan[0].mac.dcf.channelAccess.inProgressFrames queueLength:vector ETV
+attr autoWarmupFilter false
+attr interpolationmode sample-hold
+attr recordingmode vector
+attr source "warmup(count(packetEnqueued) - count(packetDequeued))"
+attr title "queue length"
+vector 136 Spoofing.node[10].wlan[0].mac.dcf.channelAccess.contention backoffActive:vector ETV
+attr autoWarmupFilter false
+attr interpolationmode sample-hold
+attr recordingmode vector
+attr source warmup(count(backoffStarted)-count(backoffStopped))
+attr title "backoff active"
+vector 137 Spoofing.node[10].udp passedUpPk:vector(count) ETV
+attr interpolationmode none
+attr recordingmode vector(count)
+attr source packetSentToUpper
+attr title "packets passed up, count"
+vector 138 Spoofing.node[10].udp droppedPkWrongPort:vector(count) ETV
+attr interpolationmode none
+attr recordingmode vector(count)
+attr source packetDropReasonIsNoPortFound(packetDropped)
+attr title "packets dropped (wrong port), count"
+vector 139 Spoofing.node[10].udp droppedPkBadChecksum:vector(count) ETV
+attr interpolationmode none
+attr recordingmode vector(count)
+attr source packetDropReasonIsIncorrectlyReceived(packetDropped)
+attr title "packets dropped (checksum error), count"
+vector 140 Spoofing.node[10].wlan[0].radio radioMode:vector ETV
+attr interpolationmode sample-hold
+attr recordingmode vector
+attr source radioModeChanged
+attr title "Radio mode"
+vector 141 Spoofing.node[10].wlan[0].radio radioChannel:vector ETV
+attr interpolationmode sample-hold
+attr recordingmode vector
+attr source radioChannelChanged
+attr title "Radio channel"
+vector 142 Spoofing.node[10].wlan[0].radio receptionState:vector ETV
+attr interpolationmode sample-hold
+attr recordingmode vector
+attr source receptionStateChanged
+attr title "Radio reception state"
+vector 143 Spoofing.node[10].wlan[0].mac.dcf.channelAccess.contention stateChanged:vector ETV
+attr enum IDLE,DEFER,IFS_AND_BACKOFF
+attr interpolationmode none
+attr recordingmode vector
+attr title "contention state changed"
+attr type enum
+vector 144 Spoofing.node[10].wlan[0].mac.dcf.recoveryProcedure contentionWindowChanged:vector ETV
+attr interpolationmode sample-hold
+attr recordingmode vector
+attr title "contention window"
+vector 145 Spoofing.node[11].wlan[0].mac.dcf frameSequenceActive:vector ETV
+attr autoWarmupFilter false
+attr interpolationmode sample-hold
+attr recordingmode vector
+attr source warmup(count(frameSequenceStarted)-count(frameSequenceFinished))
+attr title "frame sequence active"
+vector 146 Spoofing.node[11].wlan[0].mac.dcf.channelAccess.inProgressFrames queueLength:vector ETV
+attr autoWarmupFilter false
+attr interpolationmode sample-hold
+attr recordingmode vector
+attr source "warmup(count(packetEnqueued) - count(packetDequeued))"
+attr title "queue length"
+vector 147 Spoofing.node[11].wlan[0].mac.dcf.channelAccess.contention backoffActive:vector ETV
+attr autoWarmupFilter false
+attr interpolationmode sample-hold
+attr recordingmode vector
+attr source warmup(count(backoffStarted)-count(backoffStopped))
+attr title "backoff active"
+vector 148 Spoofing.node[11].udp passedUpPk:vector(count) ETV
+attr interpolationmode none
+attr recordingmode vector(count)
+attr source packetSentToUpper
+attr title "packets passed up, count"
+vector 149 Spoofing.node[11].udp droppedPkWrongPort:vector(count) ETV
+attr interpolationmode none
+attr recordingmode vector(count)
+attr source packetDropReasonIsNoPortFound(packetDropped)
+attr title "packets dropped (wrong port), count"
+vector 150 Spoofing.node[11].udp droppedPkBadChecksum:vector(count) ETV
+attr interpolationmode none
+attr recordingmode vector(count)
+attr source packetDropReasonIsIncorrectlyReceived(packetDropped)
+attr title "packets dropped (checksum error), count"
+vector 151 Spoofing.node[11].wlan[0].radio radioMode:vector ETV
+attr interpolationmode sample-hold
+attr recordingmode vector
+attr source radioModeChanged
+attr title "Radio mode"
+vector 152 Spoofing.node[11].wlan[0].radio radioChannel:vector ETV
+attr interpolationmode sample-hold
+attr recordingmode vector
+attr source radioChannelChanged
+attr title "Radio channel"
+vector 153 Spoofing.node[11].wlan[0].radio receptionState:vector ETV
+attr interpolationmode sample-hold
+attr recordingmode vector
+attr source receptionStateChanged
+attr title "Radio reception state"
+vector 154 Spoofing.node[11].wlan[0].mac.dcf.channelAccess.contention stateChanged:vector ETV
+attr enum IDLE,DEFER,IFS_AND_BACKOFF
+attr interpolationmode none
+attr recordingmode vector
+attr title "contention state changed"
+attr type enum
+vector 155 Spoofing.node[11].wlan[0].mac.dcf.recoveryProcedure contentionWindowChanged:vector ETV
+attr interpolationmode sample-hold
+attr recordingmode vector
+attr title "contention window"
+vector 156 Spoofing.node[12].wlan[0].mac.dcf frameSequenceActive:vector ETV
+attr autoWarmupFilter false
+attr interpolationmode sample-hold
+attr recordingmode vector
+attr source warmup(count(frameSequenceStarted)-count(frameSequenceFinished))
+attr title "frame sequence active"
+vector 157 Spoofing.node[12].wlan[0].mac.dcf.channelAccess.inProgressFrames queueLength:vector ETV
+attr autoWarmupFilter false
+attr interpolationmode sample-hold
+attr recordingmode vector
+attr source "warmup(count(packetEnqueued) - count(packetDequeued))"
+attr title "queue length"
+vector 158 Spoofing.node[12].wlan[0].mac.dcf.channelAccess.contention backoffActive:vector ETV
+attr autoWarmupFilter false
+attr interpolationmode sample-hold
+attr recordingmode vector
+attr source warmup(count(backoffStarted)-count(backoffStopped))
+attr title "backoff active"
+vector 159 Spoofing.node[12].udp passedUpPk:vector(count) ETV
+attr interpolationmode none
+attr recordingmode vector(count)
+attr source packetSentToUpper
+attr title "packets passed up, count"
+vector 160 Spoofing.node[12].udp droppedPkWrongPort:vector(count) ETV
+attr interpolationmode none
+attr recordingmode vector(count)
+attr source packetDropReasonIsNoPortFound(packetDropped)
+attr title "packets dropped (wrong port), count"
+vector 161 Spoofing.node[12].udp droppedPkBadChecksum:vector(count) ETV
+attr interpolationmode none
+attr recordingmode vector(count)
+attr source packetDropReasonIsIncorrectlyReceived(packetDropped)
+attr title "packets dropped (checksum error), count"
+vector 162 Spoofing.node[12].wlan[0].radio radioMode:vector ETV
+attr interpolationmode sample-hold
+attr recordingmode vector
+attr source radioModeChanged
+attr title "Radio mode"
+vector 163 Spoofing.node[12].wlan[0].radio radioChannel:vector ETV
+attr interpolationmode sample-hold
+attr recordingmode vector
+attr source radioChannelChanged
+attr title "Radio channel"
+vector 164 Spoofing.node[12].wlan[0].radio receptionState:vector ETV
+attr interpolationmode sample-hold
+attr recordingmode vector
+attr source receptionStateChanged
+attr title "Radio reception state"
+vector 165 Spoofing.node[12].wlan[0].mac.dcf.channelAccess.contention stateChanged:vector ETV
+attr enum IDLE,DEFER,IFS_AND_BACKOFF
+attr interpolationmode none
+attr recordingmode vector
+attr title "contention state changed"
+attr type enum
+vector 166 Spoofing.node[12].wlan[0].mac.dcf.recoveryProcedure contentionWindowChanged:vector ETV
+attr interpolationmode sample-hold
+attr recordingmode vector
+attr title "contention window"
+vector 167 Spoofing.node[1].wlan[0].mac packetReceivedFromLower:vector(packetBytes) ETV
+attr interpolationmode none
+attr recordingmode vector(packetBytes)
+attr title "packets received from lower layer, packetBytes"
+vector 168 Spoofing.node[1].wlan[0].mac.dcf packetReceivedFromPeer:vector(packetBytes) ETV
+attr interpolationmode none
+attr recordingmode vector(packetBytes)
+attr title "packets received, packetBytes"
+vector 169 Spoofing.node[1].wlan[0].mac.dcf packetReceivedFromPeerMulticast:vector(packetBytes) ETV
+attr interpolationmode none
+attr recordingmode vector(packetBytes)
+attr source ieee80211Multicast(packetReceivedFromPeer)
+attr title "packets received: multicast, packetBytes"
+vector 170 Spoofing.node[1].wlan[0].mac.dcf packetReceivedFromPeerWithoutRetry:vector(packetBytes) ETV
+attr interpolationmode none
+attr recordingmode vector(packetBytes)
+attr source ieee80211NotRetry(packetReceivedFromPeer)
+attr title "packets received: without retry, packetBytes"
+vector 171 Spoofing.node[1].wlan[0].mac packetSentToUpper:vector(packetBytes) ETV
+attr interpolationmode none
+attr recordingmode vector(packetBytes)
+attr title "packets sent to upper layer, packetBytes"
+vector 172 Spoofing.node[1].udp packetReceived:vector(packetBytes) ETV
+attr interpolationmode none
+attr recordingmode vector(packetBytes)
+attr source packetReceived
+attr title "packets received, packetBytes"
+vector 173 Spoofing.node[1].app[0] packetReceived:vector(packetBytes) ETV
+attr interpolationmode none
+attr recordingmode vector(packetBytes)
+attr source packetReceived
+attr title "packets received, packetBytes"
+vector 174 Spoofing.node[1].app[0] throughput:vector ETV
+attr recordingmode vector
+attr source throughput(packetReceived)
+attr title throughput
+attr unit bps
+vector 175 Spoofing.node[1].app[0] rcvdPkLifetime:vector ETV
+attr interpolationmode none
+attr recordingmode vector
+attr source dataAge(packetReceived)
+attr title "received packet lifetime"
+attr unit s
+vector 176 Spoofing.node[1].app[0] packetSent:vector(packetBytes) ETV
+attr interpolationmode none
+attr recordingmode vector(packetBytes)
+attr source packetSent
+attr title "packets sent, packetBytes"
+vector 177 Spoofing.node[1].udp packetSent:vector(packetBytes) ETV
+attr interpolationmode none
+attr recordingmode vector(packetBytes)
+attr source packetSent
+attr title "packets sent, packetBytes"
+vector 178 Spoofing.node[1].lo[0].lo rcvdPkFromHl:vector(packetBytes) ETV
+attr interpolationmode none
+attr recordingmode vector(packetBytes)
+attr source packetReceivedFromUpper
+attr title "packets received from higher layer, packetBytes"
+vector 179 Spoofing.node[1].lo[0].lo passedUpPk:vector(packetBytes) ETV
+attr interpolationmode none
+attr recordingmode vector(packetBytes)
+attr source packetSentToUpper
+attr title "packets passed to higher layer, packetBytes"
+vector 180 Spoofing.node[1].wlan[0].mac packetReceivedFromUpper:vector(packetBytes) ETV
+attr interpolationmode none
+attr recordingmode vector(packetBytes)
+attr title "packets received from upper layer, packetBytes"
+vector 181 Spoofing.node[1].wlan[0].mac.dcf.channelAccess.pendingQueue incomingPacketLengths:vector ETV
+attr interpolationmode none
+attr recordingmode vector
+attr source packetLength(packetPushStarted)
+attr title "incoming packet lengths"
+attr unit b
+vector 182 Spoofing.node[1].wlan[0].mac.dcf.channelAccess.pendingQueue incomingDataRate:vector ETV
+attr interpolationmode linear
+attr recordingmode vector
+attr source throughput(packetPushStarted)
+attr title "incoming datarate"
+attr unit bps
+vector 183 Spoofing.node[1].wlan[0].mac.dcf.channelAccess.pendingQueue queueLength:vector ETV
+attr autoWarmupFilter false
+attr interpolationmode sample-hold
+attr recordingmode vector
+attr source "warmup(atomic(constant0(packetPushEnded) + count(packetPushStarted) - count(packetPulled) - count(packetRemoved) - count(packetDropped)))"
+attr title "queue length"
+attr unit pk
+vector 184 Spoofing.node[1].wlan[0].mac.dcf.channelAccess.pendingQueue queueBitLength:vector ETV
+attr autoWarmupFilter false
+attr interpolationmode sample-hold
+attr recordingmode vector
+attr source "warmup(atomic(constant0(packetPushEnded) + sum(packetLength(packetPushStarted)) - sum(packetLength(packetPulled)) - sum(packetLength(packetRemoved)) - sum(packetLength(packetDropped))))"
+attr title "queue bit length"
+attr unit b
+vector 185 Spoofing.node[1].wlan[0].mac.dcf.channelAccess.contention backoffPeriodGenerated:vector ETV
+attr interpolationmode none
+attr recordingmode vector
+attr title "backoff periods"
+vector 186 Spoofing.node[1].wlan[0].mac.dcf.channelAccess.pendingQueue queueingTime:vector ETV
+attr interpolationmode none
+attr recordingmode vector
+attr source queueingTime(packetPulled)
+attr title "queueing times"
+attr unit s
+vector 187 Spoofing.node[1].wlan[0].mac.dcf.channelAccess.pendingQueue outgoingPacketLengths:vector ETV
+attr interpolationmode none
+attr recordingmode vector
+attr source packetLength(packetPulled)
+attr title "outgoing packet lengths"
+attr unit b
+vector 188 Spoofing.node[1].wlan[0].mac.dcf.channelAccess.pendingQueue outgoingDataRate:vector ETV
+attr interpolationmode linear
+attr recordingmode vector
+attr source throughput(packetPulled)
+attr title "outgoing datarate"
+attr unit bps
+vector 189 Spoofing.node[1].wlan[0].mac.dcf datarateSelected:vector ETV
+attr interpolationmode none
+attr recordingmode vector
+attr title "datarates selected"
+vector 190 Spoofing.node[1].wlan[0].mac packetSentToLower:vector(packetBytes) ETV
+attr interpolationmode none
+attr recordingmode vector(packetBytes)
+attr title "packets sent to lower layer, packetBytes"
+vector 191 Spoofing.node[1].wlan[0].radio transmissionState:vector ETV
+attr interpolationmode sample-hold
+attr recordingmode vector
+attr source transmissionStateChanged
+attr title "Radio transmission state"
+vector 192 Spoofing.node[1].wlan[0].mac.dcf packetSentToPeer:vector(packetBytes) ETV
+attr interpolationmode none
+attr recordingmode vector(packetBytes)
+attr title "packets sent, packetBytes"
+vector 193 Spoofing.node[1].wlan[0].mac.dcf packetSentToPeerMulticast:vector(packetBytes) ETV
+attr interpolationmode none
+attr recordingmode vector(packetBytes)
+attr source ieee80211Multicast(packetSentToPeer)
+attr title "packets sent: multicast, packetBytes"
+vector 194 Spoofing.node[1].wlan[0].mac.dcf packetSentToPeerWithoutRetry:vector(packetBytes) ETV
+attr interpolationmode none
+attr recordingmode vector(packetBytes)
+attr source ieee80211NotRetry(packetSentToPeer)
+attr title "packets sent: without retry, packetBytes"
+vector 195 Spoofing.node[1].wlan[0].mac.dcf.channelAccess.inProgressFrames queueingTime:vector ETV
+attr interpolationmode none
+attr recordingmode vector
+attr source queueingTime(packetDequeued)
+attr title "queueing times"
+vector 196 Spoofing.node[2].wlan[0].mac packetReceivedFromLower:vector(packetBytes) ETV
+attr interpolationmode none
+attr recordingmode vector(packetBytes)
+attr title "packets received from lower layer, packetBytes"
+vector 197 Spoofing.node[2].wlan[0].mac.dcf packetReceivedFromPeer:vector(packetBytes) ETV
+attr interpolationmode none
+attr recordingmode vector(packetBytes)
+attr title "packets received, packetBytes"
+vector 198 Spoofing.node[2].wlan[0].mac.dcf packetReceivedFromPeerMulticast:vector(packetBytes) ETV
+attr interpolationmode none
+attr recordingmode vector(packetBytes)
+attr source ieee80211Multicast(packetReceivedFromPeer)
+attr title "packets received: multicast, packetBytes"
+vector 199 Spoofing.node[2].wlan[0].mac.dcf packetReceivedFromPeerWithoutRetry:vector(packetBytes) ETV
+attr interpolationmode none
+attr recordingmode vector(packetBytes)
+attr source ieee80211NotRetry(packetReceivedFromPeer)
+attr title "packets received: without retry, packetBytes"
+vector 200 Spoofing.node[2].wlan[0].mac packetSentToUpper:vector(packetBytes) ETV
+attr interpolationmode none
+attr recordingmode vector(packetBytes)
+attr title "packets sent to upper layer, packetBytes"
+vector 201 Spoofing.node[2].udp packetReceived:vector(packetBytes) ETV
+attr interpolationmode none
+attr recordingmode vector(packetBytes)
+attr source packetReceived
+attr title "packets received, packetBytes"
+vector 202 Spoofing.node[2].app[0] packetReceived:vector(packetBytes) ETV
+attr interpolationmode none
+attr recordingmode vector(packetBytes)
+attr source packetReceived
+attr title "packets received, packetBytes"
+vector 203 Spoofing.node[2].app[0] throughput:vector ETV
+attr recordingmode vector
+attr source throughput(packetReceived)
+attr title throughput
+attr unit bps
+vector 204 Spoofing.node[2].app[0] rcvdPkLifetime:vector ETV
+attr interpolationmode none
+attr recordingmode vector
+attr source dataAge(packetReceived)
+attr title "received packet lifetime"
+attr unit s
+vector 205 Spoofing.node[2].app[0] packetSent:vector(packetBytes) ETV
+attr interpolationmode none
+attr recordingmode vector(packetBytes)
+attr source packetSent
+attr title "packets sent, packetBytes"
+vector 206 Spoofing.node[2].udp packetSent:vector(packetBytes) ETV
+attr interpolationmode none
+attr recordingmode vector(packetBytes)
+attr source packetSent
+attr title "packets sent, packetBytes"
+vector 207 Spoofing.node[2].lo[0].lo rcvdPkFromHl:vector(packetBytes) ETV
+attr interpolationmode none
+attr recordingmode vector(packetBytes)
+attr source packetReceivedFromUpper
+attr title "packets received from higher layer, packetBytes"
+vector 208 Spoofing.node[2].lo[0].lo passedUpPk:vector(packetBytes) ETV
+attr interpolationmode none
+attr recordingmode vector(packetBytes)
+attr source packetSentToUpper
+attr title "packets passed to higher layer, packetBytes"
+vector 209 Spoofing.node[2].wlan[0].mac packetReceivedFromUpper:vector(packetBytes) ETV
+attr interpolationmode none
+attr recordingmode vector(packetBytes)
+attr title "packets received from upper layer, packetBytes"
+vector 210 Spoofing.node[2].wlan[0].mac.dcf.channelAccess.pendingQueue incomingPacketLengths:vector ETV
+attr interpolationmode none
+attr recordingmode vector
+attr source packetLength(packetPushStarted)
+attr title "incoming packet lengths"
+attr unit b
+vector 211 Spoofing.node[2].wlan[0].mac.dcf.channelAccess.pendingQueue incomingDataRate:vector ETV
+attr interpolationmode linear
+attr recordingmode vector
+attr source throughput(packetPushStarted)
+attr title "incoming datarate"
+attr unit bps
+vector 212 Spoofing.node[2].wlan[0].mac.dcf.channelAccess.pendingQueue queueLength:vector ETV
+attr autoWarmupFilter false
+attr interpolationmode sample-hold
+attr recordingmode vector
+attr source "warmup(atomic(constant0(packetPushEnded) + count(packetPushStarted) - count(packetPulled) - count(packetRemoved) - count(packetDropped)))"
+attr title "queue length"
+attr unit pk
+vector 213 Spoofing.node[2].wlan[0].mac.dcf.channelAccess.pendingQueue queueBitLength:vector ETV
+attr autoWarmupFilter false
+attr interpolationmode sample-hold
+attr recordingmode vector
+attr source "warmup(atomic(constant0(packetPushEnded) + sum(packetLength(packetPushStarted)) - sum(packetLength(packetPulled)) - sum(packetLength(packetRemoved)) - sum(packetLength(packetDropped))))"
+attr title "queue bit length"
+attr unit b
+vector 214 Spoofing.node[2].wlan[0].mac.dcf.channelAccess.contention backoffPeriodGenerated:vector ETV
+attr interpolationmode none
+attr recordingmode vector
+attr title "backoff periods"
+vector 215 Spoofing.node[3].wlan[0].mac packetReceivedFromLower:vector(packetBytes) ETV
+attr interpolationmode none
+attr recordingmode vector(packetBytes)
+attr title "packets received from lower layer, packetBytes"
+vector 216 Spoofing.node[3].wlan[0].mac.dcf packetReceivedFromPeer:vector(packetBytes) ETV
+attr interpolationmode none
+attr recordingmode vector(packetBytes)
+attr title "packets received, packetBytes"
+vector 217 Spoofing.node[3].wlan[0].mac.dcf packetReceivedFromPeerMulticast:vector(packetBytes) ETV
+attr interpolationmode none
+attr recordingmode vector(packetBytes)
+attr source ieee80211Multicast(packetReceivedFromPeer)
+attr title "packets received: multicast, packetBytes"
+vector 218 Spoofing.node[3].wlan[0].mac.dcf packetReceivedFromPeerWithoutRetry:vector(packetBytes) ETV
+attr interpolationmode none
+attr recordingmode vector(packetBytes)
+attr source ieee80211NotRetry(packetReceivedFromPeer)
+attr title "packets received: without retry, packetBytes"
+vector 219 Spoofing.node[3].wlan[0].mac packetSentToUpper:vector(packetBytes) ETV
+attr interpolationmode none
+attr recordingmode vector(packetBytes)
+attr title "packets sent to upper layer, packetBytes"
+vector 220 Spoofing.node[3].udp packetReceived:vector(packetBytes) ETV
+attr interpolationmode none
+attr recordingmode vector(packetBytes)
+attr source packetReceived
+attr title "packets received, packetBytes"
+vector 221 Spoofing.node[3].app[0] packetReceived:vector(packetBytes) ETV
+attr interpolationmode none
+attr recordingmode vector(packetBytes)
+attr source packetReceived
+attr title "packets received, packetBytes"
+vector 222 Spoofing.node[3].app[0] throughput:vector ETV
+attr recordingmode vector
+attr source throughput(packetReceived)
+attr title throughput
+attr unit bps
+vector 223 Spoofing.node[3].app[0] rcvdPkLifetime:vector ETV
+attr interpolationmode none
+attr recordingmode vector
+attr source dataAge(packetReceived)
+attr title "received packet lifetime"
+attr unit s
+vector 224 Spoofing.node[3].app[0] packetSent:vector(packetBytes) ETV
+attr interpolationmode none
+attr recordingmode vector(packetBytes)
+attr source packetSent
+attr title "packets sent, packetBytes"
+vector 225 Spoofing.node[3].udp packetSent:vector(packetBytes) ETV
+attr interpolationmode none
+attr recordingmode vector(packetBytes)
+attr source packetSent
+attr title "packets sent, packetBytes"
+vector 226 Spoofing.node[3].lo[0].lo rcvdPkFromHl:vector(packetBytes) ETV
+attr interpolationmode none
+attr recordingmode vector(packetBytes)
+attr source packetReceivedFromUpper
+attr title "packets received from higher layer, packetBytes"
+vector 227 Spoofing.node[3].lo[0].lo passedUpPk:vector(packetBytes) ETV
+attr interpolationmode none
+attr recordingmode vector(packetBytes)
+attr source packetSentToUpper
+attr title "packets passed to higher layer, packetBytes"
+vector 228 Spoofing.node[3].wlan[0].mac packetReceivedFromUpper:vector(packetBytes) ETV
+attr interpolationmode none
+attr recordingmode vector(packetBytes)
+attr title "packets received from upper layer, packetBytes"
+vector 229 Spoofing.node[3].wlan[0].mac.dcf.channelAccess.pendingQueue incomingPacketLengths:vector ETV
+attr interpolationmode none
+attr recordingmode vector
+attr source packetLength(packetPushStarted)
+attr title "incoming packet lengths"
+attr unit b
+vector 230 Spoofing.node[3].wlan[0].mac.dcf.channelAccess.pendingQueue incomingDataRate:vector ETV
+attr interpolationmode linear
+attr recordingmode vector
+attr source throughput(packetPushStarted)
+attr title "incoming datarate"
+attr unit bps
+vector 231 Spoofing.node[3].wlan[0].mac.dcf.channelAccess.pendingQueue queueLength:vector ETV
+attr autoWarmupFilter false
+attr interpolationmode sample-hold
+attr recordingmode vector
+attr source "warmup(atomic(constant0(packetPushEnded) + count(packetPushStarted) - count(packetPulled) - count(packetRemoved) - count(packetDropped)))"
+attr title "queue length"
+attr unit pk
+vector 232 Spoofing.node[3].wlan[0].mac.dcf.channelAccess.pendingQueue queueBitLength:vector ETV
+attr autoWarmupFilter false
+attr interpolationmode sample-hold
+attr recordingmode vector
+attr source "warmup(atomic(constant0(packetPushEnded) + sum(packetLength(packetPushStarted)) - sum(packetLength(packetPulled)) - sum(packetLength(packetRemoved)) - sum(packetLength(packetDropped))))"
+attr title "queue bit length"
+attr unit b
+vector 233 Spoofing.node[3].wlan[0].mac.dcf.channelAccess.contention backoffPeriodGenerated:vector ETV
+attr interpolationmode none
+attr recordingmode vector
+attr title "backoff periods"
+vector 234 Spoofing.node[0].wlan[0].mac packetReceivedFromLower:vector(packetBytes) ETV
+attr interpolationmode none
+attr recordingmode vector(packetBytes)
+attr title "packets received from lower layer, packetBytes"
+vector 235 Spoofing.node[0].wlan[0].mac.dcf packetReceivedFromPeer:vector(packetBytes) ETV
+attr interpolationmode none
+attr recordingmode vector(packetBytes)
+attr title "packets received, packetBytes"
+vector 236 Spoofing.node[0].wlan[0].mac.dcf packetReceivedFromPeerMulticast:vector(packetBytes) ETV
+attr interpolationmode none
+attr recordingmode vector(packetBytes)
+attr source ieee80211Multicast(packetReceivedFromPeer)
+attr title "packets received: multicast, packetBytes"
+vector 237 Spoofing.node[0].wlan[0].mac.dcf packetReceivedFromPeerWithoutRetry:vector(packetBytes) ETV
+attr interpolationmode none
+attr recordingmode vector(packetBytes)
+attr source ieee80211NotRetry(packetReceivedFromPeer)
+attr title "packets received: without retry, packetBytes"
+vector 238 Spoofing.node[0].wlan[0].mac packetSentToUpper:vector(packetBytes) ETV
+attr interpolationmode none
+attr recordingmode vector(packetBytes)
+attr title "packets sent to upper layer, packetBytes"
+vector 239 Spoofing.node[5].wlan[0].mac packetReceivedFromLower:vector(packetBytes) ETV
+attr interpolationmode none
+attr recordingmode vector(packetBytes)
+attr title "packets received from lower layer, packetBytes"
+vector 240 Spoofing.node[5].wlan[0].mac.dcf packetReceivedFromPeer:vector(packetBytes) ETV
+attr interpolationmode none
+attr recordingmode vector(packetBytes)
+attr title "packets received, packetBytes"
+vector 241 Spoofing.node[5].wlan[0].mac.dcf packetReceivedFromPeerMulticast:vector(packetBytes) ETV
+attr interpolationmode none
+attr recordingmode vector(packetBytes)
+attr source ieee80211Multicast(packetReceivedFromPeer)
+attr title "packets received: multicast, packetBytes"
+vector 242 Spoofing.node[5].wlan[0].mac.dcf packetReceivedFromPeerWithoutRetry:vector(packetBytes) ETV
+attr interpolationmode none
+attr recordingmode vector(packetBytes)
+attr source ieee80211NotRetry(packetReceivedFromPeer)
+attr title "packets received: without retry, packetBytes"
+vector 243 Spoofing.node[5].wlan[0].mac packetSentToUpper:vector(packetBytes) ETV
+attr interpolationmode none
+attr recordingmode vector(packetBytes)
+attr title "packets sent to upper layer, packetBytes"
+vector 244 Spoofing.node[5].udp packetReceived:vector(packetBytes) ETV
+attr interpolationmode none
+attr recordingmode vector(packetBytes)
+attr source packetReceived
+attr title "packets received, packetBytes"
+vector 245 Spoofing.node[5].app[0] packetReceived:vector(packetBytes) ETV
+attr interpolationmode none
+attr recordingmode vector(packetBytes)
+attr source packetReceived
+attr title "packets received, packetBytes"
+vector 246 Spoofing.node[5].app[0] throughput:vector ETV
+attr recordingmode vector
+attr source throughput(packetReceived)
+attr title throughput
+attr unit bps
+vector 247 Spoofing.node[5].app[0] rcvdPkLifetime:vector ETV
+attr interpolationmode none
+attr recordingmode vector
+attr source dataAge(packetReceived)
+attr title "received packet lifetime"
+attr unit s
+vector 248 Spoofing.node[5].app[0] packetSent:vector(packetBytes) ETV
+attr interpolationmode none
+attr recordingmode vector(packetBytes)
+attr source packetSent
+attr title "packets sent, packetBytes"
+vector 249 Spoofing.node[5].udp packetSent:vector(packetBytes) ETV
+attr interpolationmode none
+attr recordingmode vector(packetBytes)
+attr source packetSent
+attr title "packets sent, packetBytes"
+vector 250 Spoofing.node[5].lo[0].lo rcvdPkFromHl:vector(packetBytes) ETV
+attr interpolationmode none
+attr recordingmode vector(packetBytes)
+attr source packetReceivedFromUpper
+attr title "packets received from higher layer, packetBytes"
+vector 251 Spoofing.node[5].lo[0].lo passedUpPk:vector(packetBytes) ETV
+attr interpolationmode none
+attr recordingmode vector(packetBytes)
+attr source packetSentToUpper
+attr title "packets passed to higher layer, packetBytes"
+vector 252 Spoofing.node[5].wlan[0].mac packetReceivedFromUpper:vector(packetBytes) ETV
+attr interpolationmode none
+attr recordingmode vector(packetBytes)
+attr title "packets received from upper layer, packetBytes"
+vector 253 Spoofing.node[5].wlan[0].mac.dcf.channelAccess.pendingQueue incomingPacketLengths:vector ETV
+attr interpolationmode none
+attr recordingmode vector
+attr source packetLength(packetPushStarted)
+attr title "incoming packet lengths"
+attr unit b
+vector 254 Spoofing.node[5].wlan[0].mac.dcf.channelAccess.pendingQueue incomingDataRate:vector ETV
+attr interpolationmode linear
+attr recordingmode vector
+attr source throughput(packetPushStarted)
+attr title "incoming datarate"
+attr unit bps
+vector 255 Spoofing.node[5].wlan[0].mac.dcf.channelAccess.pendingQueue queueLength:vector ETV
+attr autoWarmupFilter false
+attr interpolationmode sample-hold
+attr recordingmode vector
+attr source "warmup(atomic(constant0(packetPushEnded) + count(packetPushStarted) - count(packetPulled) - count(packetRemoved) - count(packetDropped)))"
+attr title "queue length"
+attr unit pk
+vector 256 Spoofing.node[5].wlan[0].mac.dcf.channelAccess.pendingQueue queueBitLength:vector ETV
+attr autoWarmupFilter false
+attr interpolationmode sample-hold
+attr recordingmode vector
+attr source "warmup(atomic(constant0(packetPushEnded) + sum(packetLength(packetPushStarted)) - sum(packetLength(packetPulled)) - sum(packetLength(packetRemoved)) - sum(packetLength(packetDropped))))"
+attr title "queue bit length"
+attr unit b
+vector 257 Spoofing.node[5].wlan[0].mac.dcf.channelAccess.contention backoffPeriodGenerated:vector ETV
+attr interpolationmode none
+attr recordingmode vector
+attr title "backoff periods"
+vector 258 Spoofing.node[2].wlan[0].mac.dcf.channelAccess.pendingQueue queueingTime:vector ETV
+attr interpolationmode none
+attr recordingmode vector
+attr source queueingTime(packetPulled)
+attr title "queueing times"
+attr unit s
+vector 259 Spoofing.node[2].wlan[0].mac.dcf.channelAccess.pendingQueue outgoingPacketLengths:vector ETV
+attr interpolationmode none
+attr recordingmode vector
+attr source packetLength(packetPulled)
+attr title "outgoing packet lengths"
+attr unit b
+vector 260 Spoofing.node[2].wlan[0].mac.dcf.channelAccess.pendingQueue outgoingDataRate:vector ETV
+attr interpolationmode linear
+attr recordingmode vector
+attr source throughput(packetPulled)
+attr title "outgoing datarate"
+attr unit bps
+vector 261 Spoofing.node[2].wlan[0].mac.dcf datarateSelected:vector ETV
+attr interpolationmode none
+attr recordingmode vector
+attr title "datarates selected"
+vector 262 Spoofing.node[2].wlan[0].mac packetSentToLower:vector(packetBytes) ETV
+attr interpolationmode none
+attr recordingmode vector(packetBytes)
+attr title "packets sent to lower layer, packetBytes"
+vector 263 Spoofing.node[2].wlan[0].radio transmissionState:vector ETV
+attr interpolationmode sample-hold
+attr recordingmode vector
+attr source transmissionStateChanged
+attr title "Radio transmission state"
+vector 264 Spoofing.node[2].wlan[0].mac.dcf packetSentToPeer:vector(packetBytes) ETV
+attr interpolationmode none
+attr recordingmode vector(packetBytes)
+attr title "packets sent, packetBytes"
+vector 265 Spoofing.node[2].wlan[0].mac.dcf packetSentToPeerMulticast:vector(packetBytes) ETV
+attr interpolationmode none
+attr recordingmode vector(packetBytes)
+attr source ieee80211Multicast(packetSentToPeer)
+attr title "packets sent: multicast, packetBytes"
+vector 266 Spoofing.node[2].wlan[0].mac.dcf packetSentToPeerWithoutRetry:vector(packetBytes) ETV
+attr interpolationmode none
+attr recordingmode vector(packetBytes)
+attr source ieee80211NotRetry(packetSentToPeer)
+attr title "packets sent: without retry, packetBytes"
+vector 267 Spoofing.node[2].wlan[0].mac.dcf.channelAccess.inProgressFrames queueingTime:vector ETV
+attr interpolationmode none
+attr recordingmode vector
+attr source queueingTime(packetDequeued)
+attr title "queueing times"
+vector 268 Spoofing.node[9].wlan[0].mac packetReceivedFromLower:vector(packetBytes) ETV
+attr interpolationmode none
+attr recordingmode vector(packetBytes)
+attr title "packets received from lower layer, packetBytes"
+vector 269 Spoofing.node[9].wlan[0].mac.dcf packetReceivedFromPeer:vector(packetBytes) ETV
+attr interpolationmode none
+attr recordingmode vector(packetBytes)
+attr title "packets received, packetBytes"
+vector 270 Spoofing.node[9].wlan[0].mac.dcf packetReceivedFromPeerMulticast:vector(packetBytes) ETV
+attr interpolationmode none
+attr recordingmode vector(packetBytes)
+attr source ieee80211Multicast(packetReceivedFromPeer)
+attr title "packets received: multicast, packetBytes"
+vector 271 Spoofing.node[9].wlan[0].mac.dcf packetReceivedFromPeerWithoutRetry:vector(packetBytes) ETV
+attr interpolationmode none
+attr recordingmode vector(packetBytes)
+attr source ieee80211NotRetry(packetReceivedFromPeer)
+attr title "packets received: without retry, packetBytes"
+vector 272 Spoofing.node[9].wlan[0].mac packetSentToUpper:vector(packetBytes) ETV
+attr interpolationmode none
+attr recordingmode vector(packetBytes)
+attr title "packets sent to upper layer, packetBytes"
+vector 273 Spoofing.node[9].udp packetReceived:vector(packetBytes) ETV
+attr interpolationmode none
+attr recordingmode vector(packetBytes)
+attr source packetReceived
+attr title "packets received, packetBytes"
+vector 274 Spoofing.node[9].app[0] packetReceived:vector(packetBytes) ETV
+attr interpolationmode none
+attr recordingmode vector(packetBytes)
+attr source packetReceived
+attr title "packets received, packetBytes"
+vector 275 Spoofing.node[9].app[0] throughput:vector ETV
+attr recordingmode vector
+attr source throughput(packetReceived)
+attr title throughput
+attr unit bps
+vector 276 Spoofing.node[9].app[0] rcvdPkLifetime:vector ETV
+attr interpolationmode none
+attr recordingmode vector
+attr source dataAge(packetReceived)
+attr title "received packet lifetime"
+attr unit s
+vector 277 Spoofing.node[9].app[0] packetSent:vector(packetBytes) ETV
+attr interpolationmode none
+attr recordingmode vector(packetBytes)
+attr source packetSent
+attr title "packets sent, packetBytes"
+vector 278 Spoofing.node[9].udp packetSent:vector(packetBytes) ETV
+attr interpolationmode none
+attr recordingmode vector(packetBytes)
+attr source packetSent
+attr title "packets sent, packetBytes"
+vector 279 Spoofing.node[9].lo[0].lo rcvdPkFromHl:vector(packetBytes) ETV
+attr interpolationmode none
+attr recordingmode vector(packetBytes)
+attr source packetReceivedFromUpper
+attr title "packets received from higher layer, packetBytes"
+vector 280 Spoofing.node[9].lo[0].lo passedUpPk:vector(packetBytes) ETV
+attr interpolationmode none
+attr recordingmode vector(packetBytes)
+attr source packetSentToUpper
+attr title "packets passed to higher layer, packetBytes"
+vector 281 Spoofing.node[9].wlan[0].mac packetReceivedFromUpper:vector(packetBytes) ETV
+attr interpolationmode none
+attr recordingmode vector(packetBytes)
+attr title "packets received from upper layer, packetBytes"
+vector 282 Spoofing.node[9].wlan[0].mac.dcf.channelAccess.pendingQueue incomingPacketLengths:vector ETV
+attr interpolationmode none
+attr recordingmode vector
+attr source packetLength(packetPushStarted)
+attr title "incoming packet lengths"
+attr unit b
+vector 283 Spoofing.node[9].wlan[0].mac.dcf.channelAccess.pendingQueue incomingDataRate:vector ETV
+attr interpolationmode linear
+attr recordingmode vector
+attr source throughput(packetPushStarted)
+attr title "incoming datarate"
+attr unit bps
+vector 284 Spoofing.node[9].wlan[0].mac.dcf.channelAccess.pendingQueue queueLength:vector ETV
+attr autoWarmupFilter false
+attr interpolationmode sample-hold
+attr recordingmode vector
+attr source "warmup(atomic(constant0(packetPushEnded) + count(packetPushStarted) - count(packetPulled) - count(packetRemoved) - count(packetDropped)))"
+attr title "queue length"
+attr unit pk
+vector 285 Spoofing.node[9].wlan[0].mac.dcf.channelAccess.pendingQueue queueBitLength:vector ETV
+attr autoWarmupFilter false
+attr interpolationmode sample-hold
+attr recordingmode vector
+attr source "warmup(atomic(constant0(packetPushEnded) + sum(packetLength(packetPushStarted)) - sum(packetLength(packetPulled)) - sum(packetLength(packetRemoved)) - sum(packetLength(packetDropped))))"
+attr title "queue bit length"
+attr unit b
+vector 286 Spoofing.node[9].wlan[0].mac.dcf.channelAccess.contention backoffPeriodGenerated:vector ETV
+attr interpolationmode none
+attr recordingmode vector
+attr title "backoff periods"
+vector 287 Spoofing.node[4].wlan[0].mac packetReceivedFromLower:vector(packetBytes) ETV
+attr interpolationmode none
+attr recordingmode vector(packetBytes)
+attr title "packets received from lower layer, packetBytes"
+vector 288 Spoofing.node[4].wlan[0].mac.dcf packetReceivedFromPeer:vector(packetBytes) ETV
+attr interpolationmode none
+attr recordingmode vector(packetBytes)
+attr title "packets received, packetBytes"
+vector 289 Spoofing.node[4].wlan[0].mac.dcf packetReceivedFromPeerMulticast:vector(packetBytes) ETV
+attr interpolationmode none
+attr recordingmode vector(packetBytes)
+attr source ieee80211Multicast(packetReceivedFromPeer)
+attr title "packets received: multicast, packetBytes"
+vector 290 Spoofing.node[4].wlan[0].mac.dcf packetReceivedFromPeerWithoutRetry:vector(packetBytes) ETV
+attr interpolationmode none
+attr recordingmode vector(packetBytes)
+attr source ieee80211NotRetry(packetReceivedFromPeer)
+attr title "packets received: without retry, packetBytes"
+vector 291 Spoofing.node[4].wlan[0].mac packetSentToUpper:vector(packetBytes) ETV
+attr interpolationmode none
+attr recordingmode vector(packetBytes)
+attr title "packets sent to upper layer, packetBytes"
+vector 292 Spoofing.node[4].udp packetReceived:vector(packetBytes) ETV
+attr interpolationmode none
+attr recordingmode vector(packetBytes)
+attr source packetReceived
+attr title "packets received, packetBytes"
+vector 293 Spoofing.node[4].app[0] packetReceived:vector(packetBytes) ETV
+attr interpolationmode none
+attr recordingmode vector(packetBytes)
+attr source packetReceived
+attr title "packets received, packetBytes"
+vector 294 Spoofing.node[4].app[0] throughput:vector ETV
+attr recordingmode vector
+attr source throughput(packetReceived)
+attr title throughput
+attr unit bps
+vector 295 Spoofing.node[4].app[0] rcvdPkLifetime:vector ETV
+attr interpolationmode none
+attr recordingmode vector
+attr source dataAge(packetReceived)
+attr title "received packet lifetime"
+attr unit s
+vector 296 Spoofing.node[4].app[0] packetSent:vector(packetBytes) ETV
+attr interpolationmode none
+attr recordingmode vector(packetBytes)
+attr source packetSent
+attr title "packets sent, packetBytes"
+vector 297 Spoofing.node[4].udp packetSent:vector(packetBytes) ETV
+attr interpolationmode none
+attr recordingmode vector(packetBytes)
+attr source packetSent
+attr title "packets sent, packetBytes"
+vector 298 Spoofing.node[4].lo[0].lo rcvdPkFromHl:vector(packetBytes) ETV
+attr interpolationmode none
+attr recordingmode vector(packetBytes)
+attr source packetReceivedFromUpper
+attr title "packets received from higher layer, packetBytes"
+vector 299 Spoofing.node[4].lo[0].lo passedUpPk:vector(packetBytes) ETV
+attr interpolationmode none
+attr recordingmode vector(packetBytes)
+attr source packetSentToUpper
+attr title "packets passed to higher layer, packetBytes"
+vector 300 Spoofing.node[4].wlan[0].mac packetReceivedFromUpper:vector(packetBytes) ETV
+attr interpolationmode none
+attr recordingmode vector(packetBytes)
+attr title "packets received from upper layer, packetBytes"
+vector 301 Spoofing.node[4].wlan[0].mac.dcf.channelAccess.pendingQueue incomingPacketLengths:vector ETV
+attr interpolationmode none
+attr recordingmode vector
+attr source packetLength(packetPushStarted)
+attr title "incoming packet lengths"
+attr unit b
+vector 302 Spoofing.node[4].wlan[0].mac.dcf.channelAccess.pendingQueue incomingDataRate:vector ETV
+attr interpolationmode linear
+attr recordingmode vector
+attr source throughput(packetPushStarted)
+attr title "incoming datarate"
+attr unit bps
+vector 303 Spoofing.node[4].wlan[0].mac.dcf.channelAccess.pendingQueue queueLength:vector ETV
+attr autoWarmupFilter false
+attr interpolationmode sample-hold
+attr recordingmode vector
+attr source "warmup(atomic(constant0(packetPushEnded) + count(packetPushStarted) - count(packetPulled) - count(packetRemoved) - count(packetDropped)))"
+attr title "queue length"
+attr unit pk
+vector 304 Spoofing.node[4].wlan[0].mac.dcf.channelAccess.pendingQueue queueBitLength:vector ETV
+attr autoWarmupFilter false
+attr interpolationmode sample-hold
+attr recordingmode vector
+attr source "warmup(atomic(constant0(packetPushEnded) + sum(packetLength(packetPushStarted)) - sum(packetLength(packetPulled)) - sum(packetLength(packetRemoved)) - sum(packetLength(packetDropped))))"
+attr title "queue bit length"
+attr unit b
+vector 305 Spoofing.node[4].wlan[0].mac.dcf.channelAccess.contention backoffPeriodGenerated:vector ETV
+attr interpolationmode none
+attr recordingmode vector
+attr title "backoff periods"
+vector 306 Spoofing.node[6].wlan[0].mac packetReceivedFromLower:vector(packetBytes) ETV
+attr interpolationmode none
+attr recordingmode vector(packetBytes)
+attr title "packets received from lower layer, packetBytes"
+vector 307 Spoofing.node[6].wlan[0].mac.dcf packetReceivedFromPeer:vector(packetBytes) ETV
+attr interpolationmode none
+attr recordingmode vector(packetBytes)
+attr title "packets received, packetBytes"
+vector 308 Spoofing.node[6].wlan[0].mac.dcf packetReceivedFromPeerMulticast:vector(packetBytes) ETV
+attr interpolationmode none
+attr recordingmode vector(packetBytes)
+attr source ieee80211Multicast(packetReceivedFromPeer)
+attr title "packets received: multicast, packetBytes"
+vector 309 Spoofing.node[6].wlan[0].mac.dcf packetReceivedFromPeerWithoutRetry:vector(packetBytes) ETV
+attr interpolationmode none
+attr recordingmode vector(packetBytes)
+attr source ieee80211NotRetry(packetReceivedFromPeer)
+attr title "packets received: without retry, packetBytes"
+vector 310 Spoofing.node[6].wlan[0].mac packetSentToUpper:vector(packetBytes) ETV
+attr interpolationmode none
+attr recordingmode vector(packetBytes)
+attr title "packets sent to upper layer, packetBytes"
+vector 311 Spoofing.node[6].udp packetReceived:vector(packetBytes) ETV
+attr interpolationmode none
+attr recordingmode vector(packetBytes)
+attr source packetReceived
+attr title "packets received, packetBytes"
+vector 312 Spoofing.node[6].app[0] packetReceived:vector(packetBytes) ETV
+attr interpolationmode none
+attr recordingmode vector(packetBytes)
+attr source packetReceived
+attr title "packets received, packetBytes"
+vector 313 Spoofing.node[6].app[0] throughput:vector ETV
+attr recordingmode vector
+attr source throughput(packetReceived)
+attr title throughput
+attr unit bps
+vector 314 Spoofing.node[6].app[0] rcvdPkLifetime:vector ETV
+attr interpolationmode none
+attr recordingmode vector
+attr source dataAge(packetReceived)
+attr title "received packet lifetime"
+attr unit s
+vector 315 Spoofing.node[6].app[0] packetSent:vector(packetBytes) ETV
+attr interpolationmode none
+attr recordingmode vector(packetBytes)
+attr source packetSent
+attr title "packets sent, packetBytes"
+vector 316 Spoofing.node[6].udp packetSent:vector(packetBytes) ETV
+attr interpolationmode none
+attr recordingmode vector(packetBytes)
+attr source packetSent
+attr title "packets sent, packetBytes"
+vector 317 Spoofing.node[6].lo[0].lo rcvdPkFromHl:vector(packetBytes) ETV
+attr interpolationmode none
+attr recordingmode vector(packetBytes)
+attr source packetReceivedFromUpper
+attr title "packets received from higher layer, packetBytes"
+vector 318 Spoofing.node[6].lo[0].lo passedUpPk:vector(packetBytes) ETV
+attr interpolationmode none
+attr recordingmode vector(packetBytes)
+attr source packetSentToUpper
+attr title "packets passed to higher layer, packetBytes"
+vector 319 Spoofing.node[6].wlan[0].mac packetReceivedFromUpper:vector(packetBytes) ETV
+attr interpolationmode none
+attr recordingmode vector(packetBytes)
+attr title "packets received from upper layer, packetBytes"
+vector 320 Spoofing.node[6].wlan[0].mac.dcf.channelAccess.pendingQueue incomingPacketLengths:vector ETV
+attr interpolationmode none
+attr recordingmode vector
+attr source packetLength(packetPushStarted)
+attr title "incoming packet lengths"
+attr unit b
+vector 321 Spoofing.node[6].wlan[0].mac.dcf.channelAccess.pendingQueue incomingDataRate:vector ETV
+attr interpolationmode linear
+attr recordingmode vector
+attr source throughput(packetPushStarted)
+attr title "incoming datarate"
+attr unit bps
+vector 322 Spoofing.node[6].wlan[0].mac.dcf.channelAccess.pendingQueue queueLength:vector ETV
+attr autoWarmupFilter false
+attr interpolationmode sample-hold
+attr recordingmode vector
+attr source "warmup(atomic(constant0(packetPushEnded) + count(packetPushStarted) - count(packetPulled) - count(packetRemoved) - count(packetDropped)))"
+attr title "queue length"
+attr unit pk
+vector 323 Spoofing.node[6].wlan[0].mac.dcf.channelAccess.pendingQueue queueBitLength:vector ETV
+attr autoWarmupFilter false
+attr interpolationmode sample-hold
+attr recordingmode vector
+attr source "warmup(atomic(constant0(packetPushEnded) + sum(packetLength(packetPushStarted)) - sum(packetLength(packetPulled)) - sum(packetLength(packetRemoved)) - sum(packetLength(packetDropped))))"
+attr title "queue bit length"
+attr unit b
+vector 324 Spoofing.node[6].wlan[0].mac.dcf.channelAccess.contention backoffPeriodGenerated:vector ETV
+attr interpolationmode none
+attr recordingmode vector
+attr title "backoff periods"
+vector 325 Spoofing.node[3].wlan[0].mac.dcf.channelAccess.pendingQueue queueingTime:vector ETV
+attr interpolationmode none
+attr recordingmode vector
+attr source queueingTime(packetPulled)
+attr title "queueing times"
+attr unit s
+vector 326 Spoofing.node[3].wlan[0].mac.dcf.channelAccess.pendingQueue outgoingPacketLengths:vector ETV
+attr interpolationmode none
+attr recordingmode vector
+attr source packetLength(packetPulled)
+attr title "outgoing packet lengths"
+attr unit b
+vector 327 Spoofing.node[3].wlan[0].mac.dcf.channelAccess.pendingQueue outgoingDataRate:vector ETV
+attr interpolationmode linear
+attr recordingmode vector
+attr source throughput(packetPulled)
+attr title "outgoing datarate"
+attr unit bps
+vector 328 Spoofing.node[3].wlan[0].mac.dcf datarateSelected:vector ETV
+attr interpolationmode none
+attr recordingmode vector
+attr title "datarates selected"
+vector 329 Spoofing.node[3].wlan[0].mac packetSentToLower:vector(packetBytes) ETV
+attr interpolationmode none
+attr recordingmode vector(packetBytes)
+attr title "packets sent to lower layer, packetBytes"
+vector 330 Spoofing.node[3].wlan[0].radio transmissionState:vector ETV
+attr interpolationmode sample-hold
+attr recordingmode vector
+attr source transmissionStateChanged
+attr title "Radio transmission state"
+vector 331 Spoofing.node[3].wlan[0].mac.dcf packetSentToPeer:vector(packetBytes) ETV
+attr interpolationmode none
+attr recordingmode vector(packetBytes)
+attr title "packets sent, packetBytes"
+vector 332 Spoofing.node[3].wlan[0].mac.dcf packetSentToPeerMulticast:vector(packetBytes) ETV
+attr interpolationmode none
+attr recordingmode vector(packetBytes)
+attr source ieee80211Multicast(packetSentToPeer)
+attr title "packets sent: multicast, packetBytes"
+vector 333 Spoofing.node[3].wlan[0].mac.dcf packetSentToPeerWithoutRetry:vector(packetBytes) ETV
+attr interpolationmode none
+attr recordingmode vector(packetBytes)
+attr source ieee80211NotRetry(packetSentToPeer)
+attr title "packets sent: without retry, packetBytes"
+vector 334 Spoofing.node[3].wlan[0].mac.dcf.channelAccess.inProgressFrames queueingTime:vector ETV
+attr interpolationmode none
+attr recordingmode vector
+attr source queueingTime(packetDequeued)
+attr title "queueing times"
+vector 335 Spoofing.node[8].wlan[0].mac packetReceivedFromLower:vector(packetBytes) ETV
+attr interpolationmode none
+attr recordingmode vector(packetBytes)
+attr title "packets received from lower layer, packetBytes"
+vector 336 Spoofing.node[8].wlan[0].mac.dcf packetReceivedFromPeer:vector(packetBytes) ETV
+attr interpolationmode none
+attr recordingmode vector(packetBytes)
+attr title "packets received, packetBytes"
+vector 337 Spoofing.node[8].wlan[0].mac.dcf packetReceivedFromPeerMulticast:vector(packetBytes) ETV
+attr interpolationmode none
+attr recordingmode vector(packetBytes)
+attr source ieee80211Multicast(packetReceivedFromPeer)
+attr title "packets received: multicast, packetBytes"
+vector 338 Spoofing.node[8].wlan[0].mac.dcf packetReceivedFromPeerWithoutRetry:vector(packetBytes) ETV
+attr interpolationmode none
+attr recordingmode vector(packetBytes)
+attr source ieee80211NotRetry(packetReceivedFromPeer)
+attr title "packets received: without retry, packetBytes"
+vector 339 Spoofing.node[8].wlan[0].mac packetSentToUpper:vector(packetBytes) ETV
+attr interpolationmode none
+attr recordingmode vector(packetBytes)
+attr title "packets sent to upper layer, packetBytes"
+vector 340 Spoofing.node[8].udp packetReceived:vector(packetBytes) ETV
+attr interpolationmode none
+attr recordingmode vector(packetBytes)
+attr source packetReceived
+attr title "packets received, packetBytes"
+vector 341 Spoofing.node[8].app[0] packetReceived:vector(packetBytes) ETV
+attr interpolationmode none
+attr recordingmode vector(packetBytes)
+attr source packetReceived
+attr title "packets received, packetBytes"
+vector 342 Spoofing.node[8].app[0] throughput:vector ETV
+attr recordingmode vector
+attr source throughput(packetReceived)
+attr title throughput
+attr unit bps
+vector 343 Spoofing.node[8].app[0] rcvdPkLifetime:vector ETV
+attr interpolationmode none
+attr recordingmode vector
+attr source dataAge(packetReceived)
+attr title "received packet lifetime"
+attr unit s
+vector 344 Spoofing.node[8].app[0] packetSent:vector(packetBytes) ETV
+attr interpolationmode none
+attr recordingmode vector(packetBytes)
+attr source packetSent
+attr title "packets sent, packetBytes"
+vector 345 Spoofing.node[8].udp packetSent:vector(packetBytes) ETV
+attr interpolationmode none
+attr recordingmode vector(packetBytes)
+attr source packetSent
+attr title "packets sent, packetBytes"
+vector 346 Spoofing.node[8].lo[0].lo rcvdPkFromHl:vector(packetBytes) ETV
+attr interpolationmode none
+attr recordingmode vector(packetBytes)
+attr source packetReceivedFromUpper
+attr title "packets received from higher layer, packetBytes"
+vector 347 Spoofing.node[8].lo[0].lo passedUpPk:vector(packetBytes) ETV
+attr interpolationmode none
+attr recordingmode vector(packetBytes)
+attr source packetSentToUpper
+attr title "packets passed to higher layer, packetBytes"
+vector 348 Spoofing.node[8].wlan[0].mac packetReceivedFromUpper:vector(packetBytes) ETV
+attr interpolationmode none
+attr recordingmode vector(packetBytes)
+attr title "packets received from upper layer, packetBytes"
+vector 349 Spoofing.node[8].wlan[0].mac.dcf.channelAccess.pendingQueue incomingPacketLengths:vector ETV
+attr interpolationmode none
+attr recordingmode vector
+attr source packetLength(packetPushStarted)
+attr title "incoming packet lengths"
+attr unit b
+vector 350 Spoofing.node[8].wlan[0].mac.dcf.channelAccess.pendingQueue incomingDataRate:vector ETV
+attr interpolationmode linear
+attr recordingmode vector
+attr source throughput(packetPushStarted)
+attr title "incoming datarate"
+attr unit bps
+vector 351 Spoofing.node[8].wlan[0].mac.dcf.channelAccess.pendingQueue queueLength:vector ETV
+attr autoWarmupFilter false
+attr interpolationmode sample-hold
+attr recordingmode vector
+attr source "warmup(atomic(constant0(packetPushEnded) + count(packetPushStarted) - count(packetPulled) - count(packetRemoved) - count(packetDropped)))"
+attr title "queue length"
+attr unit pk
+vector 352 Spoofing.node[8].wlan[0].mac.dcf.channelAccess.pendingQueue queueBitLength:vector ETV
+attr autoWarmupFilter false
+attr interpolationmode sample-hold
+attr recordingmode vector
+attr source "warmup(atomic(constant0(packetPushEnded) + sum(packetLength(packetPushStarted)) - sum(packetLength(packetPulled)) - sum(packetLength(packetRemoved)) - sum(packetLength(packetDropped))))"
+attr title "queue bit length"
+attr unit b
+vector 353 Spoofing.node[8].wlan[0].mac.dcf.channelAccess.contention backoffPeriodGenerated:vector ETV
+attr interpolationmode none
+attr recordingmode vector
+attr title "backoff periods"
+vector 354 Spoofing.node[10].wlan[0].mac packetReceivedFromLower:vector(packetBytes) ETV
+attr interpolationmode none
+attr recordingmode vector(packetBytes)
+attr title "packets received from lower layer, packetBytes"
+vector 355 Spoofing.node[10].wlan[0].mac.dcf packetReceivedFromPeer:vector(packetBytes) ETV
+attr interpolationmode none
+attr recordingmode vector(packetBytes)
+attr title "packets received, packetBytes"
+vector 356 Spoofing.node[10].wlan[0].mac.dcf packetReceivedFromPeerMulticast:vector(packetBytes) ETV
+attr interpolationmode none
+attr recordingmode vector(packetBytes)
+attr source ieee80211Multicast(packetReceivedFromPeer)
+attr title "packets received: multicast, packetBytes"
+vector 357 Spoofing.node[10].wlan[0].mac.dcf packetReceivedFromPeerWithoutRetry:vector(packetBytes) ETV
+attr interpolationmode none
+attr recordingmode vector(packetBytes)
+attr source ieee80211NotRetry(packetReceivedFromPeer)
+attr title "packets received: without retry, packetBytes"
+vector 358 Spoofing.node[10].wlan[0].mac packetSentToUpper:vector(packetBytes) ETV
+attr interpolationmode none
+attr recordingmode vector(packetBytes)
+attr title "packets sent to upper layer, packetBytes"
+vector 359 Spoofing.node[10].udp packetReceived:vector(packetBytes) ETV
+attr interpolationmode none
+attr recordingmode vector(packetBytes)
+attr source packetReceived
+attr title "packets received, packetBytes"
+vector 360 Spoofing.node[10].app[0] packetReceived:vector(packetBytes) ETV
+attr interpolationmode none
+attr recordingmode vector(packetBytes)
+attr source packetReceived
+attr title "packets received, packetBytes"
+vector 361 Spoofing.node[10].app[0] throughput:vector ETV
+attr recordingmode vector
+attr source throughput(packetReceived)
+attr title throughput
+attr unit bps
+vector 362 Spoofing.node[10].app[0] rcvdPkLifetime:vector ETV
+attr interpolationmode none
+attr recordingmode vector
+attr source dataAge(packetReceived)
+attr title "received packet lifetime"
+attr unit s
+vector 363 Spoofing.node[10].app[0] packetSent:vector(packetBytes) ETV
+attr interpolationmode none
+attr recordingmode vector(packetBytes)
+attr source packetSent
+attr title "packets sent, packetBytes"
+vector 364 Spoofing.node[10].udp packetSent:vector(packetBytes) ETV
+attr interpolationmode none
+attr recordingmode vector(packetBytes)
+attr source packetSent
+attr title "packets sent, packetBytes"
+vector 365 Spoofing.node[10].lo[0].lo rcvdPkFromHl:vector(packetBytes) ETV
+attr interpolationmode none
+attr recordingmode vector(packetBytes)
+attr source packetReceivedFromUpper
+attr title "packets received from higher layer, packetBytes"
+vector 366 Spoofing.node[10].lo[0].lo passedUpPk:vector(packetBytes) ETV
+attr interpolationmode none
+attr recordingmode vector(packetBytes)
+attr source packetSentToUpper
+attr title "packets passed to higher layer, packetBytes"
+vector 367 Spoofing.node[10].wlan[0].mac packetReceivedFromUpper:vector(packetBytes) ETV
+attr interpolationmode none
+attr recordingmode vector(packetBytes)
+attr title "packets received from upper layer, packetBytes"
+vector 368 Spoofing.node[10].wlan[0].mac.dcf.channelAccess.pendingQueue incomingPacketLengths:vector ETV
+attr interpolationmode none
+attr recordingmode vector
+attr source packetLength(packetPushStarted)
+attr title "incoming packet lengths"
+attr unit b
+vector 369 Spoofing.node[10].wlan[0].mac.dcf.channelAccess.pendingQueue incomingDataRate:vector ETV
+attr interpolationmode linear
+attr recordingmode vector
+attr source throughput(packetPushStarted)
+attr title "incoming datarate"
+attr unit bps
+vector 370 Spoofing.node[10].wlan[0].mac.dcf.channelAccess.pendingQueue queueLength:vector ETV
+attr autoWarmupFilter false
+attr interpolationmode sample-hold
+attr recordingmode vector
+attr source "warmup(atomic(constant0(packetPushEnded) + count(packetPushStarted) - count(packetPulled) - count(packetRemoved) - count(packetDropped)))"
+attr title "queue length"
+attr unit pk
+vector 371 Spoofing.node[10].wlan[0].mac.dcf.channelAccess.pendingQueue queueBitLength:vector ETV
+attr autoWarmupFilter false
+attr interpolationmode sample-hold
+attr recordingmode vector
+attr source "warmup(atomic(constant0(packetPushEnded) + sum(packetLength(packetPushStarted)) - sum(packetLength(packetPulled)) - sum(packetLength(packetRemoved)) - sum(packetLength(packetDropped))))"
+attr title "queue bit length"
+attr unit b
+vector 372 Spoofing.node[10].wlan[0].mac.dcf.channelAccess.contention backoffPeriodGenerated:vector ETV
+attr interpolationmode none
+attr recordingmode vector
+attr title "backoff periods"
+vector 373 Spoofing.node[10].wlan[0].mac.dcf.channelAccess.pendingQueue queueingTime:vector ETV
+attr interpolationmode none
+attr recordingmode vector
+attr source queueingTime(packetPulled)
+attr title "queueing times"
+attr unit s
+vector 374 Spoofing.node[10].wlan[0].mac.dcf.channelAccess.pendingQueue outgoingPacketLengths:vector ETV
+attr interpolationmode none
+attr recordingmode vector
+attr source packetLength(packetPulled)
+attr title "outgoing packet lengths"
+attr unit b
+vector 375 Spoofing.node[10].wlan[0].mac.dcf.channelAccess.pendingQueue outgoingDataRate:vector ETV
+attr interpolationmode linear
+attr recordingmode vector
+attr source throughput(packetPulled)
+attr title "outgoing datarate"
+attr unit bps
+vector 376 Spoofing.node[10].wlan[0].mac.dcf datarateSelected:vector ETV
+attr interpolationmode none
+attr recordingmode vector
+attr title "datarates selected"
+vector 377 Spoofing.node[10].wlan[0].mac packetSentToLower:vector(packetBytes) ETV
+attr interpolationmode none
+attr recordingmode vector(packetBytes)
+attr title "packets sent to lower layer, packetBytes"
+vector 378 Spoofing.node[10].wlan[0].radio transmissionState:vector ETV
+attr interpolationmode sample-hold
+attr recordingmode vector
+attr source transmissionStateChanged
+attr title "Radio transmission state"
+vector 379 Spoofing.node[10].wlan[0].mac.dcf packetSentToPeer:vector(packetBytes) ETV
+attr interpolationmode none
+attr recordingmode vector(packetBytes)
+attr title "packets sent, packetBytes"
+vector 380 Spoofing.node[10].wlan[0].mac.dcf packetSentToPeerMulticast:vector(packetBytes) ETV
+attr interpolationmode none
+attr recordingmode vector(packetBytes)
+attr source ieee80211Multicast(packetSentToPeer)
+attr title "packets sent: multicast, packetBytes"
+vector 381 Spoofing.node[10].wlan[0].mac.dcf packetSentToPeerWithoutRetry:vector(packetBytes) ETV
+attr interpolationmode none
+attr recordingmode vector(packetBytes)
+attr source ieee80211NotRetry(packetSentToPeer)
+attr title "packets sent: without retry, packetBytes"
+vector 382 Spoofing.node[10].wlan[0].mac.dcf.channelAccess.inProgressFrames queueingTime:vector ETV
+attr interpolationmode none
+attr recordingmode vector
+attr source queueingTime(packetDequeued)
+attr title "queueing times"
+vector 383 Spoofing.node[7].wlan[0].mac packetReceivedFromLower:vector(packetBytes) ETV
+attr interpolationmode none
+attr recordingmode vector(packetBytes)
+attr title "packets received from lower layer, packetBytes"
+vector 384 Spoofing.node[7].wlan[0].mac.dcf packetReceivedFromPeer:vector(packetBytes) ETV
+attr interpolationmode none
+attr recordingmode vector(packetBytes)
+attr title "packets received, packetBytes"
+vector 385 Spoofing.node[7].wlan[0].mac.dcf packetReceivedFromPeerMulticast:vector(packetBytes) ETV
+attr interpolationmode none
+attr recordingmode vector(packetBytes)
+attr source ieee80211Multicast(packetReceivedFromPeer)
+attr title "packets received: multicast, packetBytes"
+vector 386 Spoofing.node[7].wlan[0].mac.dcf packetReceivedFromPeerWithoutRetry:vector(packetBytes) ETV
+attr interpolationmode none
+attr recordingmode vector(packetBytes)
+attr source ieee80211NotRetry(packetReceivedFromPeer)
+attr title "packets received: without retry, packetBytes"
+vector 387 Spoofing.node[7].wlan[0].mac packetSentToUpper:vector(packetBytes) ETV
+attr interpolationmode none
+attr recordingmode vector(packetBytes)
+attr title "packets sent to upper layer, packetBytes"
+vector 388 Spoofing.node[7].udp packetReceived:vector(packetBytes) ETV
+attr interpolationmode none
+attr recordingmode vector(packetBytes)
+attr source packetReceived
+attr title "packets received, packetBytes"
+vector 389 Spoofing.node[7].app[0] packetReceived:vector(packetBytes) ETV
+attr interpolationmode none
+attr recordingmode vector(packetBytes)
+attr source packetReceived
+attr title "packets received, packetBytes"
+vector 390 Spoofing.node[7].app[0] throughput:vector ETV
+attr recordingmode vector
+attr source throughput(packetReceived)
+attr title throughput
+attr unit bps
+vector 391 Spoofing.node[7].app[0] rcvdPkLifetime:vector ETV
+attr interpolationmode none
+attr recordingmode vector
+attr source dataAge(packetReceived)
+attr title "received packet lifetime"
+attr unit s
+vector 392 Spoofing.node[7].app[0] packetSent:vector(packetBytes) ETV
+attr interpolationmode none
+attr recordingmode vector(packetBytes)
+attr source packetSent
+attr title "packets sent, packetBytes"
+vector 393 Spoofing.node[7].udp packetSent:vector(packetBytes) ETV
+attr interpolationmode none
+attr recordingmode vector(packetBytes)
+attr source packetSent
+attr title "packets sent, packetBytes"
+vector 394 Spoofing.node[7].lo[0].lo rcvdPkFromHl:vector(packetBytes) ETV
+attr interpolationmode none
+attr recordingmode vector(packetBytes)
+attr source packetReceivedFromUpper
+attr title "packets received from higher layer, packetBytes"
+vector 395 Spoofing.node[7].lo[0].lo passedUpPk:vector(packetBytes) ETV
+attr interpolationmode none
+attr recordingmode vector(packetBytes)
+attr source packetSentToUpper
+attr title "packets passed to higher layer, packetBytes"
+vector 396 Spoofing.node[7].wlan[0].mac packetReceivedFromUpper:vector(packetBytes) ETV
+attr interpolationmode none
+attr recordingmode vector(packetBytes)
+attr title "packets received from upper layer, packetBytes"
+vector 397 Spoofing.node[7].wlan[0].mac.dcf.channelAccess.pendingQueue incomingPacketLengths:vector ETV
+attr interpolationmode none
+attr recordingmode vector
+attr source packetLength(packetPushStarted)
+attr title "incoming packet lengths"
+attr unit b
+vector 398 Spoofing.node[7].wlan[0].mac.dcf.channelAccess.pendingQueue incomingDataRate:vector ETV
+attr interpolationmode linear
+attr recordingmode vector
+attr source throughput(packetPushStarted)
+attr title "incoming datarate"
+attr unit bps
+vector 399 Spoofing.node[7].wlan[0].mac.dcf.channelAccess.pendingQueue queueLength:vector ETV
+attr autoWarmupFilter false
+attr interpolationmode sample-hold
+attr recordingmode vector
+attr source "warmup(atomic(constant0(packetPushEnded) + count(packetPushStarted) - count(packetPulled) - count(packetRemoved) - count(packetDropped)))"
+attr title "queue length"
+attr unit pk
+vector 400 Spoofing.node[7].wlan[0].mac.dcf.channelAccess.pendingQueue queueBitLength:vector ETV
+attr autoWarmupFilter false
+attr interpolationmode sample-hold
+attr recordingmode vector
+attr source "warmup(atomic(constant0(packetPushEnded) + sum(packetLength(packetPushStarted)) - sum(packetLength(packetPulled)) - sum(packetLength(packetRemoved)) - sum(packetLength(packetDropped))))"
+attr title "queue bit length"
+attr unit b
+vector 401 Spoofing.node[7].wlan[0].mac.dcf.channelAccess.contention backoffPeriodGenerated:vector ETV
+attr interpolationmode none
+attr recordingmode vector
+attr title "backoff periods"
+vector 402 Spoofing.node[11].wlan[0].mac packetReceivedFromLower:vector(packetBytes) ETV
+attr interpolationmode none
+attr recordingmode vector(packetBytes)
+attr title "packets received from lower layer, packetBytes"
+vector 403 Spoofing.node[11].wlan[0].mac.dcf packetReceivedFromPeer:vector(packetBytes) ETV
+attr interpolationmode none
+attr recordingmode vector(packetBytes)
+attr title "packets received, packetBytes"
+vector 404 Spoofing.node[11].wlan[0].mac.dcf packetReceivedFromPeerMulticast:vector(packetBytes) ETV
+attr interpolationmode none
+attr recordingmode vector(packetBytes)
+attr source ieee80211Multicast(packetReceivedFromPeer)
+attr title "packets received: multicast, packetBytes"
+vector 405 Spoofing.node[11].wlan[0].mac.dcf packetReceivedFromPeerWithoutRetry:vector(packetBytes) ETV
+attr interpolationmode none
+attr recordingmode vector(packetBytes)
+attr source ieee80211NotRetry(packetReceivedFromPeer)
+attr title "packets received: without retry, packetBytes"
+vector 406 Spoofing.node[11].wlan[0].mac packetSentToUpper:vector(packetBytes) ETV
+attr interpolationmode none
+attr recordingmode vector(packetBytes)
+attr title "packets sent to upper layer, packetBytes"
+vector 407 Spoofing.node[11].udp packetReceived:vector(packetBytes) ETV
+attr interpolationmode none
+attr recordingmode vector(packetBytes)
+attr source packetReceived
+attr title "packets received, packetBytes"
+vector 408 Spoofing.node[11].app[0] packetReceived:vector(packetBytes) ETV
+attr interpolationmode none
+attr recordingmode vector(packetBytes)
+attr source packetReceived
+attr title "packets received, packetBytes"
+vector 409 Spoofing.node[11].app[0] throughput:vector ETV
+attr recordingmode vector
+attr source throughput(packetReceived)
+attr title throughput
+attr unit bps
+vector 410 Spoofing.node[11].app[0] rcvdPkLifetime:vector ETV
+attr interpolationmode none
+attr recordingmode vector
+attr source dataAge(packetReceived)
+attr title "received packet lifetime"
+attr unit s
+vector 411 Spoofing.node[11].app[0] packetSent:vector(packetBytes) ETV
+attr interpolationmode none
+attr recordingmode vector(packetBytes)
+attr source packetSent
+attr title "packets sent, packetBytes"
+vector 412 Spoofing.node[11].udp packetSent:vector(packetBytes) ETV
+attr interpolationmode none
+attr recordingmode vector(packetBytes)
+attr source packetSent
+attr title "packets sent, packetBytes"
+vector 413 Spoofing.node[11].lo[0].lo rcvdPkFromHl:vector(packetBytes) ETV
+attr interpolationmode none
+attr recordingmode vector(packetBytes)
+attr source packetReceivedFromUpper
+attr title "packets received from higher layer, packetBytes"
+vector 414 Spoofing.node[11].lo[0].lo passedUpPk:vector(packetBytes) ETV
+attr interpolationmode none
+attr recordingmode vector(packetBytes)
+attr source packetSentToUpper
+attr title "packets passed to higher layer, packetBytes"
+vector 415 Spoofing.node[11].wlan[0].mac packetReceivedFromUpper:vector(packetBytes) ETV
+attr interpolationmode none
+attr recordingmode vector(packetBytes)
+attr title "packets received from upper layer, packetBytes"
+vector 416 Spoofing.node[11].wlan[0].mac.dcf.channelAccess.pendingQueue incomingPacketLengths:vector ETV
+attr interpolationmode none
+attr recordingmode vector
+attr source packetLength(packetPushStarted)
+attr title "incoming packet lengths"
+attr unit b
+vector 417 Spoofing.node[11].wlan[0].mac.dcf.channelAccess.pendingQueue incomingDataRate:vector ETV
+attr interpolationmode linear
+attr recordingmode vector
+attr source throughput(packetPushStarted)
+attr title "incoming datarate"
+attr unit bps
+vector 418 Spoofing.node[11].wlan[0].mac.dcf.channelAccess.pendingQueue queueLength:vector ETV
+attr autoWarmupFilter false
+attr interpolationmode sample-hold
+attr recordingmode vector
+attr source "warmup(atomic(constant0(packetPushEnded) + count(packetPushStarted) - count(packetPulled) - count(packetRemoved) - count(packetDropped)))"
+attr title "queue length"
+attr unit pk
+vector 419 Spoofing.node[11].wlan[0].mac.dcf.channelAccess.pendingQueue queueBitLength:vector ETV
+attr autoWarmupFilter false
+attr interpolationmode sample-hold
+attr recordingmode vector
+attr source "warmup(atomic(constant0(packetPushEnded) + sum(packetLength(packetPushStarted)) - sum(packetLength(packetPulled)) - sum(packetLength(packetRemoved)) - sum(packetLength(packetDropped))))"
+attr title "queue bit length"
+attr unit b
+vector 420 Spoofing.node[11].wlan[0].mac.dcf.channelAccess.contention backoffPeriodGenerated:vector ETV
+attr interpolationmode none
+attr recordingmode vector
+attr title "backoff periods"
+vector 421 Spoofing.node[12].wlan[0].mac packetReceivedFromLower:vector(packetBytes) ETV
+attr interpolationmode none
+attr recordingmode vector(packetBytes)
+attr title "packets received from lower layer, packetBytes"
+vector 422 Spoofing.node[12].wlan[0].mac.dcf packetReceivedFromPeer:vector(packetBytes) ETV
+attr interpolationmode none
+attr recordingmode vector(packetBytes)
+attr title "packets received, packetBytes"
+vector 423 Spoofing.node[12].wlan[0].mac.dcf packetReceivedFromPeerMulticast:vector(packetBytes) ETV
+attr interpolationmode none
+attr recordingmode vector(packetBytes)
+attr source ieee80211Multicast(packetReceivedFromPeer)
+attr title "packets received: multicast, packetBytes"
+vector 424 Spoofing.node[12].wlan[0].mac.dcf packetReceivedFromPeerWithoutRetry:vector(packetBytes) ETV
+attr interpolationmode none
+attr recordingmode vector(packetBytes)
+attr source ieee80211NotRetry(packetReceivedFromPeer)
+attr title "packets received: without retry, packetBytes"
+vector 425 Spoofing.node[12].wlan[0].mac packetSentToUpper:vector(packetBytes) ETV
+attr interpolationmode none
+attr recordingmode vector(packetBytes)
+attr title "packets sent to upper layer, packetBytes"
+vector 426 Spoofing.node[12].udp packetReceived:vector(packetBytes) ETV
+attr interpolationmode none
+attr recordingmode vector(packetBytes)
+attr source packetReceived
+attr title "packets received, packetBytes"
+vector 427 Spoofing.node[12].app[0] packetReceived:vector(packetBytes) ETV
+attr interpolationmode none
+attr recordingmode vector(packetBytes)
+attr source packetReceived
+attr title "packets received, packetBytes"
+vector 428 Spoofing.node[12].app[0] throughput:vector ETV
+attr recordingmode vector
+attr source throughput(packetReceived)
+attr title throughput
+attr unit bps
+vector 429 Spoofing.node[12].app[0] rcvdPkLifetime:vector ETV
+attr interpolationmode none
+attr recordingmode vector
+attr source dataAge(packetReceived)
+attr title "received packet lifetime"
+attr unit s
+vector 430 Spoofing.node[12].app[0] packetSent:vector(packetBytes) ETV
+attr interpolationmode none
+attr recordingmode vector(packetBytes)
+attr source packetSent
+attr title "packets sent, packetBytes"
+vector 431 Spoofing.node[12].udp packetSent:vector(packetBytes) ETV
+attr interpolationmode none
+attr recordingmode vector(packetBytes)
+attr source packetSent
+attr title "packets sent, packetBytes"
+vector 432 Spoofing.node[12].lo[0].lo rcvdPkFromHl:vector(packetBytes) ETV
+attr interpolationmode none
+attr recordingmode vector(packetBytes)
+attr source packetReceivedFromUpper
+attr title "packets received from higher layer, packetBytes"
+vector 433 Spoofing.node[12].lo[0].lo passedUpPk:vector(packetBytes) ETV
+attr interpolationmode none
+attr recordingmode vector(packetBytes)
+attr source packetSentToUpper
+attr title "packets passed to higher layer, packetBytes"
+vector 434 Spoofing.node[12].wlan[0].mac packetReceivedFromUpper:vector(packetBytes) ETV
+attr interpolationmode none
+attr recordingmode vector(packetBytes)
+attr title "packets received from upper layer, packetBytes"
+vector 435 Spoofing.node[12].wlan[0].mac.dcf.channelAccess.pendingQueue incomingPacketLengths:vector ETV
+attr interpolationmode none
+attr recordingmode vector
+attr source packetLength(packetPushStarted)
+attr title "incoming packet lengths"
+attr unit b
+vector 436 Spoofing.node[12].wlan[0].mac.dcf.channelAccess.pendingQueue incomingDataRate:vector ETV
+attr interpolationmode linear
+attr recordingmode vector
+attr source throughput(packetPushStarted)
+attr title "incoming datarate"
+attr unit bps
+vector 437 Spoofing.node[12].wlan[0].mac.dcf.channelAccess.pendingQueue queueLength:vector ETV
+attr autoWarmupFilter false
+attr interpolationmode sample-hold
+attr recordingmode vector
+attr source "warmup(atomic(constant0(packetPushEnded) + count(packetPushStarted) - count(packetPulled) - count(packetRemoved) - count(packetDropped)))"
+attr title "queue length"
+attr unit pk
+vector 438 Spoofing.node[12].wlan[0].mac.dcf.channelAccess.pendingQueue queueBitLength:vector ETV
+attr autoWarmupFilter false
+attr interpolationmode sample-hold
+attr recordingmode vector
+attr source "warmup(atomic(constant0(packetPushEnded) + sum(packetLength(packetPushStarted)) - sum(packetLength(packetPulled)) - sum(packetLength(packetRemoved)) - sum(packetLength(packetDropped))))"
+attr title "queue bit length"
+attr unit b
+vector 439 Spoofing.node[12].wlan[0].mac.dcf.channelAccess.contention backoffPeriodGenerated:vector ETV
+attr interpolationmode none
+attr recordingmode vector
+attr title "backoff periods"
+vector 440 Spoofing.node[4].wlan[0].mac.dcf.channelAccess.pendingQueue queueingTime:vector ETV
+attr interpolationmode none
+attr recordingmode vector
+attr source queueingTime(packetPulled)
+attr title "queueing times"
+attr unit s
+vector 441 Spoofing.node[4].wlan[0].mac.dcf.channelAccess.pendingQueue outgoingPacketLengths:vector ETV
+attr interpolationmode none
+attr recordingmode vector
+attr source packetLength(packetPulled)
+attr title "outgoing packet lengths"
+attr unit b
+vector 442 Spoofing.node[4].wlan[0].mac.dcf.channelAccess.pendingQueue outgoingDataRate:vector ETV
+attr interpolationmode linear
+attr recordingmode vector
+attr source throughput(packetPulled)
+attr title "outgoing datarate"
+attr unit bps
+vector 443 Spoofing.node[4].wlan[0].mac.dcf datarateSelected:vector ETV
+attr interpolationmode none
+attr recordingmode vector
+attr title "datarates selected"
+vector 444 Spoofing.node[4].wlan[0].mac packetSentToLower:vector(packetBytes) ETV
+attr interpolationmode none
+attr recordingmode vector(packetBytes)
+attr title "packets sent to lower layer, packetBytes"
+vector 445 Spoofing.node[4].wlan[0].radio transmissionState:vector ETV
+attr interpolationmode sample-hold
+attr recordingmode vector
+attr source transmissionStateChanged
+attr title "Radio transmission state"
+vector 446 Spoofing.node[9].wlan[0].mac.dcf.channelAccess.pendingQueue queueingTime:vector ETV
+attr interpolationmode none
+attr recordingmode vector
+attr source queueingTime(packetPulled)
+attr title "queueing times"
+attr unit s
+vector 447 Spoofing.node[9].wlan[0].mac.dcf.channelAccess.pendingQueue outgoingPacketLengths:vector ETV
+attr interpolationmode none
+attr recordingmode vector
+attr source packetLength(packetPulled)
+attr title "outgoing packet lengths"
+attr unit b
+vector 448 Spoofing.node[9].wlan[0].mac.dcf.channelAccess.pendingQueue outgoingDataRate:vector ETV
+attr interpolationmode linear
+attr recordingmode vector
+attr source throughput(packetPulled)
+attr title "outgoing datarate"
+attr unit bps
+vector 449 Spoofing.node[9].wlan[0].mac.dcf datarateSelected:vector ETV
+attr interpolationmode none
+attr recordingmode vector
+attr title "datarates selected"
+vector 450 Spoofing.node[9].wlan[0].mac packetSentToLower:vector(packetBytes) ETV
+attr interpolationmode none
+attr recordingmode vector(packetBytes)
+attr title "packets sent to lower layer, packetBytes"
+vector 451 Spoofing.node[9].wlan[0].radio transmissionState:vector ETV
+attr interpolationmode sample-hold
+attr recordingmode vector
+attr source transmissionStateChanged
+attr title "Radio transmission state"
+vector 452 Spoofing.node[7].wlan[0].mac.dcf.channelAccess.pendingQueue queueingTime:vector ETV
+attr interpolationmode none
+attr recordingmode vector
+attr source queueingTime(packetPulled)
+attr title "queueing times"
+attr unit s
+vector 453 Spoofing.node[7].wlan[0].mac.dcf.channelAccess.pendingQueue outgoingPacketLengths:vector ETV
+attr interpolationmode none
+attr recordingmode vector
+attr source packetLength(packetPulled)
+attr title "outgoing packet lengths"
+attr unit b
+vector 454 Spoofing.node[7].wlan[0].mac.dcf.channelAccess.pendingQueue outgoingDataRate:vector ETV
+attr interpolationmode linear
+attr recordingmode vector
+attr source throughput(packetPulled)
+attr title "outgoing datarate"
+attr unit bps
+vector 455 Spoofing.node[7].wlan[0].mac.dcf datarateSelected:vector ETV
+attr interpolationmode none
+attr recordingmode vector
+attr title "datarates selected"
+vector 456 Spoofing.node[7].wlan[0].mac packetSentToLower:vector(packetBytes) ETV
+attr interpolationmode none
+attr recordingmode vector(packetBytes)
+attr title "packets sent to lower layer, packetBytes"
+vector 457 Spoofing.node[7].wlan[0].radio transmissionState:vector ETV
+attr interpolationmode sample-hold
+attr recordingmode vector
+attr source transmissionStateChanged
+attr title "Radio transmission state"
+vector 458 Spoofing.node[4].wlan[0].mac.dcf packetSentToPeer:vector(packetBytes) ETV
+attr interpolationmode none
+attr recordingmode vector(packetBytes)
+attr title "packets sent, packetBytes"
+vector 459 Spoofing.node[4].wlan[0].mac.dcf packetSentToPeerMulticast:vector(packetBytes) ETV
+attr interpolationmode none
+attr recordingmode vector(packetBytes)
+attr source ieee80211Multicast(packetSentToPeer)
+attr title "packets sent: multicast, packetBytes"
+vector 460 Spoofing.node[4].wlan[0].mac.dcf packetSentToPeerWithoutRetry:vector(packetBytes) ETV
+attr interpolationmode none
+attr recordingmode vector(packetBytes)
+attr source ieee80211NotRetry(packetSentToPeer)
+attr title "packets sent: without retry, packetBytes"
+vector 461 Spoofing.node[4].wlan[0].mac.dcf.channelAccess.inProgressFrames queueingTime:vector ETV
+attr interpolationmode none
+attr recordingmode vector
+attr source queueingTime(packetDequeued)
+attr title "queueing times"
+vector 462 Spoofing.node[9].wlan[0].mac.dcf packetSentToPeer:vector(packetBytes) ETV
+attr interpolationmode none
+attr recordingmode vector(packetBytes)
+attr title "packets sent, packetBytes"
+vector 463 Spoofing.node[9].wlan[0].mac.dcf packetSentToPeerMulticast:vector(packetBytes) ETV
+attr interpolationmode none
+attr recordingmode vector(packetBytes)
+attr source ieee80211Multicast(packetSentToPeer)
+attr title "packets sent: multicast, packetBytes"
+vector 464 Spoofing.node[9].wlan[0].mac.dcf packetSentToPeerWithoutRetry:vector(packetBytes) ETV
+attr interpolationmode none
+attr recordingmode vector(packetBytes)
+attr source ieee80211NotRetry(packetSentToPeer)
+attr title "packets sent: without retry, packetBytes"
+vector 465 Spoofing.node[9].wlan[0].mac.dcf.channelAccess.inProgressFrames queueingTime:vector ETV
+attr interpolationmode none
+attr recordingmode vector
+attr source queueingTime(packetDequeued)
+attr title "queueing times"
+vector 466 Spoofing.node[5].wlan[0].mac packetDrop:vector(packetBytes) ETV
+attr interpolationmode none
+attr recordingmode vector(packetBytes)
+attr source packetDropped
+attr title "packet drops, packetBytes"
+vector 467 Spoofing.node[5].wlan[0].mac packetDropIncorrectlyReceived:vector(packetBytes) ETV
+attr interpolationmode none
+attr recordingmode vector(packetBytes)
+attr source packetDropReasonIsIncorrectlyReceived(packetDropped)
+attr title "packet drops: incorrectly received, packetBytes"
+vector 468 Spoofing.node[7].wlan[0].mac.dcf packetSentToPeer:vector(packetBytes) ETV
+attr interpolationmode none
+attr recordingmode vector(packetBytes)
+attr title "packets sent, packetBytes"
+vector 469 Spoofing.node[7].wlan[0].mac.dcf packetSentToPeerMulticast:vector(packetBytes) ETV
+attr interpolationmode none
+attr recordingmode vector(packetBytes)
+attr source ieee80211Multicast(packetSentToPeer)
+attr title "packets sent: multicast, packetBytes"
+vector 470 Spoofing.node[7].wlan[0].mac.dcf packetSentToPeerWithoutRetry:vector(packetBytes) ETV
+attr interpolationmode none
+attr recordingmode vector(packetBytes)
+attr source ieee80211NotRetry(packetSentToPeer)
+attr title "packets sent: without retry, packetBytes"
+vector 471 Spoofing.node[7].wlan[0].mac.dcf.channelAccess.inProgressFrames queueingTime:vector ETV
+attr interpolationmode none
+attr recordingmode vector
+attr source queueingTime(packetDequeued)
+attr title "queueing times"
+vector 472 Spoofing.node[6].wlan[0].mac packetDrop:vector(packetBytes) ETV
+attr interpolationmode none
+attr recordingmode vector(packetBytes)
+attr source packetDropped
+attr title "packet drops, packetBytes"
+vector 473 Spoofing.node[6].wlan[0].mac packetDropIncorrectlyReceived:vector(packetBytes) ETV
+attr interpolationmode none
+attr recordingmode vector(packetBytes)
+attr source packetDropReasonIsIncorrectlyReceived(packetDropped)
+attr title "packet drops: incorrectly received, packetBytes"
+vector 474 Spoofing.node[8].wlan[0].mac packetDrop:vector(packetBytes) ETV
+attr interpolationmode none
+attr recordingmode vector(packetBytes)
+attr source packetDropped
+attr title "packet drops, packetBytes"
+vector 475 Spoofing.node[8].wlan[0].mac packetDropIncorrectlyReceived:vector(packetBytes) ETV
+attr interpolationmode none
+attr recordingmode vector(packetBytes)
+attr source packetDropReasonIsIncorrectlyReceived(packetDropped)
+attr title "packet drops: incorrectly received, packetBytes"
+vector 476 Spoofing.node[12].wlan[0].mac packetDrop:vector(packetBytes) ETV
+attr interpolationmode none
+attr recordingmode vector(packetBytes)
+attr source packetDropped
+attr title "packet drops, packetBytes"
+vector 477 Spoofing.node[12].wlan[0].mac packetDropIncorrectlyReceived:vector(packetBytes) ETV
+attr interpolationmode none
+attr recordingmode vector(packetBytes)
+attr source packetDropReasonIsIncorrectlyReceived(packetDropped)
+attr title "packet drops: incorrectly received, packetBytes"
+vector 478 Spoofing.node[10].wlan[0].mac packetDrop:vector(packetBytes) ETV
+attr interpolationmode none
+attr recordingmode vector(packetBytes)
+attr source packetDropped
+attr title "packet drops, packetBytes"
+vector 479 Spoofing.node[10].wlan[0].mac packetDropIncorrectlyReceived:vector(packetBytes) ETV
+attr interpolationmode none
+attr recordingmode vector(packetBytes)
+attr source packetDropReasonIsIncorrectlyReceived(packetDropped)
+attr title "packet drops: incorrectly received, packetBytes"
+vector 480 Spoofing.node[3].wlan[0].mac packetDrop:vector(packetBytes) ETV
+attr interpolationmode none
+attr recordingmode vector(packetBytes)
+attr source packetDropped
+attr title "packet drops, packetBytes"
+vector 481 Spoofing.node[3].wlan[0].mac packetDropIncorrectlyReceived:vector(packetBytes) ETV
+attr interpolationmode none
+attr recordingmode vector(packetBytes)
+attr source packetDropReasonIsIncorrectlyReceived(packetDropped)
+attr title "packet drops: incorrectly received, packetBytes"
+vector 482 Spoofing.node[2].wlan[0].mac packetDrop:vector(packetBytes) ETV
+attr interpolationmode none
+attr recordingmode vector(packetBytes)
+attr source packetDropped
+attr title "packet drops, packetBytes"
+vector 483 Spoofing.node[2].wlan[0].mac packetDropIncorrectlyReceived:vector(packetBytes) ETV
+attr interpolationmode none
+attr recordingmode vector(packetBytes)
+attr source packetDropReasonIsIncorrectlyReceived(packetDropped)
+attr title "packet drops: incorrectly received, packetBytes"
+vector 484 Spoofing.node[11].wlan[0].mac.dcf.channelAccess.pendingQueue queueingTime:vector ETV
+attr interpolationmode none
+attr recordingmode vector
+attr source queueingTime(packetPulled)
+attr title "queueing times"
+attr unit s
+vector 485 Spoofing.node[11].wlan[0].mac.dcf.channelAccess.pendingQueue outgoingPacketLengths:vector ETV
+attr interpolationmode none
+attr recordingmode vector
+attr source packetLength(packetPulled)
+attr title "outgoing packet lengths"
+attr unit b
+vector 486 Spoofing.node[11].wlan[0].mac.dcf.channelAccess.pendingQueue outgoingDataRate:vector ETV
+attr interpolationmode linear
+attr recordingmode vector
+attr source throughput(packetPulled)
+attr title "outgoing datarate"
+attr unit bps
+vector 487 Spoofing.node[11].wlan[0].mac.dcf datarateSelected:vector ETV
+attr interpolationmode none
+attr recordingmode vector
+attr title "datarates selected"
+vector 488 Spoofing.node[11].wlan[0].mac packetSentToLower:vector(packetBytes) ETV
+attr interpolationmode none
+attr recordingmode vector(packetBytes)
+attr title "packets sent to lower layer, packetBytes"
+vector 489 Spoofing.node[11].wlan[0].radio transmissionState:vector ETV
+attr interpolationmode sample-hold
+attr recordingmode vector
+attr source transmissionStateChanged
+attr title "Radio transmission state"
+vector 490 Spoofing.node[11].wlan[0].mac.dcf packetSentToPeer:vector(packetBytes) ETV
+attr interpolationmode none
+attr recordingmode vector(packetBytes)
+attr title "packets sent, packetBytes"
+vector 491 Spoofing.node[11].wlan[0].mac.dcf packetSentToPeerMulticast:vector(packetBytes) ETV
+attr interpolationmode none
+attr recordingmode vector(packetBytes)
+attr source ieee80211Multicast(packetSentToPeer)
+attr title "packets sent: multicast, packetBytes"
+vector 492 Spoofing.node[11].wlan[0].mac.dcf packetSentToPeerWithoutRetry:vector(packetBytes) ETV
+attr interpolationmode none
+attr recordingmode vector(packetBytes)
+attr source ieee80211NotRetry(packetSentToPeer)
+attr title "packets sent: without retry, packetBytes"
+vector 493 Spoofing.node[11].wlan[0].mac.dcf.channelAccess.inProgressFrames queueingTime:vector ETV
+attr interpolationmode none
+attr recordingmode vector
+attr source queueingTime(packetDequeued)
+attr title "queueing times"
+vector 494 Spoofing.node[8].wlan[0].mac.dcf.channelAccess.pendingQueue queueingTime:vector ETV
+attr interpolationmode none
+attr recordingmode vector
+attr source queueingTime(packetPulled)
+attr title "queueing times"
+attr unit s
+vector 495 Spoofing.node[8].wlan[0].mac.dcf.channelAccess.pendingQueue outgoingPacketLengths:vector ETV
+attr interpolationmode none
+attr recordingmode vector
+attr source packetLength(packetPulled)
+attr title "outgoing packet lengths"
+attr unit b
+vector 496 Spoofing.node[8].wlan[0].mac.dcf.channelAccess.pendingQueue outgoingDataRate:vector ETV
+attr interpolationmode linear
+attr recordingmode vector
+attr source throughput(packetPulled)
+attr title "outgoing datarate"
+attr unit bps
+vector 497 Spoofing.node[8].wlan[0].mac.dcf datarateSelected:vector ETV
+attr interpolationmode none
+attr recordingmode vector
+attr title "datarates selected"
+vector 498 Spoofing.node[8].wlan[0].mac packetSentToLower:vector(packetBytes) ETV
+attr interpolationmode none
+attr recordingmode vector(packetBytes)
+attr title "packets sent to lower layer, packetBytes"
+vector 499 Spoofing.node[8].wlan[0].radio transmissionState:vector ETV
+attr interpolationmode sample-hold
+attr recordingmode vector
+attr source transmissionStateChanged
+attr title "Radio transmission state"
+vector 500 Spoofing.node[8].wlan[0].mac.dcf packetSentToPeer:vector(packetBytes) ETV
+attr interpolationmode none
+attr recordingmode vector(packetBytes)
+attr title "packets sent, packetBytes"
+vector 501 Spoofing.node[8].wlan[0].mac.dcf packetSentToPeerMulticast:vector(packetBytes) ETV
+attr interpolationmode none
+attr recordingmode vector(packetBytes)
+attr source ieee80211Multicast(packetSentToPeer)
+attr title "packets sent: multicast, packetBytes"
+vector 502 Spoofing.node[8].wlan[0].mac.dcf packetSentToPeerWithoutRetry:vector(packetBytes) ETV
+attr interpolationmode none
+attr recordingmode vector(packetBytes)
+attr source ieee80211NotRetry(packetSentToPeer)
+attr title "packets sent: without retry, packetBytes"
+vector 503 Spoofing.node[8].wlan[0].mac.dcf.channelAccess.inProgressFrames queueingTime:vector ETV
+attr interpolationmode none
+attr recordingmode vector
+attr source queueingTime(packetDequeued)
+attr title "queueing times"
+vector 504 Spoofing.node[12].wlan[0].mac.dcf.channelAccess.pendingQueue queueingTime:vector ETV
+attr interpolationmode none
+attr recordingmode vector
+attr source queueingTime(packetPulled)
+attr title "queueing times"
+attr unit s
+vector 505 Spoofing.node[12].wlan[0].mac.dcf.channelAccess.pendingQueue outgoingPacketLengths:vector ETV
+attr interpolationmode none
+attr recordingmode vector
+attr source packetLength(packetPulled)
+attr title "outgoing packet lengths"
+attr unit b
+vector 506 Spoofing.node[12].wlan[0].mac.dcf.channelAccess.pendingQueue outgoingDataRate:vector ETV
+attr interpolationmode linear
+attr recordingmode vector
+attr source throughput(packetPulled)
+attr title "outgoing datarate"
+attr unit bps
+vector 507 Spoofing.node[12].wlan[0].mac.dcf datarateSelected:vector ETV
+attr interpolationmode none
+attr recordingmode vector
+attr title "datarates selected"
+vector 508 Spoofing.node[12].wlan[0].mac packetSentToLower:vector(packetBytes) ETV
+attr interpolationmode none
+attr recordingmode vector(packetBytes)
+attr title "packets sent to lower layer, packetBytes"
+vector 509 Spoofing.node[12].wlan[0].radio transmissionState:vector ETV
+attr interpolationmode sample-hold
+attr recordingmode vector
+attr source transmissionStateChanged
+attr title "Radio transmission state"
+vector 510 Spoofing.node[5].wlan[0].mac.dcf.channelAccess.pendingQueue queueingTime:vector ETV
+attr interpolationmode none
+attr recordingmode vector
+attr source queueingTime(packetPulled)
+attr title "queueing times"
+attr unit s
+vector 511 Spoofing.node[5].wlan[0].mac.dcf.channelAccess.pendingQueue outgoingPacketLengths:vector ETV
+attr interpolationmode none
+attr recordingmode vector
+attr source packetLength(packetPulled)
+attr title "outgoing packet lengths"
+attr unit b
+vector 512 Spoofing.node[5].wlan[0].mac.dcf.channelAccess.pendingQueue outgoingDataRate:vector ETV
+attr interpolationmode linear
+attr recordingmode vector
+attr source throughput(packetPulled)
+attr title "outgoing datarate"
+attr unit bps
+vector 513 Spoofing.node[5].wlan[0].mac.dcf datarateSelected:vector ETV
+attr interpolationmode none
+attr recordingmode vector
+attr title "datarates selected"
+vector 514 Spoofing.node[5].wlan[0].mac packetSentToLower:vector(packetBytes) ETV
+attr interpolationmode none
+attr recordingmode vector(packetBytes)
+attr title "packets sent to lower layer, packetBytes"
+vector 515 Spoofing.node[5].wlan[0].radio transmissionState:vector ETV
+attr interpolationmode sample-hold
+attr recordingmode vector
+attr source transmissionStateChanged
+attr title "Radio transmission state"
+vector 516 Spoofing.node[12].wlan[0].mac.dcf packetSentToPeer:vector(packetBytes) ETV
+attr interpolationmode none
+attr recordingmode vector(packetBytes)
+attr title "packets sent, packetBytes"
+vector 517 Spoofing.node[12].wlan[0].mac.dcf packetSentToPeerMulticast:vector(packetBytes) ETV
+attr interpolationmode none
+attr recordingmode vector(packetBytes)
+attr source ieee80211Multicast(packetSentToPeer)
+attr title "packets sent: multicast, packetBytes"
+vector 518 Spoofing.node[12].wlan[0].mac.dcf packetSentToPeerWithoutRetry:vector(packetBytes) ETV
+attr interpolationmode none
+attr recordingmode vector(packetBytes)
+attr source ieee80211NotRetry(packetSentToPeer)
+attr title "packets sent: without retry, packetBytes"
+vector 519 Spoofing.node[12].wlan[0].mac.dcf.channelAccess.inProgressFrames queueingTime:vector ETV
+attr interpolationmode none
+attr recordingmode vector
+attr source queueingTime(packetDequeued)
+attr title "queueing times"
+vector 520 Spoofing.node[7].wlan[0].mac packetDrop:vector(packetBytes) ETV
+attr interpolationmode none
+attr recordingmode vector(packetBytes)
+attr source packetDropped
+attr title "packet drops, packetBytes"
+vector 521 Spoofing.node[7].wlan[0].mac packetDropIncorrectlyReceived:vector(packetBytes) ETV
+attr interpolationmode none
+attr recordingmode vector(packetBytes)
+attr source packetDropReasonIsIncorrectlyReceived(packetDropped)
+attr title "packet drops: incorrectly received, packetBytes"
+vector 522 Spoofing.node[4].wlan[0].mac packetDrop:vector(packetBytes) ETV
+attr interpolationmode none
+attr recordingmode vector(packetBytes)
+attr source packetDropped
+attr title "packet drops, packetBytes"
+vector 523 Spoofing.node[4].wlan[0].mac packetDropIncorrectlyReceived:vector(packetBytes) ETV
+attr interpolationmode none
+attr recordingmode vector(packetBytes)
+attr source packetDropReasonIsIncorrectlyReceived(packetDropped)
+attr title "packet drops: incorrectly received, packetBytes"
+vector 524 Spoofing.node[9].wlan[0].mac packetDrop:vector(packetBytes) ETV
+attr interpolationmode none
+attr recordingmode vector(packetBytes)
+attr source packetDropped
+attr title "packet drops, packetBytes"
+vector 525 Spoofing.node[9].wlan[0].mac packetDropIncorrectlyReceived:vector(packetBytes) ETV
+attr interpolationmode none
+attr recordingmode vector(packetBytes)
+attr source packetDropReasonIsIncorrectlyReceived(packetDropped)
+attr title "packet drops: incorrectly received, packetBytes"
+vector 526 Spoofing.node[5].wlan[0].mac.dcf packetSentToPeer:vector(packetBytes) ETV
+attr interpolationmode none
+attr recordingmode vector(packetBytes)
+attr title "packets sent, packetBytes"
+vector 527 Spoofing.node[5].wlan[0].mac.dcf packetSentToPeerMulticast:vector(packetBytes) ETV
+attr interpolationmode none
+attr recordingmode vector(packetBytes)
+attr source ieee80211Multicast(packetSentToPeer)
+attr title "packets sent: multicast, packetBytes"
+vector 528 Spoofing.node[5].wlan[0].mac.dcf packetSentToPeerWithoutRetry:vector(packetBytes) ETV
+attr interpolationmode none
+attr recordingmode vector(packetBytes)
+attr source ieee80211NotRetry(packetSentToPeer)
+attr title "packets sent: without retry, packetBytes"
+vector 529 Spoofing.node[5].wlan[0].mac.dcf.channelAccess.inProgressFrames queueingTime:vector ETV
+attr interpolationmode none
+attr recordingmode vector
+attr source queueingTime(packetDequeued)
+attr title "queueing times"
+vector 530 Spoofing.node[1].wlan[0].mac packetDrop:vector(packetBytes) ETV
+attr interpolationmode none
+attr recordingmode vector(packetBytes)
+attr source packetDropped
+attr title "packet drops, packetBytes"
+vector 531 Spoofing.node[1].wlan[0].mac packetDropIncorrectlyReceived:vector(packetBytes) ETV
+attr interpolationmode none
+attr recordingmode vector(packetBytes)
+attr source packetDropReasonIsIncorrectlyReceived(packetDropped)
+attr title "packet drops: incorrectly received, packetBytes"
+vector 532 Spoofing.node[6].wlan[0].mac.dcf.channelAccess.pendingQueue queueingTime:vector ETV
+attr interpolationmode none
+attr recordingmode vector
+attr source queueingTime(packetPulled)
+attr title "queueing times"
+attr unit s
+vector 533 Spoofing.node[6].wlan[0].mac.dcf.channelAccess.pendingQueue outgoingPacketLengths:vector ETV
+attr interpolationmode none
+attr recordingmode vector
+attr source packetLength(packetPulled)
+attr title "outgoing packet lengths"
+attr unit b
+vector 534 Spoofing.node[6].wlan[0].mac.dcf.channelAccess.pendingQueue outgoingDataRate:vector ETV
+attr interpolationmode linear
+attr recordingmode vector
+attr source throughput(packetPulled)
+attr title "outgoing datarate"
+attr unit bps
+vector 535 Spoofing.node[6].wlan[0].mac.dcf datarateSelected:vector ETV
+attr interpolationmode none
+attr recordingmode vector
+attr title "datarates selected"
+vector 536 Spoofing.node[6].wlan[0].mac packetSentToLower:vector(packetBytes) ETV
+attr interpolationmode none
+attr recordingmode vector(packetBytes)
+attr title "packets sent to lower layer, packetBytes"
+vector 537 Spoofing.node[6].wlan[0].radio transmissionState:vector ETV
+attr interpolationmode sample-hold
+attr recordingmode vector
+attr source transmissionStateChanged
+attr title "Radio transmission state"
+vector 538 Spoofing.node[6].wlan[0].mac.dcf packetSentToPeer:vector(packetBytes) ETV
+attr interpolationmode none
+attr recordingmode vector(packetBytes)
+attr title "packets sent, packetBytes"
+vector 539 Spoofing.node[6].wlan[0].mac.dcf packetSentToPeerMulticast:vector(packetBytes) ETV
+attr interpolationmode none
+attr recordingmode vector(packetBytes)
+attr source ieee80211Multicast(packetSentToPeer)
+attr title "packets sent: multicast, packetBytes"
+vector 540 Spoofing.node[6].wlan[0].mac.dcf packetSentToPeerWithoutRetry:vector(packetBytes) ETV
+attr interpolationmode none
+attr recordingmode vector(packetBytes)
+attr source ieee80211NotRetry(packetSentToPeer)
+attr title "packets sent: without retry, packetBytes"
+vector 541 Spoofing.node[6].wlan[0].mac.dcf.channelAccess.inProgressFrames queueingTime:vector ETV
+attr interpolationmode none
+attr recordingmode vector
+attr source queueingTime(packetDequeued)
+attr title "queueing times"
+388	127938 145 559 985 106.001137974985 106.002583802649 5 108 108 540 58320
+393	128083 29 561 561 106.001137974985 106.001137974985 1 108 108 108 11664
+104	128112 147 93 985 47 106.002583802649 6 0 5 15 55
+105	128259 12 93 93 47 47 1 0 0 0 0
+106	128271 12 93 93 47 47 1 0 0 0 0
+394	128283 29 563 563 106.001137974985 106.001137974985 1 128 128 128 16384
+395	128312 29 563 563 106.001137974985 106.001137974985 1 128 128 128 16384
+454	128341 32485 619 1330 47.1 247 2000 0 12640 12640 159769600
+453	160826 30 619 619 106.001208974985 106.001208974985 1 1264 1264 1264 1597696
+452	160856 33 619 619 106.001208974985 106.001208974985 1 7.1e-05 7.1e-05 7.1e-05 5.041e-09
+398	160889 32485 566 1330 47.1 247 2000 0 12640 12640 159769600
+397	193374 30 566 566 106.001137974985 106.001137974985 1 1264 1264 1264 1597696
+399	193404 54 566 619 106.001137974985 106.001208974985 2 0 1 1 1
+400	193458 57 566 619 106.001137974985 106.001208974985 2 0 1264 1264 1597696
+471	193515 34 663 663 106.001360974985 106.001360974985 1 0.000152 0.000152 0.000152 2.3104e-08
+102	193549 78 93 663 47 106.001360974985 4 0 1 1 1
+103	193627 78 93 618 47 106.001208974985 4 0 1 1 1
+401	193705 27 566 566 106.001137974985 106.001137974985 1 1 1 1 1
+110	193732 834 93 981 47 106.002583802649 32 0 2 4 8
+111	194566 13 93 93 47 47 1 15 15 15 225
+455	194579 34 619 619 106.001208974985 106.001208974985 1 12000000 12000000 12000000 1.44e+14
+101	194613 78 93 663 47 106.001360974985 4 0 1 1 1
+386	194691 116 556 982 106.001137974985 106.002583802649 4 158 158 632 99856
+385	194807 116 556 982 106.001137974985 106.002583802649 4 158 158 632 99856
+384	194923 116 556 982 106.001137974985 106.002583802649 4 158 158 632 99856
+470	195039 29 663 663 106.001360974985 106.001360974985 1 158 158 158 24964
+469	195068 29 663 663 106.001360974985 106.001360974985 1 158 158 158 24964
+468	195097 29 663 663 106.001360974985 106.001360974985 1 158 158 158 24964
+383	195126 145 556 982 106.001137974985 106.002583802649 5 158 158 790 124820
+456	195271 29 619 619 106.001208974985 106.001208974985 1 158 158 158 24964
+396	195300 29 566 566 106.001137974985 106.001137974985 1 130 130 130 16900
+387	195329 116 556 982 106.001137974985 106.002583802649 4 130 130 520 67600
+521	195445 29 894 894 106.002201793828 106.002201793828 1 158 158 158 24964
+520	195474 29 894 894 106.002201793828 106.002201793828 1 158 158 158 24964
+108	195503 12 93 93 47 47 1 3 3 3 9
+107	195515 90 93 664 47 106.001360974985 5 0 3 7 17
+109	195605 390 93 981 47 106.002583802649 15 0 3 26 60
+457	195995 108 620 664 106.001208974985 106.001360974985 4 0 2 4 6
+391	196103 200 560 986 106.001137974985 106.002583802649 5 0.001137974985 0.002583802649 0.008501155835 1.593775338269e-05
+390	196303 32485 560 1330 47.1 247 2000 0 40000 40000 1600000000
+389	228788 145 560 986 106.001137974985 106.002583802649 5 100 100 500 50000
+392	228933 29 560 560 106.001137974985 106.001137974985 1 100 100 100 10000
+407	228962 172 573 991 106.001138129222 106.00258395688 6 108 108 648 69984
+412	229134 29 575 575 106.001138129222 106.001138129222 1 108 108 108 11664
+148	229163 173 119 991 61 106.00258395688 7 0 6 21 91
+149	229336 13 119 119 61 61 1 0 0 0 0
+150	229349 13 119 119 61 61 1 0 0 0 0
+413	229362 29 577 577 106.001138129222 106.001138129222 1 128 128 128 16384
+414	229391 29 577 577 106.001138129222 106.001138129222 1 128 128 128 16384
+486	229420 30749 709 1332 61.1 249 1880 0 12640 12640 159769600
+485	260169 30 709 709 106.001523919502 106.001523919502 1 1264 1264 1264 1597696
+484	260199 39 709 709 106.001523919502 106.001523919502 1 0.00038579028 0.00038579028 0.00038579028 1.4883414014248e-07
+417	260238 30749 580 1332 61.1 249 1880 0 12640 12640 159769600
+416	290987 30 580 580 106.001138129222 106.001138129222 1 1264 1264 1264 1597696
+418	291017 54 580 709 106.001138129222 106.001523919502 2 0 1 1 1
+419	291071 57 580 709 106.001138129222 106.001523919502 2 0 1264 1264 1597696
+493	291128 34 724 724 106.001675919502 106.001675919502 1 0.000152 0.000152 0.000152 2.3104e-08
+146	291162 80 119 724 61 106.001675919502 4 0 1 1 1
+147	291242 134 119 708 61 106.001523919502 6 0 1 2 2
+420	291376 27 580 580 106.001138129222 106.001138129222 1 9 9 9 81
+154	291403 774 119 987 61 106.00258395688 30 0 2 10 18
+155	292177 14 119 119 61 61 1 15 15 15 225
+487	292191 34 709 709 106.001523919502 106.001523919502 1 12000000 12000000 12000000 1.44e+14
+145	292225 80 119 724 61 106.001675919502 4 0 1 1 1
+405	292305 143 570 988 106.001138129222 106.00258395688 5 158 158 790 124820
+404	292448 143 570 988 106.001138129222 106.00258395688 5 158 158 790 124820
+403	292591 143 570 988 106.001138129222 106.00258395688 5 158 158 790 124820
+492	292734 29 724 724 106.001675919502 106.001675919502 1 158 158 158 24964
+491	292763 29 724 724 106.001675919502 106.001675919502 1 158 158 158 24964
+490	292792 29 724 724 106.001675919502 106.001675919502 1 158 158 158 24964
+402	292821 143 570 988 106.001138129222 106.00258395688 5 158 158 790 124820
+488	292964 29 709 709 106.001523919502 106.001523919502 1 158 158 158 24964
+415	292993 29 580 580 106.001138129222 106.001138129222 1 130 130 130 16900
+406	293022 143 570 988 106.001138129222 106.00258395688 5 130 130 650 84500
+152	293165 13 119 119 61 61 1 3 3 3 9
+151	293178 93 119 725 61 106.001675919502 5 0 3 7 17
+153	293271 387 119 987 61 106.00258395688 15 0 3 26 60
+489	293658 108 710 725 106.001523919502 106.001675919502 4 0 2 4 6
+410	293766 236 574 992 106.001138129222 106.00258395688 6 0.001138129222 0.00258395688 0.010388467827 1.9830525160998e-05
+409	294002 30749 574 1332 61.1 249 1880 0 48000 48000 2304000000
+408	324751 172 574 992 106.001138129222 106.00258395688 6 100 100 600 60000
+411	324923 29 574 574 106.001138129222 106.001138129222 1 100 100 100 10000
+426	324952 145 587 997 106.001138207161 106.002584034815 5 108 108 540 58320
+431	325097 29 589 589 106.001138207161 106.001138207161 1 108 108 108 11664
+159	325126 148 119 997 61 106.002584034815 6 0 5 15 55
+160	325274 13 119 119 61 61 1 0 0 0 0
+161	325287 13 119 119 61 61 1 0 0 0 0
+432	325300 29 591 591 106.001138207161 106.001138207161 1 128 128 128 16384
+433	325329 29 591 591 106.001138207161 106.001138207161 1 128 128 128 16384
+506	325358 30917 854 1333 61.1 250 1890 0 12640 12640 159769600
+505	356275 30 854 854 106.002049561626 106.002049561626 1 1264 1264 1264 1597696
+504	356305 40 854 854 106.002049561626 106.002049561626 1 0.000911354465 0.000911354465 0.000911354465 8.3056696087544e-07
+436	356345 30917 594 1333 61.1 250 1890 0 12640 12640 159769600
+435	387262 30 594 594 106.001138207161 106.001138207161 1 1264 1264 1264 1597696
+437	387292 54 594 854 106.001138207161 106.002049561626 2 0 1 1 1
+438	387346 57 594 854 106.001138207161 106.002049561626 2 0 1264 1264 1597696
+519	387403 34 885 885 106.002201561626 106.002201561626 1 0.000152 0.000152 0.000152 2.3104e-08
+157	387437 80 119 885 61 106.002201561626 4 0 1 1 1
+158	387517 242 119 853 61 106.002049561626 10 0 1 4 4
+439	387759 27 594 594 106.001138207161 106.001138207161 1 9 9 9 81
+165	387786 836 119 993 61 106.002584034815 32 0 2 24 40
+166	388622 14 119 119 61 61 1 15 15 15 225
+507	388636 34 854 854 106.002049561626 106.002049561626 1 12000000 12000000 12000000 1.44e+14
+156	388670 80 119 885 61 106.002201561626 4 0 1 1 1
+424	388750 116 584 994 106.001138207161 106.002584034815 4 158 158 632 99856
+423	388866 116 584 994 106.001138207161 106.002584034815 4 158 158 632 99856
+422	388982 116 584 994 106.001138207161 106.002584034815 4 158 158 632 99856
+518	389098 29 885 885 106.002201561626 106.002201561626 1 158 158 158 24964
+517	389127 29 885 885 106.002201561626 106.002201561626 1 158 158 158 24964
+516	389156 29 885 885 106.002201561626 106.002201561626 1 158 158 158 24964
+421	389185 145 584 994 106.001138207161 106.002584034815 5 158 158 790 124820
+508	389330 29 854 854 106.002049561626 106.002049561626 1 158 158 158 24964
+434	389359 29 594 594 106.001138207161 106.001138207161 1 130 130 130 16900
+425	389388 116 584 994 106.001138207161 106.002584034815 4 130 130 520 67600
+477	389504 29 678 678 106.001361207187 106.001361207187 1 158 158 158 24964
+476	389533 29 678 678 106.001361207187 106.001361207187 1 158 158 158 24964
+163	389562 13 119 119 61 61 1 3 3 3 9
+162	389575 93 119 886 61 106.002201561626 5 0 3 7 17
+164	389668 364 119 993 61 106.002584034815 14 0 3 24 56
+509	390032 108 855 886 106.002049561626 106.002201561626 4 0 2 4 6
+429	390140 200 588 998 106.001138207161 106.002584034815 5 0.001138207161 0.002584034815 0.008502008211 1.5940666959142e-05
+428	390340 30917 588 1333 61.1 250 1890 0 40000 40000 1600000000
+427	421257 145 588 998 106.001138207161 106.002584034815 5 100 100 500 50000
+430	421402 29 588 588 106.001138207161 106.001138207161 1 100 100 100 10000
+244	421431 230 319 967 106.000468110285 106.002583244488 8 108 108 864 93312
+249	421661 29 321 321 106.000468110285 106.000468110285 1 108 108 108 11664
+82	421690 217 80 967 40 106.002583244488 9 0 8 36 204
+83	421907 11 80 80 40 40 1 0 0 0 0
+84	421918 11 80 80 40 40 1 0 0 0 0
+250	421929 29 323 323 106.000468110285 106.000468110285 1 128 128 128 16384
+251	421958 29 323 323 106.000468110285 106.000468110285 1 128 128 128 16384
+512	421987 34697 870 1337 40.1 254 2140 0 12640 12640 159769600
+511	456684 29 870 870 106.00206193819 106.00206193819 1 1264 1264 1264 1597696
+510	456713 39 870 870 106.00206193819 106.00206193819 1 0.001593827905 0.001593827905 0.001593827905 2.5402873907567e-06
+254	456752 34697 326 1337 40.1 254 2140 0 12640 12640 159769600
+253	491449 30 326 326 106.000468110285 106.000468110285 1 1264 1264 1264 1597696
+255	491479 53 326 870 106.000468110285 106.00206193819 2 0 1 1 1
+256	491532 56 326 870 106.000468110285 106.00206193819 2 0 1264 1264 1597696
+529	491588 33 910 910 106.00221393819 106.00221393819 1 0.000152 0.000152 0.000152 2.3104e-08
+80	491621 72 80 910 40 106.00221393819 4 0 1 1 1
+81	491693 381 80 869 40 106.00206193819 16 0 1 7 7
+257	492074 28 326 326 106.000468110285 106.000468110285 1 13 13 13 169
+88	492102 1100 80 963 40 106.002583244488 44 0 2 42 70
+89	493202 12 80 80 40 40 1 15 15 15 225
+513	493214 33 870 870 106.00206193819 106.00206193819 1 12000000 12000000 12000000 1.44e+14
+79	493247 72 80 910 40 106.00221393819 4 0 1 1 1
+242	493319 201 316 964 106.000468110285 106.002583244488 7 158 158 1106 174748
+241	493520 201 316 964 106.000468110285 106.002583244488 7 158 158 1106 174748
+240	493721 201 316 964 106.000468110285 106.002583244488 7 158 158 1106 174748
+528	493922 28 910 910 106.00221393819 106.00221393819 1 158 158 158 24964
+527	493950 28 910 910 106.00221393819 106.00221393819 1 158 158 158 24964
+526	493978 28 910 910 106.00221393819 106.00221393819 1 158 158 158 24964
+239	494006 230 316 964 106.000468110285 106.002583244488 8 158 158 1264 199712
+514	494236 28 870 870 106.00206193819 106.00206193819 1 158 158 158 24964
+252	494264 29 326 326 106.000468110285 106.000468110285 1 130 130 130 16900
+243	494293 201 316 964 106.000468110285 106.002583244488 7 130 130 910 118300
+467	494494 29 661 661 106.001360954453 106.001360954453 1 158 158 158 24964
+466	494523 29 661 661 106.001360954453 106.001360954453 1 158 158 158 24964
+86	494552 11 80 80 40 40 1 3 3 3 9
+85	494563 83 80 911 40 106.00221393819 5 0 3 7 17
+87	494646 499 80 963 40 106.002583244488 20 0 3 36 86
+515	495145 104 871 911 106.00206193819 106.00221393819 4 0 2 4 6
+247	495249 316 320 968 106.000468110285 106.002583244488 8 0.000468110285 0.002583244488 0.009917515037 1.6416614139909e-05
+246	495565 34697 320 1337 40.1 254 2140 0 64000 64000 4096000000
+245	530262 230 320 968 106.000468110285 106.002583244488 8 100 100 800 80000
+248	530492 29 320 320 106.000468110285 106.000468110285 1 100 100 100 10000
+273	530521 203 377 961 106.000691136258 106.002583219015 7 108 108 756 81648
+278	530724 29 379 379 106.000691136258 106.000691136258 1 108 108 108 11664
+126	530753 202 106 961 54 106.002583219015 8 0 7 28 140
+127	530955 13 106 106 54 54 1 0 0 0 0
+128	530968 13 106 106 54 54 1 0 0 0 0
+279	530981 29 381 381 106.000691136258 106.000691136258 1 128 128 128 16384
+280	531010 29 381 381 106.000691136258 106.000691136258 1 128 128 128 16384
+448	531039 32961 611 1339 54.1 256 2020 0 12640 12640 159769600
+447	564000 30 611 611 106.001208926853 106.001208926853 1 1264 1264 1264 1597696
+446	564030 40 611 611 106.001208926853 106.001208926853 1 0.000517790595 0.000517790595 0.000517790595 2.6810710027045e-07
+283	564070 32961 384 1339 54.1 256 2020 0 12640 12640 159769600
+282	597031 30 384 384 106.000691136258 106.000691136258 1 1264 1264 1264 1597696
+284	597061 54 384 611 106.000691136258 106.001208926853 2 0 1 1 1
+285	597115 57 384 611 106.000691136258 106.001208926853 2 0 1264 1264 1597696
+465	597172 34 656 656 106.001360926853 106.001360926853 1 0.000152 0.000152 0.000152 2.3104e-08
+124	597206 80 106 656 54 106.001360926853 4 0 1 1 1
+125	597286 188 106 610 54 106.001208926853 8 0 1 3 3
+286	597474 27 384 384 106.000691136258 106.000691136258 1 3 3 3 9
+132	597501 1052 106 957 54 106.002583219015 40 0 2 16 28
+133	598553 14 106 106 54 54 1 15 15 15 225
+449	598567 34 611 611 106.001208926853 106.001208926853 1 12000000 12000000 12000000 1.44e+14
+123	598601 80 106 656 54 106.001360926853 4 0 1 1 1
+271	598681 174 374 958 106.000691136258 106.002583219015 6 158 158 948 149784
+270	598855 174 374 958 106.000691136258 106.002583219015 6 158 158 948 149784
+269	599029 174 374 958 106.000691136258 106.002583219015 6 158 158 948 149784
+464	599203 29 656 656 106.001360926853 106.001360926853 1 158 158 158 24964
+463	599232 29 656 656 106.001360926853 106.001360926853 1 158 158 158 24964
+462	599261 29 656 656 106.001360926853 106.001360926853 1 158 158 158 24964
+268	599290 203 374 958 106.000691136258 106.002583219015 7 158 158 1106 174748
+450	599493 29 611 611 106.001208926853 106.001208926853 1 158 158 158 24964
+281	599522 29 384 384 106.000691136258 106.000691136258 1 130 130 130 16900
+272	599551 174 374 958 106.000691136258 106.002583219015 6 130 130 780 101400
+525	599725 29 904 904 106.002202632188 106.002202632188 1 158 158 158 24964
+524	599754 29 904 904 106.002202632188 106.002202632188 1 158 158 158 24964
+130	599783 13 106 106 54 54 1 3 3 3 9
+129	599796 93 106 657 54 106.001360926853 5 0 3 7 17
+131	599889 499 106 957 54 106.002583219015 19 0 3 34 80
+451	600388 108 612 657 106.001208926853 106.001360926853 4 0 2 4 6
+276	600496 280 378 962 106.000691136258 106.002583219015 7 0.000691136258 0.002583219015 0.009672379643 1.64557344329e-05
+275	600776 32961 378 1339 54.1 256 2020 0 56000 56000 3136000000
+274	633737 203 378 962 106.000691136258 106.002583219015 7 100 100 700 70000
+277	633940 29 378 378 106.000691136258 106.000691136258 1 100 100 100 10000
+172	633969 143 242 1241 106.00015305141 211.00015296639 5 108 108 540 58320
+177	634112 28 244 244 106.00015305141 106.00015305141 1 108 108 108 11664
+14	634140 139 30 1241 26 211.00015296639 6 0 5 15 55
+15	634279 11 30 30 26 26 1 0 0 0 0
+16	634290 11 30 30 26 26 1 0 0 0 0
+178	634301 28 246 246 106.00015305141 106.00015305141 1 128 128 128 16384
+179	634329 28 246 246 106.00015305141 106.00015305141 1 128 128 128 16384
+188	634357 39289 264 1352 26.1 269 2430 0 12640 12640 159769600
+187	673646 29 264 264 106.00031505141 106.00031505141 1 1264 1264 1264 1597696
+186	673675 33 264 264 106.00031505141 106.00031505141 1 0.000162 0.000162 0.000162 2.6244e-08
+182	673708 39289 249 1352 26.1 269 2430 0 12640 12640 159769600
+181	712997 29 249 249 106.00015305141 106.00015305141 1 1264 1264 1264 1597696
+183	713026 52 249 264 106.00015305141 106.00031505141 2 0 1 1 1
+184	713078 55 249 264 106.00015305141 106.00031505141 2 0 1264 1264 1597696
+195	713133 33 279 279 106.00046705141 106.00046705141 1 0.000152 0.000152 0.000152 2.3104e-08
+12	713166 72 30 279 26 106.00046705141 4 0 1 1 1
+13	713238 72 30 263 26 106.00031505141 4 0 1 1 1
+185	713310 26 249 249 106.00015305141 106.00015305141 1 8 8 8 64
+20	713336 894 30 1237 26 211.00015296639 36 0 2 4 8
+21	714230 12 30 30 26 26 1 15 15 15 225
+189	714242 33 264 264 106.00031505141 106.00031505141 1 12000000 12000000 12000000 1.44e+14
+11	714275 72 30 279 26 106.00046705141 4 0 1 1 1
+170	714347 115 239 1238 106.00015305141 211.00015296639 4 158 158 632 99856
+169	714462 115 239 1238 106.00015305141 211.00015296639 4 158 158 632 99856
+168	714577 115 239 1238 106.00015305141 211.00015296639 4 158 158 632 99856
+194	714692 28 279 279 106.00046705141 106.00046705141 1 158 158 158 24964
+193	714720 28 279 279 106.00046705141 106.00046705141 1 158 158 158 24964
+192	714748 28 279 279 106.00046705141 106.00046705141 1 158 158 158 24964
+167	714776 144 239 1238 106.00015305141 211.00015296639 5 158 158 790 124820
+190	714920 28 264 264 106.00031505141 106.00031505141 1 158 158 158 24964
+180	714948 28 249 249 106.00015305141 106.00015305141 1 130 130 130 16900
+171	714976 115 239 1238 106.00015305141 211.00015296639 4 130 130 520 67600
+531	715091 29 924 924 106.002214997065 106.002214997065 1 158 158 158 24964
+530	715120 29 924 924 106.002214997065 106.002214997065 1 158 158 158 24964
+18	715149 11 30 30 26 26 1 3 3 3 9
+17	715160 83 30 280 26 106.00046705141 5 0 3 7 17
+19	715243 371 30 1237 26 211.00015296639 15 0 3 25 57
+191	715614 104 265 280 106.00031505141 106.00046705141 4 0 2 4 6
+175	715718 195 243 1242 106.00015305141 211.00015296639 5 0.00015296639 0.000927117449 0.002076544507 1.4063889072111e-06
+174	715913 39292 243 1352 26.1 269 2430 0 32000 40000 1088000000
+173	755205 143 243 1242 106.00015305141 211.00015296639 5 100 100 500 50000
+176	755348 28 243 243 106.00015305141 106.00015305141 1 100 100 100 10000
+201	755376 117 285 1003 106.000467204629 106.002584150233 4 108 108 432 46656
+206	755493 29 287 287 106.000467204629 106.000467204629 1 108 108 108 11664
+25	755522 116 30 1003 26 106.002584150233 5 0 4 10 30
+26	755638 11 30 30 26 26 1 0 0 0 0
+27	755649 11 30 30 26 26 1 0 0 0 0
+207	755660 29 289 289 106.000467204629 106.000467204629 1 128 128 128 16384
+208	755689 29 289 289 106.000467204629 106.000467204629 1 128 128 128 16384
+260	755718 40969 338 1362 26.1 279 2530 0 12640 12640 159769600
+259	796687 30 338 338 106.000538204629 106.000538204629 1 1264 1264 1264 1597696
+258	796717 33 338 338 106.000538204629 106.000538204629 1 7.1e-05 7.1e-05 7.1e-05 5.041e-09
+211	796750 40969 292 1362 26.1 279 2530 0 12640 12640 159769600
+210	837719 30 292 292 106.000467204629 106.000467204629 1 1264 1264 1264 1597696
+212	837749 54 292 338 106.000467204629 106.000538204629 2 0 1 1 1
+213	837803 57 292 338 106.000467204629 106.000538204629 2 0 1264 1264 1597696
+267	837860 34 353 353 106.000690204629 106.000690204629 1 0.000152 0.000152 0.000152 2.3104e-08
+23	837894 74 30 353 26 106.000690204629 4 0 1 1 1
+24	837968 74 30 337 26 106.000538204629 4 0 1 1 1
+214	838042 27 292 292 106.000467204629 106.000467204629 1 1 1 1 1
+31	838069 854 30 999 26 106.002584150233 34 0 2 4 8
+32	838923 12 30 30 26 26 1 15 15 15 225
+261	838935 34 338 338 106.000538204629 106.000538204629 1 12000000 12000000 12000000 1.44e+14
+22	838969 74 30 353 26 106.000690204629 4 0 1 1 1
+199	839043 88 282 1000 106.000467204629 106.002584150233 3 158 158 474 74892
+198	839131 88 282 1000 106.000467204629 106.002584150233 3 158 158 474 74892
+197	839219 88 282 1000 106.000467204629 106.002584150233 3 158 158 474 74892
+266	839307 29 353 353 106.000690204629 106.000690204629 1 158 158 158 24964
+265	839336 29 353 353 106.000690204629 106.000690204629 1 158 158 158 24964
+264	839365 29 353 353 106.000690204629 106.000690204629 1 158 158 158 24964
+196	839394 146 282 1000 106.000467204629 106.002584150233 5 158 158 790 124820
+262	839540 29 338 338 106.000538204629 106.000538204629 1 158 158 158 24964
+209	839569 29 292 292 106.000467204629 106.000467204629 1 130 130 130 16900
+200	839598 88 282 1000 106.000467204629 106.002584150233 3 130 130 390 50700
+483	839686 58 694 921 106.001361858482 106.002214843941 2 158 158 316 49928
+482	839744 58 694 921 106.001361858482 106.002214843941 2 158 158 316 49928
+29	839802 11 30 30 26 26 1 3 3 3 9
+28	839813 85 30 354 26 106.000690204629 5 0 3 7 17
+30	839898 349 30 999 26 106.002584150233 14 0 3 24 56
+263	840247 108 339 354 106.000538204629 106.000690204629 4 0 2 4 6
+204	840355 161 286 1004 106.000467204629 106.002584150233 4 0.000467204629 0.002584150233 0.004445523736 7.9736554689404e-06
+203	840516 40969 286 1362 26.1 279 2530 0 32000 32000 1024000000
+202	881485 117 286 1004 106.000467204629 106.002584150233 4 100 100 400 40000
+205	881602 29 286 286 106.000467204629 106.000467204629 1 100 100 100 10000
+220	881631 202 299 1086 106.000467584422 141.00015294752 7 108 108 756 81648
+225	881833 29 301 301 106.000467584422 106.000467584422 1 108 108 108 11664
+36	881862 192 43 1086 33 141.00015294752 8 0 7 28 140
+37	882054 11 43 43 33 33 1 0 0 0 0
+38	882065 11 43 43 33 33 1 0 0 0 0
+226	882076 29 303 303 106.000467584422 106.000467584422 1 128 128 128 16384
+227	882105 29 303 303 106.000467584422 106.000467584422 1 128 128 128 16384
+327	882134 40605 422 1392 33.1 283 2500 0 12640 12640 159769600
+326	922739 30 422 422 106.000774584437 106.000774584437 1 1264 1264 1264 1597696
+325	922769 40 422 422 106.000774584437 106.000774584437 1 0.000307000015 0.000307000015 0.000307000015 9.424900921e-08
+230	922809 40605 306 1392 33.1 283 2500 0 12640 12640 159769600
+229	963414 30 306 306 106.000467584422 106.000467584422 1 1264 1264 1264 1597696
+231	963444 54 306 422 106.000467584422 106.000774584437 2 0 1 1 1
+232	963498 57 306 422 106.000467584422 106.000774584437 2 0 1264 1264 1597696
+334	963555 34 437 437 106.000926584437 106.000926584437 1 0.000152 0.000152 0.000152 2.3104e-08
+34	963589 74 43 437 33 106.000926584437 4 0 1 1 1
+35	963663 126 43 421 33 106.000774584437 6 0 1 2 2
+233	963789 27 306 306 106.000467584422 106.000467584422 1 3 3 3 9
+42	963816 1162 43 1082 33 141.00015294752 46 0 2 10 18
+43	964978 12 43 43 33 33 1 15 15 15 225
+328	964990 34 422 422 106.000774584437 106.000774584437 1 12000000 12000000 12000000 1.44e+14
+33	965024 74 43 437 33 106.000926584437 4 0 1 1 1
+218	965098 173 296 1083 106.000467584422 141.00015294752 6 158 158 948 149784
+217	965271 173 296 1083 106.000467584422 141.00015294752 6 158 158 948 149784
+216	965444 173 296 1083 106.000467584422 141.00015294752 6 158 158 948 149784
+333	965617 29 437 437 106.000926584437 106.000926584437 1 158 158 158 24964
+332	965646 29 437 437 106.000926584437 106.000926584437 1 158 158 158 24964
+331	965675 29 437 437 106.000926584437 106.000926584437 1 158 158 158 24964
+215	965704 231 296 1083 106.000467584422 141.00015294752 8 158 158 1264 199712
+329	965935 29 422 422 106.000774584437 106.000774584437 1 158 158 158 24964
+228	965964 29 306 306 106.000467584422 106.000467584422 1 130 130 130 16900
+219	965993 173 296 1083 106.000467584422 141.00015294752 6 130 130 780 101400
+481	966166 58 684 918 106.001361479028 106.002214464284 2 158 158 316 49928
+480	966224 58 684 918 106.001361479028 106.002214464284 2 158 158 316 49928
+40	966282 11 43 43 33 33 1 3 3 3 9
+39	966293 85 43 438 33 106.000926584437 5 0 3 7 17
+41	966378 503 43 1082 33 141.00015294752 20 0 3 36 86
+330	966881 108 423 438 106.000774584437 106.000926584437 4 0 2 4 6
+223	966989 277 300 1087 106.000467584422 141.00015294752 7 0.00015294752 0.00258377058 0.007466414466 1.2772624433974e-05
+222	967266 40608 300 1392 33.1 283 2500 0 48000 56000 2368000000
+221	1007874 202 300 1087 106.000467584422 141.00015294752 7 100 100 700 70000
+224	1008076 29 300 300 106.000467584422 106.000467584422 1 100 100 100 10000
+292	1008105 203 391 955 106.000691147701 106.002583207815 7 108 108 756 81648
+297	1008308 29 393 393 106.000691147701 106.000691147701 1 108 108 108 11664
+47	1008337 193 43 955 33 106.002583207815 8 0 7 28 140
+48	1008530 11 43 43 33 33 1 0 0 0 0
+49	1008541 11 43 43 33 33 1 0 0 0 0
+298	1008552 29 395 395 106.000691147701 106.000691147701 1 128 128 128 16384
+299	1008581 29 395 395 106.000691147701 106.000691147701 1 128 128 128 16384
+442	1008610 42285 607 1402 33.1 293 2600 0 12640 12640 159769600
+441	1050895 30 607 607 106.001208915777 106.001208915777 1 1264 1264 1264 1597696
+440	1050925 40 607 607 106.001208915777 106.001208915777 1 0.000517768076 0.000517768076 0.000517768076 2.6808378052474e-07
+302	1050965 42285 398 1402 33.1 293 2600 0 12640 12640 159769600
+301	1093250 30 398 398 106.000691147701 106.000691147701 1 1264 1264 1264 1597696
+303	1093280 54 398 607 106.000691147701 106.001208915777 2 0 1 1 1
+304	1093334 57 398 607 106.000691147701 106.001208915777 2 0 1264 1264 1597696
+461	1093391 34 654 654 106.001360915777 106.001360915777 1 0.000152 0.000152 0.000152 2.3104e-08
+45	1093425 74 43 654 33 106.001360915777 4 0 1 1 1
+46	1093499 178 43 606 33 106.001208915777 8 0 1 3 3
+305	1093677 27 398 398 106.000691147701 106.000691147701 1 3 3 3 9
+53	1093704 1010 43 951 33 106.002583207815 40 0 2 16 28
+54	1094714 12 43 43 33 33 1 15 15 15 225
+443	1094726 34 607 607 106.001208915777 106.001208915777 1 12000000 12000000 12000000 1.44e+14
+44	1094760 74 43 654 33 106.001360915777 4 0 1 1 1
+290	1094834 174 388 952 106.000691147701 106.002583207815 6 158 158 948 149784
+289	1095008 174 388 952 106.000691147701 106.002583207815 6 158 158 948 149784
+288	1095182 174 388 952 106.000691147701 106.002583207815 6 158 158 948 149784
+460	1095356 29 654 654 106.001360915777 106.001360915777 1 158 158 158 24964
+459	1095385 29 654 654 106.001360915777 106.001360915777 1 158 158 158 24964
+458	1095414 29 654 654 106.001360915777 106.001360915777 1 158 158 158 24964
+287	1095443 203 388 952 106.000691147701 106.002583207815 7 158 158 1106 174748
+444	1095646 29 607 607 106.001208915777 106.001208915777 1 158 158 158 24964
+300	1095675 29 398 398 106.000691147701 106.000691147701 1 130 130 130 16900
+291	1095704 174 388 952 106.000691147701 106.002583207815 6 130 130 780 101400
+523	1095878 29 902 902 106.002202621302 106.002202621302 1 158 158 158 24964
+522	1095907 29 902 902 106.002202621302 106.002202621302 1 158 158 158 24964
+51	1095936 11 43 43 33 33 1 3 3 3 9
+50	1095947 85 43 655 33 106.001360915777 5 0 3 7 17
+52	1096032 479 43 951 33 106.002583207815 19 0 3 34 80
+445	1096511 108 608 655 106.001208915777 106.001360915777 4 0 2 4 6
+295	1096619 280 392 956 106.000691147701 106.002583207815 7 0.000691147701 0.002583207815 0.009672369326 1.6455623254992e-05
+294	1096899 42285 392 1402 33.1 293 2600 0 56000 56000 3136000000
+293	1139184 203 392 956 106.000691147701 106.002583207815 7 100 100 700 70000
+296	1139387 29 392 392 106.000691147701 106.000691147701 1 100 100 100 10000
+311	1139416 174 405 800 106.000691263523 106.001964785044 6 108 108 648 69984
+316	1139590 29 407 407 106.000691263523 106.000691263523 1 108 108 108 11664
+93	1139619 167 80 800 40 106.001964785044 7 0 6 21 91
+94	1139786 11 80 80 40 40 1 0 0 0 0
+95	1139797 11 80 80 40 40 1 0 0 0 0
+317	1139808 29 409 409 106.000691263523 106.000691263523 1 128 128 128 16384
+318	1139837 29 409 409 106.000691263523 106.000691263523 1 128 128 128 16384
+534	1139866 41585 928 1404 40.1 295 2550 0 12640 12640 159769600
+533	1181451 30 928 928 106.002431091339 106.002431091339 1 1264 1264 1264 1597696
+532	1181481 40 928 928 106.002431091339 106.002431091339 1 0.001739827816 0.001739827816 0.001739827816 3.0270008293273e-06
+321	1181521 41585 412 1404 40.1 295 2550 0 12640 12640 159769600
+320	1223106 30 412 412 106.000691263523 106.000691263523 1 1264 1264 1264 1597696
+322	1223136 54 412 928 106.000691263523 106.002431091339 2 0 1 1 1
+323	1223190 57 412 928 106.000691263523 106.002431091339 2 0 1264 1264 1597696
+541	1223247 34 943 943 106.002583091339 106.002583091339 1 0.000152 0.000152 0.000152 2.3104e-08
+91	1223281 74 80 943 40 106.002583091339 4 0 1 1 1
+92	1223355 386 80 927 40 106.002431091339 16 0 1 7 7
+324	1223741 28 412 412 106.000691263523 106.000691263523 1 14 14 14 196
+99	1223769 1062 80 944 40 106.002583091339 42 0 2 44 72
+100	1224831 13 80 80 40 40 1 15 15 15 225
+535	1224844 34 928 928 106.002431091339 106.002431091339 1 12000000 12000000 12000000 1.44e+14
+90	1224878 74 80 943 40 106.002583091339 4 0 1 1 1
+309	1224952 145 402 797 106.000691263523 106.001964785044 5 158 158 790 124820
+308	1225097 145 402 797 106.000691263523 106.001964785044 5 158 158 790 124820
+307	1225242 145 402 797 106.000691263523 106.001964785044 5 158 158 790 124820
+540	1225387 29 943 943 106.002583091339 106.002583091339 1 158 158 158 24964
+539	1225416 29 943 943 106.002583091339 106.002583091339 1 158 158 158 24964
+538	1225445 29 943 943 106.002583091339 106.002583091339 1 158 158 158 24964
+306	1225474 203 402 900 106.000691263523 106.002202505102 7 158 158 1106 174748
+536	1225677 29 928 928 106.002431091339 106.002431091339 1 158 158 158 24964
+319	1225706 29 412 412 106.000691263523 106.000691263523 1 130 130 130 16900
+310	1225735 145 402 797 106.000691263523 106.001964785044 5 130 130 650 84500
+473	1225880 58 666 900 106.001361032253 106.002202505102 2 158 158 316 49928
+472	1225938 58 666 900 106.001361032253 106.002202505102 2 158 158 316 49928
+97	1225996 11 80 80 40 40 1 3 3 3 9
+96	1226007 85 80 944 40 106.002583091339 5 0 3 7 17
+98	1226092 479 80 944 40 106.002583091339 19 0 3 34 80
+537	1226571 108 929 944 106.002431091339 106.002583091339 4 0 2 4 6
+314	1226679 240 406 801 106.000691263523 106.001964785044 6 0.000691263523 0.001964785044 0.007089160375 9.782084642392e-06
+313	1226919 41585 406 1404 40.1 295 2550 0 48000 48000 2304000000
+312	1268504 174 406 801 106.000691263523 106.001964785044 6 100 100 600 60000
+315	1268678 29 406 406 106.000691263523 106.000691263523 1 100 100 100 10000
+340	1268707 145 479 949 106.000927347125 106.002583174787 5 108 108 540 58320
+345	1268852 29 481 481 106.000927347125 106.000927347125 1 108 108 108 11664
+115	1268881 147 93 949 47 106.002583174787 6 0 5 15 55
+116	1269028 12 93 93 47 47 1 0 0 0 0
+117	1269040 12 93 93 47 47 1 0 0 0 0
+346	1269052 29 483 483 106.000927347125 106.000927347125 1 128 128 128 16384
+347	1269081 29 483 483 106.000927347125 106.000927347125 1 128 128 128 16384
+496	1269110 40885 779 1406 47.1 297 2500 0 12640 12640 159769600
+495	1309995 30 779 779 106.001812701596 106.001812701596 1 1264 1264 1264 1597696
+494	1310025 40 779 779 106.001812701596 106.001812701596 1 0.000885354471 0.000885354471 0.000885354471 7.8385253931969e-07
+350	1310065 40885 486 1406 47.1 297 2500 0 12640 12640 159769600
+349	1350950 30 486 486 106.000927347125 106.000927347125 1 1264 1264 1264 1597696
+351	1350980 54 486 779 106.000927347125 106.001812701596 2 0 1 1 1
+352	1351034 57 486 779 106.000927347125 106.001812701596 2 0 1264 1264 1597696
+503	1351091 34 794 794 106.001964701596 106.001964701596 1 0.000152 0.000152 0.000152 2.3104e-08
+113	1351125 78 93 794 47 106.001964701596 4 0 1 1 1
+114	1351203 240 93 778 47 106.001812701596 10 0 1 4 4
+353	1351443 27 486 486 106.000927347125 106.000927347125 1 7 7 7 49
+121	1351470 996 93 945 47 106.002583174787 38 0 2 24 40
+122	1352466 13 93 93 47 47 1 15 15 15 225
+497	1352479 34 779 779 106.001812701596 106.001812701596 1 12000000 12000000 12000000 1.44e+14
+112	1352513 78 93 794 47 106.001964701596 4 0 1 1 1
+338	1352591 116 476 946 106.000927347125 106.002583174787 4 158 158 632 99856
+337	1352707 116 476 946 106.000927347125 106.002583174787 4 158 158 632 99856
+336	1352823 116 476 946 106.000927347125 106.002583174787 4 158 158 632 99856
+502	1352939 29 794 794 106.001964701596 106.001964701596 1 158 158 158 24964
+501	1352968 29 794 794 106.001964701596 106.001964701596 1 158 158 158 24964
+500	1352997 29 794 794 106.001964701596 106.001964701596 1 158 158 158 24964
+335	1353026 174 476 946 106.000927347125 106.002583174787 6 158 158 948 149784
+498	1353200 29 779 779 106.001812701596 106.001812701596 1 158 158 158 24964
+348	1353229 29 486 486 106.000927347125 106.000927347125 1 130 130 130 16900
+339	1353258 116 476 946 106.000927347125 106.002583174787 4 130 130 520 67600
+475	1353374 58 669 898 106.001361115542 106.002202421656 2 158 158 316 49928
+474	1353432 58 669 898 106.001361115542 106.002202421656 2 158 158 316 49928
+119	1353490 12 93 93 47 47 1 3 3 3 9
+118	1353502 90 93 795 47 106.001964701596 5 0 3 7 17
+120	1353592 444 93 945 47 106.002583174787 17 0 3 30 70
+499	1354036 108 780 795 106.001812701596 106.001964701596 4 0 2 4 6
+343	1354144 200 480 950 106.000927347125 106.002583174787 5 0.000927347125 0.002583174787 0.007252286749 1.2498463563319e-05
+342	1354344 40885 480 1406 47.1 297 2500 0 40000 40000 1600000000
+341	1395229 145 480 950 106.000927347125 106.002583174787 5 100 100 500 50000
+344	1395374 29 480 480 106.000927347125 106.000927347125 1 100 100 100 10000
+359	1395403 145 493 973 106.000927531619 106.002583359284 5 108 108 540 58320
+364	1395548 29 495 495 106.000927531619 106.000927531619 1 108 108 108 11664
+137	1395577 148 106 973 54 106.002583359284 6 0 5 15 55
+138	1395725 13 106 106 54 54 1 0 0 0 0
+139	1395738 13 106 106 54 54 1 0 0 0 0
+365	1395751 29 497 497 106.000927531619 106.000927531619 1 128 128 128 16384
+366	1395780 29 497 497 106.000927531619 106.000927531619 1 128 128 128 16384
+375	1395809 40185 508 1408 54.1 299 2450 0 12640 12640 159769600
+374	1435994 30 508 508 106.000985531619 106.000985531619 1 1264 1264 1264 1597696
+373	1436024 33 508 508 106.000985531619 106.000985531619 1 5.8e-05 5.8e-05 5.8e-05 3.364e-09
+369	1436057 40185 500 1408 54.1 299 2450 0 12640 12640 159769600
+368	1476242 30 500 500 106.000927531619 106.000927531619 1 1264 1264 1264 1597696
+370	1476272 54 500 508 106.000927531619 106.000985531619 2 0 1 1 1
+371	1476326 57 500 508 106.000927531619 106.000985531619 2 0 1264 1264 1597696
+382	1476383 34 523 523 106.001137531619 106.001137531619 1 0.000152 0.000152 0.000152 2.3104e-08
+135	1476417 80 106 523 54 106.001137531619 4 0 1 1 1
+136	1476497 80 106 507 54 106.000985531619 4 0 1 1 1
+372	1476577 27 500 500 106.000927531619 106.000927531619 1 0 0 0 0
+143	1476604 998 106 969 54 106.002583359284 38 0 2 4 8
+144	1477602 14 106 106 54 54 1 15 15 15 225
+376	1477616 34 508 508 106.000985531619 106.000985531619 1 12000000 12000000 12000000 1.44e+14
+134	1477650 80 106 523 54 106.001137531619 4 0 1 1 1
+357	1477730 116 490 970 106.000927531619 106.002583359284 4 158 158 632 99856
+356	1477846 116 490 970 106.000927531619 106.002583359284 4 158 158 632 99856
+355	1477962 116 490 970 106.000927531619 106.002583359284 4 158 158 632 99856
+381	1478078 29 523 523 106.001137531619 106.001137531619 1 158 158 158 24964
+380	1478107 29 523 523 106.001137531619 106.001137531619 1 158 158 158 24964
+379	1478136 29 523 523 106.001137531619 106.001137531619 1 158 158 158 24964
+354	1478165 174 490 970 106.000927531619 106.002583359284 6 158 158 948 149784
+377	1478339 29 508 508 106.000985531619 106.000985531619 1 158 158 158 24964
+367	1478368 29 500 500 106.000927531619 106.000927531619 1 130 130 130 16900
+358	1478397 116 490 970 106.000927531619 106.002583359284 4 130 130 520 67600
+479	1478513 58 680 896 106.001361299935 106.002202237168 2 158 158 316 49928
+478	1478571 58 680 896 106.001361299935 106.002202237168 2 158 158 316 49928
+141	1478629 13 106 106 54 54 1 3 3 3 9
+140	1478642 93 106 524 54 106.001137531619 5 0 3 7 17
+142	1478735 445 106 969 54 106.002583359284 17 0 3 30 70
+378	1479180 108 509 524 106.000985531619 106.001137531619 4 0 2 4 6
+362	1479288 200 494 974 106.000927531619 106.002583359284 5 0.000927531619 0.002583359284 0.00807982572 1.5065861960541e-05
+361	1479488 40185 494 1408 54.1 299 2450 0 40000 40000 1600000000
+360	1519673 145 494 974 106.000927531619 106.002583359284 5 100 100 500 50000
+363	1519818 29 494 494 106.000927531619 106.000927531619 1 100 100 100 10000
+65	1519847 149 60 1372 36 281 9 108 108 972 104976
+56	1519996 122 54 1366 36 281 8 108 108 864 93312
+3	1520118 130 2 1372 1 281 10 0 9 45 285
+4	1520248 8 2 2 1 1 1 0 0 0 0
+5	1520256 8 2 2 1 1 1 0 0 0 0
+57	1520264 122 56 1368 36 281 8 128 128 1024 131072
+58	1520386 122 56 1368 36 281 8 128 128 1024 131072
+71	1520508 45112 63 1411 1.1 302 3010 0 12640 101120 1278156800
+70	1565620 130 63 1375 36 281 8 1264 1264 10112 12781568
+69	1565750 106 63 1375 36 281 8 0 0 0 0
+61	1565856 45112 59 1411 1.1 302 3010 0 12640 101120 1278156800
+60	1610968 130 59 1371 36 281 8 1264 1264 10112 12781568
+62	1611098 212 59 1375 36 281 16 0 1 8 8
+63	1611310 236 59 1375 36 281 16 0 1264 10112 12781568
+78	1611546 218 70 1383 36.000152 281.000152 8 0.000152 0.000152 0.001216 1.84832e-07
+1	1611764 268 2 1383 1 281.000152 18 0 1 8 8
+2	1612032 212 2 1374 1 281 18 0 1 8 8
+64	1612244 108 59 1371 36 281 8 2 15 52 476
+9	1612352 1008 2 1384 1 281.000152 70 0 2 32 64
+10	1613360 10 2 2 1 1 1 15 15 15 225
+72	1613370 162 63 1375 36 281 8 12000000 12000000 96000000 1.152e+15
+0	1613532 268 2 1383 1 281.000152 18 0 1 8 8
+237	1613800 28 310 310 106.00046810282 106.00046810282 1 158 158 158 24964
+236	1613828 28 310 310 106.00046810282 106.00046810282 1 158 158 158 24964
+235	1613856 28 310 310 106.00046810282 106.00046810282 1 158 158 158 24964
+77	1613884 178 70 1383 36.000152 281.000152 8 158 158 1264 199712
+76	1614062 178 70 1383 36.000152 281.000152 8 158 158 1264 199712
+75	1614240 178 70 1383 36.000152 281.000152 8 158 158 1264 199712
+234	1614418 28 310 310 106.00046810282 106.00046810282 1 158 158 158 24964
+73	1614446 122 63 1375 36 281 8 158 158 1264 199712
+59	1614568 122 59 1371 36 281 8 130 130 1040 135200
+238	1614690 28 310 310 106.00046810282 106.00046810282 1 130 130 130 16900
+7	1614718 8 2 2 1 1 1 3 3 3 9
+6	1614726 276 2 1384 1 281.000152 19 0 3 42 108
+8	1615002 308 2 1384 1 281.000152 19 0 3 13 19
+74	1615310 536 64 1384 36 281.000152 32 0 2 32 48
+68	1615846 143 61 1373 36 281 9 0 0.00046810282 0.00046810282 2.1912025009195e-07
+67	1615989 45105 61 1411 1.1 302 3010 0 16000 72000 704000000
+66	1661094 149 61 1373 36 281 9 100 100 900 90000
+55	1661243 122 52 1364 36 281 8 100 100 800 80000
+
