@@ -1,8 +1,8 @@
 version 3
-run General-0-20230703-05:44:24-14863
+run General-0-20230705-04:34:23-6036
 attr configname General
-attr datetime 20230703-05:44:24
-attr datetimef 20230703-054424
+attr datetime 20230705-04:34:23
+attr datetimef 20230705-043423
 attr experiment General
 attr inifile omnetpp.ini
 attr iterationvars ""
@@ -10,7 +10,7 @@ attr iterationvarsd ""
 attr iterationvarsf ""
 attr measurement ""
 attr network Spoofing
-attr processid 14863
+attr processid 6036
 attr repetition 0
 attr replication #0
 attr resultdir results
@@ -18,7 +18,7 @@ attr runnumber 0
 attr seedset 0
 config image-path ../../images:../../../inet4.4/images:../../../veins-veins-5.2/images
 config network Spoofing
-config sim-time-limit 600s
+config sim-time-limit 400s
 config debug-on-errors true
 config cmdenv-express-mode true
 config image-path ../../../../images

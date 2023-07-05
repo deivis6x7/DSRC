@@ -49,7 +49,7 @@ bool VeinsInetSampleApplication::startApplication()
 {
     // ativando spoofing - comente as linhas abaixo
     /*
-    // host[0] should stop at 135s
+    // host[0] should stop at 120s
     if (getParentModule()->getIndex() == 0) {
         auto callback = [this]() {
             traciVehicle->setSpeed(0);
@@ -65,13 +65,13 @@ bool VeinsInetSampleApplication::startApplication()
             packet->insertAtBack(payload);
             sendPacket(std::move(packet));
 
-            // host[0] should continue after 245s
+            // host[0] should continue after 160s
             auto callback = [this]() {
                 traciVehicle->setSpeed(-1);
             };
-            timerManager.create(veins::TimerSpecification(callback).oneshotIn(SimTime(245, SIMTIME_S)));
+            timerManager.create(veins::TimerSpecification(callback).oneshotIn(SimTime(160, SIMTIME_S)));
         };
-        timerManager.create(veins::TimerSpecification(callback).oneshotAt(SimTime(135, SIMTIME_S)));
+        timerManager.create(veins::TimerSpecification(callback).oneshotAt(SimTime(120, SIMTIME_S)));
     }
     */
     // ativando spoofing - comente as linhas acima
@@ -86,9 +86,11 @@ void VeinsInetSampleApplication::processPacket(std::shared_ptr<inet::Packet> pk)
 
     getParentModule()->getDisplayString().setTagArg("i", 1, "green");
     traciVehicle->changeRoute(payload->getRoadId(), 999.9);
+
     const char* RoadId1 = "263136697#0";          // desativando spoofing - comente
     traciVehicle->changeRoute(RoadId1, 999.9);    // desativando spoofing - comente
-    //EV_INFO << "Rota: " << payload->getRoadId() << endl;
+
+    //EV_INFO << "Rota: " << payload->getRoadId() << endl; // visualização de rotas
 
     if (haveForwarded) return;
 
