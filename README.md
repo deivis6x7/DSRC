@@ -1,1 +1,1 @@
-# VANETs (Vehicular Ad Hoc Networks)
+# Dedicated Short-Range Communications (DSRC)
